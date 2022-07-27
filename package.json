@@ -1,7 +1,7 @@
 {
   "name": "raise",
   "version": "1.0.0",
-  "main": "src/main/main.js",
+  "main": "dist/main.js",
   "repository": "https://github.com/realfrancisyan/raise.git",
   "homepage": "./",
   "author": "Jiajun Yan",
@@ -9,10 +9,12 @@
   "scripts": {
     "dev": "concurrently -k \"yarn start:react\" \"yarn start:electron\"",
     "start:react": "webpack server --mode=development --hot --env DEPLOY_ENV=DEVELOPMENT",
-    "start:electron": "wait-on tcp:3000 && electron .",
+    "start:electron": "yarn build:electron && wait-on tcp:3000 && electron dist/main.js",
     "lint": "eslint 'src/**/*.{js,jsx}' --cache --fix",
-    "build": "webpack --mode=production --progress --env DEPLOY_ENV=PRODUCTION",
-    "package": "electron-builder build --mac --win -c.extraMetadata.main=dist/main.js --publish never",
+    "build": "yarn build:react && yarn build:electron",
+    "build:react": "webpack --mode=production --progress --env DEPLOY_ENV=PRODUCTION",
+    "build:electron": "webpack --mode=production --config webpack.main.config.js --env DEPLOY_ENV=PRODUCTION",
+    "package": "electron-builder build --mac -c.extraMetadata.main=dist/main.js --publish never",
     "publish": "electron-builder build --mac --win --publish always"
   },
   "dependencies": {

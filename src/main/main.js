@@ -1,6 +1,6 @@
-const {app, BrowserWindow} = require('electron')
-const path = require('path')
-const isDev = require('electron-is-dev')
+import {app, BrowserWindow} from 'electron'
+import path from 'path'
+import isDev from 'electron-is-dev'
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
@@ -10,8 +10,6 @@ const createWindow = () => {
       nodeIntegration: true,
     },
   })
-
-  mainWindow.webContents.openDevTools()
 
   if (isDev) {
     mainWindow.loadURL('http://localhost:3000')

@@ -129,10 +129,7 @@ module.exports = (env, argv) => {
         WEBPACK_DEV: DEV,
       }),
       new CopyWebpackPlugin({
-        patterns: [
-          {from: './public', to: './public'},
-          {from: './src/main', to: './'},
-        ],
+        patterns: [{from: './public', to: './public'}],
       }),
       new HtmlWebpackPlugin({
         template: 'src/renderer/index.html',
