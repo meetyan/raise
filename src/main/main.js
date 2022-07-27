@@ -2,10 +2,6 @@ const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const isDev = require('electron-is-dev')
 
-// import {app, BrowserWindow} from 'electron'
-// import path from 'path'
-// import isDev from 'electron-is-dev'
-
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,

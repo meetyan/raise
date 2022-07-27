@@ -1,5 +1,4 @@
 const path = require('path')
-
 const webpack = require('webpack')
 
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -61,7 +60,7 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: /\.(js|jsx)$/,
-          include: [path.resolve('./src')],
+          include: [path.resolve('./src/renderer')],
           use: [
             {
               loader: 'babel-loader',
@@ -132,7 +131,7 @@ module.exports = (env, argv) => {
       new CopyWebpackPlugin({
         patterns: [
           {from: './public', to: './public'},
-          {from: './src/main/main.js', to: './main.js'},
+          {from: './src/main', to: './'},
         ],
       }),
       new HtmlWebpackPlugin({

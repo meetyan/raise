@@ -7,13 +7,13 @@
   "author": "Jiajun Yan",
   "license": "MIT",
   "scripts": {
-    "start": "webpack server --mode=development --hot --env DEPLOY_ENV=DEVELOPMENT",
-    "start:electron": "wait-on http://localhost:3000 && electron .",
+    "dev": "concurrently -k \"yarn start:react\" \"yarn start:electron\"",
+    "start:react": "webpack server --mode=development --hot --env DEPLOY_ENV=DEVELOPMENT",
+    "start:electron": "wait-on tcp:3000 && electron .",
+    "lint": "eslint 'src/**/*.{js,jsx}' --cache --fix",
     "build": "webpack --mode=production --progress --env DEPLOY_ENV=PRODUCTION",
-    "lint": "eslint '**/*.{js,jsx}' --cache --fix",
-    "package": "electron-builder build --mac -c.extraMetadata.main=dist/main.js --publish never",
-    "publish": "electron-builder build --mac --win --publish always",
-    "dev": "concurrently -k \"yarn start\" \"yarn start:electron\""
+    "package": "electron-builder build --mac --win -c.extraMetadata.main=dist/main.js --publish never",
+    "publish": "electron-builder build --mac --win --publish always"
   },
   "dependencies": {
     "ahooks": "^3.5.2",
