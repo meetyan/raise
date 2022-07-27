@@ -10,7 +10,7 @@ const INDEX_URL = {
 
 app.whenReady().then(() => {
   const mb = menubar({
-    icon: path.join(__dirname, './assets/settings.png'),
+    icon: path.join(__dirname, './assets/logo.png'),
     index: isDev ? INDEX_URL.DEV : INDEX_URL.PROD,
     browserWindow: {width: 400, height: 400},
   })
