@@ -1,34 +1,19 @@
-import {app, BrowserWindow} from 'electron'
+import {app} from 'electron'
 import path from 'path'
 import isDev from 'electron-is-dev'
+import {menubar} from 'menubar'
 
-const createWindow = () => {
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 800,
-    webPreferences: {
-      nodeIntegration: true,
-    },
-  })
-
-  if (isDev) {
-    mainWindow.loadURL('http://localhost:3000')
-    return
-  }
-
-  mainWindow.loadFile(path.join(__dirname, './index.html'))
+const INDEX_URL = {
+  DEV: 'http://localhost:3000',
+  PROD: path.join(__dirname, './index.html'),
 }
 
-app.whenReady().then(createWindow)
+app.whenReady().then(() => {
+  const mb = menubar({
+    icon: path.join(__dirname, './assets/settings.png'),
+    index: isDev ? INDEX_URL.DEV : INDEX_URL.PROD,
+    browserWindow: {width: 400, height: 400},
+  })
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
-})
-
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow()
-  }
+  mb.on('ready', () => {})
 })

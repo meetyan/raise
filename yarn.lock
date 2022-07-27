@@ -3133,6 +3133,11 @@ electron-osx-sign@^0.6.0:
     minimist "^1.2.0"
     plist "^3.0.1"
 
+electron-positioner@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/electron-positioner/-/electron-positioner-4.1.0.tgz#e158f8f6aabd6725a8a9b4f2279b9504bcbea1b0"
+  integrity sha512-726DfbI9ZNoCg+Fcu6XLuTKTnzf+6nFqv7h+K/V6Ug7IbaPMI7s9S8URnGtWFCy5N5PL4HSzRFF2mXuinftDdg==
+
 electron-publish@23.0.9:
   version "23.0.9"
   resolved "https://registry.yarnpkg.com/electron-publish/-/electron-publish-23.0.9.tgz#5b098dafab5d830b7c8bcd18b5a499164c51fa6b"
@@ -5208,6 +5213,13 @@ memfs@^3.1.2, memfs@^3.4.3:
   integrity sha512-ygaiUSNalBX85388uskeCyhSAoOSgzBbtVCr9jA2RROssFL9Q19/ZXFqS+2Th2sr1ewNIWgFdLzLC3Yl1Zv+lw==
   dependencies:
     fs-monkey "^1.0.3"
+
+menubar@^9.2.1:
+  version "9.2.1"
+  resolved "https://registry.yarnpkg.com/menubar/-/menubar-9.2.1.tgz#eb378fb6c80a52639201f9f2fe8b5a6b49dc1c55"
+  integrity sha512-1uPyapxHHmQX0DswIXhXnIREXu7z0G0U6K0kQ4rRBsgucdUtQXoX7GK//59Cpz+fv2CM3VS4WVyGtAyJpHagsg==
+  dependencies:
+    electron-positioner "^4.1.0"
 
 meow@^9.0.0:
   version "9.0.0"
