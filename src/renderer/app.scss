@@ -5,7 +5,7 @@
 
 .layout {
   background-color: var(--semi-color-bg-0);
-  padding: 20px;
+  padding: 20px 20px 50px;
 }
 
 .trending-type {
@@ -22,7 +22,12 @@
   .middle {
     display: flex;
     justify-content: flex-end;
-    padding: 10px 0;
+    padding: 10px 0 0;
+
+    .left {
+      display: flex;
+      align-items: center;
+    }
   }
 
   .heading {
@@ -105,6 +110,13 @@
       align-items: center;
     }
   }
+}
+
+.copyright {
+  padding-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .back-top {

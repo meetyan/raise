@@ -1,10 +1,21 @@
 import React from 'react'
-import {Button, Layout, Form, Divider, Card, Typography, Space, BackTop} from '@douyinfe/semi-ui'
+import {
+  Button,
+  Layout,
+  Form,
+  Divider,
+  Card,
+  Typography,
+  Space,
+  BackTop,
+  Progress,
+} from '@douyinfe/semi-ui'
 import {
   IconArrowUp,
   IconBranch,
   IconGithubLogo,
   IconMoon,
+  IconRefresh,
   IconSetting,
   IconSourceControl,
   IconStar,
@@ -46,9 +57,17 @@ const App = () => {
         </div>
 
         <div className={styles.middle}>
+          <Button theme="borderless">
+            <Space className={styles.left}>
+              <IconRefresh />
+              <Typography.Text>Refresh</Typography.Text>
+            </Space>
+          </Button>
           <Button theme="borderless" icon={<IconMoon />} onClick={switchMode} />
           <Button theme="borderless" icon={<IconSetting />} />
         </div>
+
+        <Progress percent={50} aria-label="disk usage" style={{opacity: 1}} />
 
         <Divider />
 
@@ -160,7 +179,13 @@ const App = () => {
         })}
       </Content>
 
-      <Footer>Raise</Footer>
+      <Footer>
+        <Divider />
+        <div className={styles.copyright}>
+          <Typography.Text>Raise © {new Date().getFullYear()} All rights reserved.</Typography.Text>
+          <Button theme="borderless">About</Button>
+        </div>
+      </Footer>
 
       <BackTop className={styles.backTop}>
         <IconArrowUp />
