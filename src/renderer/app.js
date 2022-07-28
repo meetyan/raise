@@ -26,9 +26,10 @@ import '@/assets/styles/reset.scss'
 import '@/assets/styles/global.scss'
 
 import styles from '@/app.scss'
+import RaiseHeader from './components/raise-header'
 
 const App = () => {
-  const {Header, Footer, Content} = Layout
+  const {Footer, Content} = Layout
 
   const switchMode = () => {
     const body = document.body
@@ -41,22 +42,17 @@ const App = () => {
 
   return (
     <Layout className={`components-layout-demo ${styles.layout}`}>
-      <Header className={styles.trendingType}>
-        <div className={styles.top}>
-          <h1 className={styles.heading}>
-            <IconGithubLogo />
-            <Typography.Text className={styles.headingTitle}>Trending</Typography.Text>
-          </h1>
-
-          <div className={styles.buttonType}>
-            <Button type="primary" theme="solid" className={styles.trendingTypeButton}>
-              Repositories
-            </Button>
-            <Button className={styles.trendingTypeButton}>Developers</Button>
-          </div>
+      <RaiseHeader>
+        <div className={styles.trendingType}>
+          <Button type="primary" theme="solid" className={styles.trendingTypeButton}>
+            Repositories
+          </Button>
+          <Button className={styles.trendingTypeButton}>Developers</Button>
         </div>
+      </RaiseHeader>
 
-        <div className={styles.middle}>
+      <div className={styles.settings}>
+        <div className={styles.top}>
           <Button theme="borderless">
             <Space className={styles.left}>
               <IconRefresh />
@@ -70,7 +66,9 @@ const App = () => {
         <Progress percent={50} aria-label="disk usage" style={{opacity: 1}} />
 
         <Divider />
+      </div>
 
+      <div className={styles.filter}>
         <div className={styles.bottom}>
           <Form labelPosition="left" labelAlign="left" labelWidth={180}>
             <Form.Select
@@ -117,7 +115,7 @@ const App = () => {
         </div>
 
         <Divider />
-      </Header>
+      </div>
 
       <Content className={styles.content}>
         {sample.map(item => {
