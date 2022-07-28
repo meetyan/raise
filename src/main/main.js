@@ -5,7 +5,7 @@ import {menubar} from 'menubar'
 
 const INDEX_URL = {
   DEV: 'http://localhost:3000',
-  PROD: path.join(__dirname, './index.html'),
+  PROD: `file://${path.join(__dirname, './index.html')}`,
 }
 
 const createWindow = () => {
@@ -14,19 +14,18 @@ const createWindow = () => {
     height: 600,
   })
 
-  if (isDev) {
-    mainWindow.webContents.openDevTools({mode: 'detach'})
-    return mainWindow.loadURL(INDEX_URL.DEV)
-  }
+  mainWindow.webContents.openDevTools({mode: 'detach'})
 
-  mainWindow.loadFile(INDEX_URL.PROD)
+  mainWindow.loadURL(INDEX_URL.DEV)
 }
+
+app.setName('Raise')
 
 app.whenReady().then(() => {
   const mb = menubar({
     icon: path.join(__dirname, './assets/logo.png'),
-    index: isDev ? INDEX_URL.DEV : INDEX_URL.PROD,
-    browserWindow: {width: 400, height: 600, webPreferences: {devTools: true}},
+    index: INDEX_URL.PROD,
+    browserWindow: {width: 400, height: 600},
   })
 
   if (isDev) {
