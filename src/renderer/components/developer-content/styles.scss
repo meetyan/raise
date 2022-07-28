@@ -1,0 +1,38 @@
+.filter {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  .bottom {
+    display: flex;
+    flex-direction: column;
+
+    .bottom-select {
+      width: 100%;
+    }
+  }
+}
+
+.content {
+  .developer {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: var(--semi-color-fill-0);
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+  }
+
+  .description {
+    margin-top: 20px;
+  }
+}
