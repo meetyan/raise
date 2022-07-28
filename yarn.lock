@@ -1030,7 +1030,7 @@
     memoize-one "^5.2.1"
     scroll-into-view-if-needed "^2.2.24"
 
-"@douyinfe/semi-icons@2.15.1":
+"@douyinfe/semi-icons@2.15.1", "@douyinfe/semi-icons@^2.15.1":
   version "2.15.1"
   resolved "https://registry.yarnpkg.com/@douyinfe/semi-icons/-/semi-icons-2.15.1.tgz#9345b5d3b3260dde2f0f270ad84c8cc482a0598a"
   integrity sha512-2t4ba46KRaLVrbhBqtMMq1YLjRdxBGUY7hZhmP8iV9TNt2b/5qzWOYbNITA1oshH+5cYbZan26kPVVayq0mCMw==

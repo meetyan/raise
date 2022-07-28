@@ -1,0 +1,121 @@
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+.layout {
+  background-color: var(--semi-color-bg-0);
+  padding: 20px;
+}
+
+.trending-type {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .middle {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 0;
+  }
+
+  .heading {
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+
+    .heading-title {
+      margin-left: 5px;
+    }
+  }
+
+  .trending-type-button:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .trending-type-button:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .bottom {
+    .bottom-select {
+      width: 100%;
+    }
+  }
+}
+
+.content {
+  .repo-header {
+    display: flex;
+    align-items: center;
+  }
+
+  .repo-author {
+    margin-left: 5px;
+    width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .repo {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: var(--semi-color-fill-0);
+  }
+
+  .description {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .bottom-area {
+    display: flex;
+    flex-direction: column;
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .avatar {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin-right: 4px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .bottom {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.back-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  background-color: #0077fa;
+  color: #fff;
+  bottom: 20px;
+  right: 10px;
+}
