@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Button, Layout, Divider, Typography, Space, BackTop, Progress} from '@douyinfe/semi-ui'
-import {IconArrowUp, IconInfoCircle, IconMoon, IconRefresh} from '@douyinfe/semi-icons'
+import {IconArrowUp, IconInfoCircle, IconMoon, IconRefresh, IconSetting} from '@douyinfe/semi-icons'
 
 import {RaiseHeader, RepositoryContent, DeveloperContent} from '@/components'
 import {switchMode} from './utils'
@@ -51,6 +51,7 @@ const App = () => {
           </Button>
           <Button theme="borderless" icon={<IconMoon />} onClick={switchMode} />
           <Button theme="borderless" icon={<IconInfoCircle />} />
+          <Button theme="borderless" icon={<IconSetting />} />
         </div>
 
         <Progress percent={50} aria-label="disk usage" style={{opacity: 1}} />
@@ -63,7 +64,7 @@ const App = () => {
       <Footer>
         <Divider />
         <div className={styles.copyright}>
-          <Text>Raise © {new Date().getFullYear()} Jiajun Yan. All rights reserved.</Text>
+          <Text strong>Raise © {new Date().getFullYear()} Jiajun Yan. All rights reserved.</Text>
         </div>
       </Footer>
 
