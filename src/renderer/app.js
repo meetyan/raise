@@ -13,33 +13,27 @@ import {
 import {
   IconArrowUp,
   IconBranch,
-  IconGithubLogo,
   IconMoon,
   IconRefresh,
   IconSetting,
   IconSourceControl,
   IconStar,
 } from '@douyinfe/semi-icons'
+
+import {RaiseHeader} from '@/components'
+import {switchMode} from './utils'
 import sample from '@/sample'
 
 import '@/assets/styles/reset.scss'
 import '@/assets/styles/global.scss'
 
 import styles from '@/app.scss'
-import RaiseHeader from './components/raise-header'
+import {DATE_RANGE} from './config'
+
+const {Footer, Content} = Layout
+const {Text} = Typography
 
 const App = () => {
-  const {Footer, Content} = Layout
-
-  const switchMode = () => {
-    const body = document.body
-    if (body.hasAttribute('theme-mode')) {
-      body.removeAttribute('theme-mode')
-    } else {
-      body.setAttribute('theme-mode', 'dark')
-    }
-  }
-
   return (
     <Layout className={`components-layout-demo ${styles.layout}`}>
       <RaiseHeader>
@@ -56,7 +50,7 @@ const App = () => {
           <Button theme="borderless">
             <Space className={styles.left}>
               <IconRefresh />
-              <Typography.Text>Refresh</Typography.Text>
+              <Text>Refresh</Text>
             </Space>
           </Button>
           <Button theme="borderless" icon={<IconMoon />} onClick={switchMode} />
@@ -107,9 +101,15 @@ const App = () => {
               className={styles.bottomSelect}
               filter
             >
-              <Form.Select.Option value="today">Today</Form.Select.Option>
-              <Form.Select.Option value="this-week">This week</Form.Select.Option>
-              <Form.Select.Option value="this-month">This month</Form.Select.Option>
+              {DATE_RANGE.map(dateRange => {
+                const value = dateRange.toLocaleLowerCase().split(' ').join('-')
+
+                return (
+                  <Form.Select.Option key={value} value={value}>
+                    {dateRange}
+                  </Form.Select.Option>
+                )
+              })}
             </Form.Select>
           </Form>
         </div>
@@ -126,38 +126,35 @@ const App = () => {
                 <div className={styles.repoHeader}>
                   <IconBranch />
                   <div className={styles.repoAuthor}>
-                    <Typography.Text>{item.author}</Typography.Text> /{' '}
-                    <Typography.Text strong>{item.repo}</Typography.Text>
+                    <Text>{item.author}</Text> / <Text strong>{item.repo}</Text>
                   </div>
                 </div>
               }
               className={styles.repo}
-              headerExtraContent={
-                <Typography.Text type="secondary">{item.language}</Typography.Text>
-              }
+              headerExtraContent={<Text type="secondary">{item.language}</Text>}
             >
-              <Typography.Text className={styles.description}>{item.description}</Typography.Text>
+              <Text className={styles.description}>{item.description}</Text>
 
               <div className={styles.bottomArea}>
                 <div className={styles.top}>
                   <Space>
                     <Space>
-                      <IconStar /> <Typography.Text>{item.stars}</Typography.Text>
+                      <IconStar /> <Text>{item.stars}</Text>
                     </Space>
                     <Space />
                     <Space>
-                      <IconSourceControl /> <Typography.Text>{item.forked}</Typography.Text>
+                      <IconSourceControl /> <Text>{item.forked}</Text>
                     </Space>
                   </Space>
 
                   <Space>
-                    <IconStar /> <Typography.Text>{item.starsToday} stars today</Typography.Text>
+                    <IconStar /> <Text>{item.starsToday} stars today</Text>
                   </Space>
                 </div>
 
                 <div className={styles.bottom}>
                   <Space>
-                    <Typography.Text>Built by</Typography.Text>
+                    <Text>Built by</Text>
                     <div>
                       {item.builtBy.map(builtByAuthor => {
                         return (
@@ -180,7 +177,7 @@ const App = () => {
       <Footer>
         <Divider />
         <div className={styles.copyright}>
-          <Typography.Text>Raise © {new Date().getFullYear()} All rights reserved.</Typography.Text>
+          <Text>Raise © {new Date().getFullYear()} All rights reserved.</Text>
           <Button theme="borderless">About</Button>
         </div>
       </Footer>
