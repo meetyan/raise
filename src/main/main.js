@@ -24,7 +24,7 @@ app.setName('Raise')
 app.whenReady().then(() => {
   const mb = menubar({
     icon: path.join(__dirname, './assets/logo.png'),
-    index: INDEX_URL.PROD,
+    index: isDev ? INDEX_URL.DEV : INDEX_URL.PROD,
     browserWindow: {width: 400, height: 600},
   })
 
