@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Button, Layout, Divider, Typography, Space, BackTop, Progress} from '@douyinfe/semi-ui'
-import {IconArrowUp, IconInfoCircle, IconMoon, IconRefresh, IconSetting} from '@douyinfe/semi-icons'
+import {IconArrowUp, IconMoon, IconRefresh, IconSetting} from '@douyinfe/semi-icons'
 
 import {RaiseHeader, RepositoryContent, DeveloperContent} from '@/components'
 import {switchMode} from './utils'
@@ -9,12 +9,14 @@ import '@/assets/styles/reset.scss'
 import '@/assets/styles/global.scss'
 import styles from '@/app.scss'
 import {TRENDING_TYPE} from './config'
+import SettingsModal from './components/settings-modal'
 
 const {Footer} = Layout
 const {Text} = Typography
 
 const App = () => {
   const [trendingType, setTrendingType] = useState(TRENDING_TYPE.REPOSITORIES)
+  const [settingsModalVisible, setSettingsModalVisible] = useState(true)
 
   return (
     <Layout className={`components-layout-demo ${styles.layout}`}>
@@ -50,8 +52,11 @@ const App = () => {
             </Space>
           </Button>
           <Button theme="borderless" icon={<IconMoon />} onClick={switchMode} />
-          <Button theme="borderless" icon={<IconInfoCircle />} />
-          <Button theme="borderless" icon={<IconSetting />} />
+          <Button
+            theme="borderless"
+            icon={<IconSetting />}
+            onClick={() => setSettingsModalVisible(true)}
+          />
         </div>
 
         <Progress percent={50} aria-label="disk usage" style={{opacity: 1}} />
@@ -71,6 +76,8 @@ const App = () => {
       <BackTop className={styles.backTop}>
         <IconArrowUp />
       </BackTop>
+
+      <SettingsModal visible={settingsModalVisible} setVisible={setSettingsModalVisible} />
     </Layout>
   )
 }
