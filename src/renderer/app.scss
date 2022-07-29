@@ -22,14 +22,22 @@
   }
 }
 
+.progress {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
 .settings {
   display: flex;
   flex-direction: column;
-  padding: 10px 0 0;
+  padding-top: 6px;
 
   .top {
     display: flex;
     justify-content: flex-end;
+    padding-bottom: 4px;
   }
 
   .left {

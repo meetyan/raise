@@ -1,57 +1,85 @@
 import React, {useState} from 'react'
-import {Button, Layout, Divider, Typography, Space, BackTop, Progress} from '@douyinfe/semi-ui'
-import {IconArrowUp, IconMoon, IconRefresh, IconSetting} from '@douyinfe/semi-icons'
+import {
+  Button,
+  Layout,
+  Divider,
+  Typography,
+  Space,
+  BackTop,
+  Progress,
+  Notification,
+} from '@douyinfe/semi-ui'
+import {IconArrowUp, IconMoon, IconRefresh, IconSetting, IconSun} from '@douyinfe/semi-icons'
 
-import {RaiseHeader, RepositoryContent, DeveloperContent} from '@/components'
-import {switchMode} from './utils'
+import {RaiseHeader, RepositoryContent, DeveloperContent, SettingsModal} from '@/components'
+import {MODE, TRENDING_TYPE} from '@/config'
+import {useMode} from '@/hooks'
 
 import '@/assets/styles/reset.scss'
 import '@/assets/styles/global.scss'
 import styles from '@/app.scss'
-import {TRENDING_TYPE} from './config'
-import SettingsModal from './components/settings-modal'
 
 const {Footer} = Layout
 const {Text} = Typography
 
+const {REPOSITORIES, DEVELOPERS} = TRENDING_TYPE
+
 const App = () => {
-  const [trendingType, setTrendingType] = useState(TRENDING_TYPE.REPOSITORIES)
-  const [settingsModalVisible, setSettingsModalVisible] = useState(true)
+  const [trendingType, setTrendingType] = useState(REPOSITORIES)
+  const [settingsModalVisible, setSettingsModalVisible] = useState(false)
+  const [mode, setMode] = useMode()
+
+  const trendingTypeButtonConfig = buttonType => {
+    return trendingType === buttonType ? {type: 'primary', theme: 'solid'} : {}
+  }
 
   return (
     <Layout className={`components-layout-demo ${styles.layout}`}>
       <RaiseHeader>
         <div className={styles.trendingType}>
           <Button
-            {...(trendingType === TRENDING_TYPE.REPOSITORIES
-              ? {type: 'primary', theme: 'solid'}
-              : {})}
+            {...trendingTypeButtonConfig(REPOSITORIES)}
             className={styles.trendingTypeButton}
-            onClick={() => setTrendingType(TRENDING_TYPE.REPOSITORIES)}
+            onClick={() => setTrendingType(REPOSITORIES)}
           >
-            {TRENDING_TYPE.REPOSITORIES}
+            {REPOSITORIES}
           </Button>
           <Button
-            {...(trendingType === TRENDING_TYPE.DEVELOPERS
-              ? {type: 'primary', theme: 'solid'}
-              : {})}
+            {...trendingTypeButtonConfig(DEVELOPERS)}
             className={styles.trendingTypeButton}
-            onClick={() => setTrendingType(TRENDING_TYPE.DEVELOPERS)}
+            onClick={() => setTrendingType(DEVELOPERS)}
           >
-            {TRENDING_TYPE.DEVELOPERS}
+            {DEVELOPERS}
           </Button>
         </div>
       </RaiseHeader>
 
       <div className={styles.settings}>
         <div className={styles.top}>
-          <Button theme="borderless">
+          <Button
+            theme="borderless"
+            onClick={() =>
+              Notification.open({
+                duration: 0,
+                title: (
+                  <div className={styles.progress}>
+                    <Progress percent={50} />
+                  </div>
+                ),
+                position: 'bottom',
+              })
+            }
+          >
             <Space className={styles.left}>
               <IconRefresh />
               <Text>Refresh</Text>
             </Space>
           </Button>
-          <Button theme="borderless" icon={<IconMoon />} onClick={switchMode} />
+          <Button
+            theme="borderless"
+            icon={mode === MODE.LIGHT ? <IconMoon /> : <IconSun />}
+            onClick={setMode}
+          />
           <Button
             theme="borderless"
             icon={<IconSetting />}
@@ -59,12 +87,10 @@ const App = () => {
           />
         </div>
 
-        <Progress percent={50} aria-label="disk usage" style={{opacity: 1}} />
-
         <Divider />
       </div>
 
-      {trendingType === TRENDING_TYPE.REPOSITORIES ? <RepositoryContent /> : <DeveloperContent />}
+      {trendingType === REPOSITORIES ? <RepositoryContent /> : <DeveloperContent />}
 
       <Footer>
         <Divider />
@@ -73,11 +99,11 @@ const App = () => {
         </div>
       </Footer>
 
+      <SettingsModal visible={settingsModalVisible} setVisible={setSettingsModalVisible} />
+
       <BackTop className={styles.backTop}>
         <IconArrowUp />
       </BackTop>
-
-      <SettingsModal visible={settingsModalVisible} setVisible={setSettingsModalVisible} />
     </Layout>
   )
 }
