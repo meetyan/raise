@@ -12,7 +12,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       alias: {
-        map: [['@', './src/renderer']],
+        map: [['@', './src']],
         extensions: ['.js', '.jsx'],
       },
     },

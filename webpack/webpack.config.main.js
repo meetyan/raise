@@ -3,10 +3,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   target: 'electron-main',
-  entry: './src/main/main.js',
+  entry: './electron/main.js',
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, '../dist'),
   },
   module: {
     rules: [
@@ -15,15 +15,19 @@ module.exports = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
+      {
+        test: /.node$/,
+        loader: 'node-loader',
+      },
     ],
   },
-  node: {
-    __dirname: false,
-    __filename: false,
-  },
+  // node: {
+  //   __dirname: false,
+  //   __filename: false,
+  // },
   plugins: [
     new CopyWebpackPlugin({
-      patterns: [{from: './assets', to: './assets'}],
+      patterns: [{from: './electron/assets', to: './assets'}],
     }),
   ],
 }

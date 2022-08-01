@@ -25,7 +25,7 @@ module.exports = (env, argv) => {
           type: 'filesystem',
           buildDependencies: {config: [__filename]},
         },
-    entry: ['./src/renderer/index.js'],
+    entry: ['./src/index.js'],
     output: {
       path: path.resolve('./dist'),
       filename: `[name]${PROD ? '.[contenthash:8]' : ''}.js`,
@@ -37,7 +37,7 @@ module.exports = (env, argv) => {
       symlinks: false,
       cacheWithContext: false,
       alias: {
-        '@': path.resolve('./src/renderer'),
+        '@': path.resolve('./src'),
       },
     },
     devServer: {
@@ -60,7 +60,7 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: /\.(js|jsx)$/,
-          include: [path.resolve('./src/renderer')],
+          include: [path.resolve('./src')],
           use: [
             {
               loader: 'babel-loader',
@@ -132,7 +132,7 @@ module.exports = (env, argv) => {
         patterns: [{from: './public', to: './public'}],
       }),
       new HtmlWebpackPlugin({
-        template: 'src/renderer/index.html',
+        template: 'src/index.html',
         chunks: ['main'],
       }),
       PROD &&
