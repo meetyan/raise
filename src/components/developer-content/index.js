@@ -2,7 +2,7 @@ import React from 'react'
 import {Divider, Form, Typography, Layout, Card, Space, Button} from '@douyinfe/semi-ui'
 import {IconBranch, IconCrown, IconGlobe} from '@douyinfe/semi-icons'
 
-import {DATE_RANGE} from '@/config'
+import {DATE_RANGE} from '../../../app-config'
 
 import styles from './styles.scss'
 import sample from '@/developer-sample'

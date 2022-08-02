@@ -2,7 +2,7 @@ import React from 'react'
 import {Divider, Form, Typography, Layout, Card, Space} from '@douyinfe/semi-ui'
 import {IconBranch, IconSourceControl, IconStar} from '@douyinfe/semi-icons'
 
-import {DATE_RANGE} from '@/config'
+import {DATE_RANGE, SPOKEN_LANGUAGES, LANGUAGES} from '../../../app-config'
 
 import styles from './styles.scss'
 import sample from '@/sample'
@@ -23,12 +23,10 @@ const RepositoryContent = () => {
               className={styles.bottomSelect}
               filter
             >
-              <Form.Select.Option value="english">English</Form.Select.Option>
-              <Form.Select.Option value="chinese">Chinese</Form.Select.Option>
-              {Array.from({length: 20}, (_, idx) => `${++idx}`).map(item => {
+              {SPOKEN_LANGUAGES.map(item => {
                 return (
-                  <Form.Select.Option key={item} value={item}>
-                    {item}
+                  <Form.Select.Option key={item.urlParam} value={item.urlParam}>
+                    {item.name}
                   </Form.Select.Option>
                 )
               })}
@@ -41,8 +39,13 @@ const RepositoryContent = () => {
               className={styles.bottomSelect}
               filter
             >
-              <Form.Select.Option value="javascript">Javascript</Form.Select.Option>
-              <Form.Select.Option value="python">Python</Form.Select.Option>
+              {LANGUAGES.map(item => {
+                return (
+                  <Form.Select.Option key={item.urlParam} value={item.urlParam}>
+                    {item.name}
+                  </Form.Select.Option>
+                )
+              })}
             </Form.Select>
 
             <Form.Select

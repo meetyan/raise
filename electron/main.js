@@ -2,17 +2,14 @@ import {app, BrowserWindow} from 'electron'
 import path from 'path'
 import isDev from 'electron-is-dev'
 import {menubar} from 'menubar'
-import scrapeGithubTrending from './github-trending-scraper'
 
-const INDEX_URL = {
-  DEV: 'http://localhost:3000',
-  PROD: `file://${path.join(__dirname, './index.html')}`,
-}
+import crawl from './crawler'
+import {MENUBAR, INDEX_URL} from './config'
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
-    width: 400,
-    height: 600,
+    width: MENUBAR.WIDTH,
+    height: MENUBAR.HEIGHT,
   })
 
   mainWindow.loadURL(INDEX_URL.DEV)
@@ -24,10 +21,10 @@ app.whenReady().then(async () => {
   const mb = menubar({
     icon: path.join(__dirname, './assets/logo.png'),
     index: isDev ? INDEX_URL.DEV : INDEX_URL.PROD,
-    browserWindow: {width: 400, height: 600},
+    browserWindow: {width: MENUBAR.WIDTH, height: MENUBAR.HEIGHT},
   })
 
-  const res = await scrapeGithubTrending()
+  const res = await crawl()
 
   console.log('res', res)
 

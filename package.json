@@ -22,6 +22,7 @@
     "@douyinfe/semi-icons": "^2.15.1",
     "@douyinfe/semi-ui": "^2.15.1",
     "ahooks": "^3.5.2",
+    "cheerio": "^1.0.0-rc.12",
     "electron-is-dev": "^2.0.0",
     "licia": "^1.37.0",
     "menubar": "^9.2.1",
