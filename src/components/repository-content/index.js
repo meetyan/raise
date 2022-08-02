@@ -1,16 +1,16 @@
 import React from 'react'
-import {Divider, Form, Typography, Layout, Card, Space} from '@douyinfe/semi-ui'
+import {Divider, Form, Typography, Layout, Card, Space, Tooltip} from '@douyinfe/semi-ui'
 import {IconBranch, IconSourceControl, IconStar} from '@douyinfe/semi-icons'
 
 import {DATE_RANGE, SPOKEN_LANGUAGES, LANGUAGES} from '@app-config'
 
 import styles from './styles.scss'
-import sample from '@/sample'
+import {truncate} from '@/utils'
 
 const {Content} = Layout
 const {Text} = Typography
 
-const RepositoryContent = () => {
+const RepositoryContent = ({list}) => {
   return (
     <>
       <div className={styles.filter}>
@@ -18,7 +18,7 @@ const RepositoryContent = () => {
           <Form labelPosition="left" labelAlign="left" labelWidth={180}>
             <Form.Select
               field="spokenLanguage"
-              initValue="english"
+              initValue="en"
               label="Spoken language"
               className={styles.bottomSelect}
               filter
@@ -26,7 +26,7 @@ const RepositoryContent = () => {
               {SPOKEN_LANGUAGES.map(item => {
                 return (
                   <Form.Select.Option key={item.urlParam} value={item.urlParam}>
-                    {item.name}
+                    {truncate(item.name)}
                   </Form.Select.Option>
                 )
               })}
@@ -42,7 +42,7 @@ const RepositoryContent = () => {
               {LANGUAGES.map(item => {
                 return (
                   <Form.Select.Option key={item.urlParam} value={item.urlParam}>
-                    {item.name}
+                    {truncate(item.name)}
                   </Form.Select.Option>
                 )
               })}
@@ -72,7 +72,7 @@ const RepositoryContent = () => {
       </div>
 
       <Content className={styles.content}>
-        {sample.map(item => {
+        {list.map(item => {
           return (
             <Card
               key={item.repo}
@@ -80,14 +80,24 @@ const RepositoryContent = () => {
                 <div className={styles.repoHeader}>
                   <IconBranch />
                   <div className={styles.repoAuthor}>
-                    <Text>{item.author}</Text> / <Text strong>{item.repo}</Text>
+                    <Text>{item.author}</Text> /{' '}
+                    <Tooltip
+                      content={item.repo}
+                      position="bottom"
+                      mouseEnterDelay={1000}
+                      mouseLeaveDelay={1000}
+                    >
+                      <Text strong>{item.repo}</Text>
+                    </Tooltip>
                   </div>
                 </div>
               }
               className={styles.repo}
               headerExtraContent={<Text type="secondary">{item.language}</Text>}
             >
-              <Text className={styles.description}>{item.description}</Text>
+              {item.description ? (
+                <Text className={styles.description}>{item.description}</Text>
+              ) : null}
 
               <div className={styles.bottomArea}>
                 <div className={styles.top}>

@@ -1,11 +1,10 @@
-/* Hide scrollbar for Chrome, Safari and Opera */
 ::-webkit-scrollbar {
   display: none;
 }
 
 .layout {
   background-color: var(--semi-color-bg-0);
-  padding: 20px 20px 50px;
+  padding: 20px;
 }
 
 .trending-type {
@@ -20,13 +19,6 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
-}
-
-.progress {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
 }
 
 .settings {
@@ -62,6 +54,6 @@
   border-radius: 100%;
   background-color: #0077fa;
   color: #fff;
-  bottom: 20px;
+  bottom: 60px;
   right: 10px;
 }
