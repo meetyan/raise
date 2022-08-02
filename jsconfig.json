@@ -3,7 +3,8 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@app-config/*": ["./app-config/*"]
     }
   },
   "exclude": ["node_modules", "dist"]

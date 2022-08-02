@@ -21,10 +21,10 @@ module.exports = {
       },
     ],
   },
-  // node: {
-  //   __dirname: false,
-  //   __filename: false,
-  // },
+  node: {
+    __dirname: false,
+    __filename: false,
+  },
   plugins: [
     new CopyWebpackPlugin({
       patterns: [{from: './electron/assets', to: './assets'}],

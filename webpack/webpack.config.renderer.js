@@ -38,6 +38,7 @@ module.exports = (env, argv) => {
       cacheWithContext: false,
       alias: {
         '@': path.resolve('./src'),
+        '@app-config': path.resolve('./app-config'),
       },
     },
     devServer: {
