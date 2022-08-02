@@ -1,4 +1,4 @@
-import {BrowserView, BrowserWindow} from 'electron'
+import {app, BrowserView, BrowserWindow} from 'electron'
 
 import {parseRepos} from './parser'
 import {BROWSER_WINDOW} from '../config'
@@ -20,10 +20,6 @@ getHTML()`
  * This will open a new url on every function call
  */
 const crawl = async () => {
-  if (!browserWindow) {
-    browserWindow = new BrowserWindow({width: WIDTH, height: HEIGHT, show: false})
-  }
-
   const view = new BrowserView()
 
   browserWindow.setBrowserView(view)
@@ -34,5 +30,9 @@ const crawl = async () => {
 
   return parseRepos(html)
 }
+
+app.whenReady().then(() => {
+  browserWindow = new BrowserWindow({width: WIDTH, height: HEIGHT, show: false})
+})
 
 export default crawl
