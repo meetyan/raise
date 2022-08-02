@@ -9,7 +9,7 @@ import crawl from './crawler'
 const browserWindowConfig = {
   width: MENUBAR.WIDTH,
   height: MENUBAR.HEIGHT,
-  webPreferences: {preload: path.join(__dirname, 'preload.js'), nodeIntegration: true},
+  webPreferences: {preload: path.join(__dirname, 'preload.js')},
 }
 
 const createWindow = () => {
