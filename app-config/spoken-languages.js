@@ -1,4 +1,5 @@
 export default [
+  {urlParam: '', name: 'Any'},
   {urlParam: 'ab', name: 'Abkhazian'},
   {urlParam: 'aa', name: 'Afar'},
   {urlParam: 'af', name: 'Afrikaans'},
