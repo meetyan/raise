@@ -29,10 +29,15 @@
       height: 50px;
       border-radius: 50%;
       margin-right: 10px;
+      cursor: pointer;
     }
   }
 
   .description {
     margin-top: 10px;
+  }
+
+  .cursor {
+    cursor: pointer;
   }
 }

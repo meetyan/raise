@@ -12,6 +12,7 @@ import {
 import {MODE, TRENDING_TYPE} from '@/config'
 import {useMode} from '@/hooks'
 import {fetchRepositories, fetchDevelopers} from '@/io'
+import {convert} from '@/utils'
 
 import 'nprogress/nprogress.css'
 import '@/assets/styles/reset.scss'
@@ -24,7 +25,7 @@ const {Text} = Typography
 const {REPOSITORIES, DEVELOPERS} = TRENDING_TYPE
 
 const App = () => {
-  const [trendingType, setTrendingType] = useState(REPOSITORIES)
+  const [trendingType, setTrendingType] = useState(DEVELOPERS)
   const [settingsModalVisible, setSettingsModalVisible] = useState(false)
   const [mode, setMode] = useMode()
   const [list, setList] = useState([])
@@ -35,21 +36,6 @@ const App = () => {
     return trendingType === buttonType ? {type: 'primary', theme: 'solid'} : {}
   }
 
-  const convert = params => {
-    if (!params) return params
-
-    return Object.entries(params)
-      .map(([key, value]) => {
-        value = value === 'any' ? '' : value
-        return [key, value]
-      })
-      .reduce((final, item) => {
-        const [key, value] = item
-        final[key] = value
-        return final
-      }, {})
-  }
-
   const getList = async params => {
     const fetch = trendingType === REPOSITORIES ? fetchRepositories : fetchDevelopers
     const res = await fetch(convert(params))
@@ -57,11 +43,6 @@ const App = () => {
   }
 
   useEffect(() => {
-    getList()
-  }, [])
-
-  useEffect(() => {
-    console.log('trendingType', trendingType)
     setList([])
     getList()
   }, [trendingType])
