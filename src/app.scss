@@ -57,3 +57,13 @@
   bottom: 60px;
   right: 10px;
 }
+
+.empty {
+  margin: 30px 0 50px;
+
+  .empty-description {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+  }
+}

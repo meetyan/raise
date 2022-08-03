@@ -1045,6 +1045,11 @@
   dependencies:
     "@babel/runtime-corejs3" "^7.15.4"
 
+"@douyinfe/semi-illustrations@^2.16.0":
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/@douyinfe/semi-illustrations/-/semi-illustrations-2.16.0.tgz#4842b27f8fa147b1e221e1cd226857d11cf89a8f"
+  integrity sha512-N7DI6bi3vVLbALpun9RQzmnNJBZwK/bnLU0w1Ce0HDP1iaZRyvdHjeJaRvHYzVVczzWzgd7U15mezF2nFvNIug==
+
 "@douyinfe/semi-theme-default@2.15.1":
   version "2.15.1"
   resolved "https://registry.yarnpkg.com/@douyinfe/semi-theme-default/-/semi-theme-default-2.15.1.tgz#78ea1ef30dbab06c19824430e22902046abe6adb"

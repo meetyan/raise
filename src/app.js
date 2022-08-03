@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import {Button, Layout, Divider, Typography, BackTop, Toast} from '@douyinfe/semi-ui'
+import {Button, Layout, Divider, Typography, BackTop, Toast, Empty} from '@douyinfe/semi-ui'
 import {IconArrowUp, IconInfoCircle, IconMoon, IconSetting, IconSun} from '@douyinfe/semi-icons'
+import {IllustrationNoResult, IllustrationNoResultDark} from '@douyinfe/semi-illustrations'
 
 import {
   RaiseHeader,
@@ -31,6 +32,7 @@ const App = () => {
   const [list, setList] = useState([])
   const [getListParams, setGetListParams] = useState({})
   const [loading, setLoading] = useState(false)
+  const [empty, setEmpty] = useState(false)
 
   const Content = trendingType === REPOSITORIES ? RepositoryContent : DeveloperContent
 
@@ -44,14 +46,18 @@ const App = () => {
     setLoading(true)
     setList([])
     setGetListParams(params)
+    setEmpty(false)
 
     try {
       const fetch = trendingType === REPOSITORIES ? fetchRepositories : fetchDevelopers
       const res = await fetch(convert(params))
       setList(res)
+      setEmpty(!res.length)
     } catch (error) {
       console.log('An error occurred when calling getList. Params: ', params, error)
-      Toast.error('Oops. Looks like an error occurs. The server might be down. Please try again.')
+      Toast.error(
+        'Oops. It looks like an error occurs. The server might be down. Please try again.'
+      )
     } finally {
       setLoading(false)
     }
@@ -106,6 +112,21 @@ const App = () => {
       </div>
 
       <Content list={list} getList={getList} loading={loading} />
+
+      {empty ? (
+        <Empty
+          className={styles.empty}
+          image={<IllustrationNoResult style={{width: 150, height: 150}} />}
+          darkModeImage={<IllustrationNoResultDark style={{width: 150, height: 150}} />}
+          description={
+            <Text className={styles.emptyDescription}>
+              {`It looks like we don’t have any trending ${
+                trendingType === REPOSITORIES ? 'repositories' : 'developers'
+              } for your choices.`}
+            </Text>
+          }
+        />
+      ) : null}
 
       <Footer>
         <Divider />

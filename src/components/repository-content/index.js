@@ -106,7 +106,7 @@ const RepositoryContent = ({list, getList, loading}) => {
               headerExtraContent={
                 <Space spacing={4}>
                   <span className={styles.languageColor} style={{background: item.languageColor}} />
-                  <Text type="secondary">{item.language}</Text>
+                  <Text type="secondary">{item.language || 'Unknown'}</Text>
                 </Space>
               }
             >

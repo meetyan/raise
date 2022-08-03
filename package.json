@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@douyinfe/semi-icons": "^2.15.1",
+    "@douyinfe/semi-illustrations": "^2.16.0",
     "@douyinfe/semi-ui": "^2.15.1",
     "ahooks": "^3.5.2",
     "axios": "^0.27.2",
