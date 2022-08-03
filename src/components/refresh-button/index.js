@@ -3,9 +3,9 @@ import {IconRefresh} from '@douyinfe/semi-icons'
 
 import styles from './styles.scss'
 
-const RefreshButton = () => {
+const RefreshButton = ({onClick}) => {
   return (
-    <div className={styles.refreshButton}>
+    <div className={styles.refreshButton} onClick={onClick}>
       <IconRefresh />
     </div>
   )

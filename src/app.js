@@ -25,10 +25,11 @@ const {Text} = Typography
 const {REPOSITORIES, DEVELOPERS} = TRENDING_TYPE
 
 const App = () => {
-  const [trendingType, setTrendingType] = useState(DEVELOPERS)
+  const [trendingType, setTrendingType] = useState(REPOSITORIES)
   const [settingsModalVisible, setSettingsModalVisible] = useState(false)
   const [mode, setMode] = useMode()
   const [list, setList] = useState([])
+  const [getListParams, setGetListParams] = useState({})
 
   const Content = trendingType === REPOSITORIES ? RepositoryContent : DeveloperContent
 
@@ -37,13 +38,18 @@ const App = () => {
   }
 
   const getList = async params => {
+    setList([])
+    setGetListParams(params)
     const fetch = trendingType === REPOSITORIES ? fetchRepositories : fetchDevelopers
     const res = await fetch(convert(params))
     setList(res)
   }
 
+  const refresh = () => {
+    getList(getListParams)
+  }
+
   useEffect(() => {
-    setList([])
     getList()
   }, [trendingType])
 
@@ -103,7 +109,7 @@ const App = () => {
         <IconArrowUp />
       </BackTop>
 
-      <RefreshButton />
+      <RefreshButton onClick={refresh} />
     </Layout>
   )
 }
