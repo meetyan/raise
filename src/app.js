@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Button, Layout, Divider, Typography, BackTop} from '@douyinfe/semi-ui'
+import {Button, Layout, Divider, Typography, BackTop, Toast} from '@douyinfe/semi-ui'
 import {IconArrowUp, IconInfoCircle, IconMoon, IconSetting, IconSun} from '@douyinfe/semi-icons'
 
 import {
@@ -30,6 +30,7 @@ const App = () => {
   const [mode, setMode] = useMode()
   const [list, setList] = useState([])
   const [getListParams, setGetListParams] = useState({})
+  const [loading, setLoading] = useState(false)
 
   const Content = trendingType === REPOSITORIES ? RepositoryContent : DeveloperContent
 
@@ -38,14 +39,26 @@ const App = () => {
   }
 
   const getList = async params => {
+    if (loading) return
+
+    setLoading(true)
     setList([])
     setGetListParams(params)
-    const fetch = trendingType === REPOSITORIES ? fetchRepositories : fetchDevelopers
-    const res = await fetch(convert(params))
-    setList(res)
+
+    try {
+      const fetch = trendingType === REPOSITORIES ? fetchRepositories : fetchDevelopers
+      const res = await fetch(convert(params))
+      setList(res)
+    } catch (error) {
+      console.log('An error occurred when calling getList. Params: ', params, error)
+      Toast.error('Oops. Looks like an error occurs. The server might be down. Please try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const refresh = () => {
+    window.scrollTo({top: 0, behavior: 'smooth'})
     getList(getListParams)
   }
 
@@ -92,16 +105,14 @@ const App = () => {
         <Divider />
       </div>
 
-      <Content list={list} getList={getList} />
+      <Content list={list} getList={getList} loading={loading} />
 
-      {list.length ? (
-        <Footer>
-          <Divider />
-          <div className={styles.copyright}>
-            <Text strong>© {new Date().getFullYear()} Raise. All rights reserved.</Text>
-          </div>
-        </Footer>
-      ) : null}
+      <Footer>
+        <Divider />
+        <div className={styles.copyright}>
+          <Text strong>© {new Date().getFullYear()} Raise. All rights reserved.</Text>
+        </div>
+      </Footer>
 
       <SettingsModal visible={settingsModalVisible} setVisible={setSettingsModalVisible} />
 

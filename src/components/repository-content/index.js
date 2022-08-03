@@ -3,16 +3,17 @@ import {Divider, Form, Typography, Layout, Card, Space, Tooltip} from '@douyinfe
 import {IconBranch, IconSourceControl, IconStar} from '@douyinfe/semi-icons'
 
 import {SINCE_ARRAY, SPOKEN_LANGUAGES, LANGUAGES, SINCE, GITHUB_URL} from '@/config'
+import {truncate} from '@/utils'
+import {SkeletonPlaceholder} from '@/components'
 
 import styles from './styles.scss'
-import {truncate} from '@/utils'
 
 const {Content} = Layout
 const {Text} = Typography
 
 const {open} = window.electron
 
-const RepositoryContent = ({list, getList}) => {
+const RepositoryContent = ({list, getList, loading}) => {
   return (
     <>
       <div className={styles.filter}>
@@ -77,6 +78,10 @@ const RepositoryContent = ({list, getList}) => {
       </div>
 
       <Content className={styles.content}>
+        {Array.from({length: 10}).map((_, index) => (
+          <SkeletonPlaceholder key={index} loading={loading} />
+        ))}
+
         {list.map(item => {
           return (
             <Card

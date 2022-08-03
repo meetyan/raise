@@ -4,6 +4,7 @@ import {IconBranch, IconCrown} from '@douyinfe/semi-icons'
 
 import {SINCE_ARRAY, LANGUAGES, SINCE} from '@/config'
 import {truncate} from '@/utils'
+import {SkeletonPlaceholder} from '@/components'
 
 import styles from './styles.scss'
 
@@ -26,7 +27,7 @@ const AuthorHeader = ({item}) => (
   </div>
 )
 
-const DeveloperContent = ({list, getList}) => {
+const DeveloperContent = ({list, getList, loading}) => {
   return (
     <>
       <div className={styles.filter}>
@@ -75,6 +76,10 @@ const DeveloperContent = ({list, getList}) => {
       </div>
 
       <Content className={styles.content}>
+        {Array.from({length: 10}).map((_, index) => (
+          <SkeletonPlaceholder key={index} loading={loading} />
+        ))}
+
         {list.map(item => {
           if (!item.repo) {
             return (
