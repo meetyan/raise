@@ -2,13 +2,15 @@ import React from 'react'
 import {Divider, Form, Typography, Layout, Card, Space, Tooltip} from '@douyinfe/semi-ui'
 import {IconBranch, IconSourceControl, IconStar} from '@douyinfe/semi-icons'
 
-import {SINCE_ARRAY, SPOKEN_LANGUAGES, LANGUAGES, SINCE} from '@/config'
+import {SINCE_ARRAY, SPOKEN_LANGUAGES, LANGUAGES, SINCE, GITHUB_URL} from '@/config'
 
 import styles from './styles.scss'
 import {truncate} from '@/utils'
 
 const {Content} = Layout
 const {Text} = Typography
+
+const {open} = window.electron
 
 const RepositoryContent = ({list, getList}) => {
   return (
@@ -83,9 +85,12 @@ const RepositoryContent = ({list, getList}) => {
                 <div className={styles.repoHeader}>
                   <IconBranch />
                   <div className={styles.repoAuthor}>
-                    <Text className="cursor">{item.author}</Text> /{' '}
-                    <Tooltip content={item.name} position="bottom">
-                      <Text className="cursor" strong>
+                    <Text link onClick={() => open(`${GITHUB_URL}/${item.author}`)}>
+                      {item.author}
+                    </Text>
+                    {' / '}
+                    <Tooltip content={item.name} position="top">
+                      <Text link strong onClick={() => open(item.url)}>
                         {item.name}
                       </Text>
                     </Tooltip>
@@ -107,16 +112,20 @@ const RepositoryContent = ({list, getList}) => {
               <div className={styles.bottomArea}>
                 <div className={styles.top}>
                   <Space>
-                    <Space>
-                      <IconStar /> <Text>{item.stars}</Text>
+                    <Space className={styles.cursor} spacing={4}>
+                      <IconStar />{' '}
+                      <Text onClick={() => open(`${item.url}/stargazers`)}>{item.stars}</Text>
                     </Space>
                     <Space />
-                    <Space>
-                      <IconSourceControl /> <Text>{item.forks}</Text>
+                    <Space className={styles.cursor} spacing={4}>
+                      <IconSourceControl />{' '}
+                      <Text onClick={() => open(`${item.url}/network/members.${item.author}`)}>
+                        {item.forks}
+                      </Text>
                     </Space>
                   </Space>
 
-                  <Space>
+                  <Space spacing={4}>
                     <IconStar /> <Text>{item.currentPeriodStars} stars today</Text>
                   </Space>
                 </div>
@@ -125,12 +134,13 @@ const RepositoryContent = ({list, getList}) => {
                   <Space>
                     <Text>Built by</Text>
                     <div>
-                      {item.builtBy.map(builtByAuthor => {
+                      {item.builtBy?.map(builtByAuthor => {
                         return (
                           <img
                             className={styles.avatar}
                             src={builtByAuthor.avatar}
                             key={builtByAuthor.avatar}
+                            onClick={() => open(builtByAuthor.href)}
                           />
                         )
                       })}

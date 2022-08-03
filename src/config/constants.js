@@ -25,3 +25,5 @@ export const SINCE_ARRAY = [
   {name: SINCE_MAP[SINCE.WEEKLY], value: SINCE.WEEKLY},
   {name: SINCE_MAP[SINCE.MONTHLY], value: SINCE.MONTHLY},
 ]
+
+export const GITHUB_URL = 'https://github.com'

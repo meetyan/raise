@@ -60,6 +60,12 @@ const App = () => {
     getList()
   }, [])
 
+  useEffect(() => {
+    console.log('trendingType', trendingType)
+    setList([])
+    getList()
+  }, [trendingType])
+
   return (
     <Layout className={`components-layout-demo ${styles.layout}`}>
       <RaiseHeader>

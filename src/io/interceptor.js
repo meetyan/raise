@@ -5,7 +5,6 @@ NProgress.configure({showSpinner: false})
 
 axios.interceptors.request.use(
   config => {
-    console.log('config', config)
     NProgress.start()
     return config
   },

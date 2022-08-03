@@ -1,35 +1,45 @@
 import React from 'react'
 import {Divider, Form, Typography, Layout, Card, Space, Button} from '@douyinfe/semi-ui'
-import {IconBranch, IconCrown, IconGlobe} from '@douyinfe/semi-icons'
+import {IconBranch, IconCrown} from '@douyinfe/semi-icons'
 
-import {SINCE_ARRAY} from '@/config'
+import {SINCE_ARRAY, LANGUAGES, SINCE} from '@/config'
+import {truncate} from '@/utils'
 
 import styles from './styles.scss'
-import sample from '@/developer-sample'
 
 const {Content} = Layout
 const {Text, Title} = Typography
 
-const DeveloperContent = () => {
+const DeveloperContent = ({list, getList}) => {
   return (
     <>
       <div className={styles.filter}>
         <div className={styles.bottom}>
-          <Form labelPosition="left" labelAlign="left" labelWidth={140}>
+          <Form
+            labelPosition="left"
+            labelAlign="left"
+            labelWidth={140}
+            onValueChange={e => getList(e)}
+          >
             <Form.Select
               field="language"
-              initValue="javascript"
+              initValue="any"
               label="Language"
               className={styles.bottomSelect}
               filter
             >
-              <Form.Select.Option value="javascript">Javascript</Form.Select.Option>
-              <Form.Select.Option value="python">Python</Form.Select.Option>
+              {LANGUAGES.map(item => {
+                return (
+                  <Form.Select.Option key={item.name} value={item.urlParam}>
+                    {truncate(item.name)}
+                  </Form.Select.Option>
+                )
+              })}
             </Form.Select>
 
             <Form.Select
-              field="dateRange"
-              initValue="today"
+              field="since"
+              initValue={SINCE.DAILY}
               label="Date range"
               className={styles.bottomSelect}
               filter
@@ -42,17 +52,6 @@ const DeveloperContent = () => {
                 )
               })}
             </Form.Select>
-
-            <Form.Select
-              field="sponsorable"
-              initValue="all"
-              label="Sponsorable"
-              className={styles.bottomSelect}
-              filter
-            >
-              <Form.Select.Option value="all">All developers</Form.Select.Option>
-              <Form.Select.Option value="sponsorable">Sponsorable developers</Form.Select.Option>
-            </Form.Select>
           </Form>
         </div>
 
@@ -60,7 +59,25 @@ const DeveloperContent = () => {
       </div>
 
       <Content className={styles.content}>
-        {sample.map(item => {
+        {list.map(item => {
+          if (!item.repo) {
+            return (
+              <Card className={styles.developer} key={item.name}>
+                <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                  <div className={styles.header}>
+                    <img className={styles.avatar} src={item.avatar} />
+                    <Space vertical align="start" spacing={2}>
+                      <Title heading={6}>{item.name}</Title>
+                      <Text>{item.username}</Text>
+                    </Space>
+                  </div>
+
+                  <Button>Follow</Button>
+                </div>
+              </Card>
+            )
+          }
+
           return (
             <Card
               key={item.name}
@@ -76,22 +93,18 @@ const DeveloperContent = () => {
               className={styles.developer}
               headerExtraContent={<Button>Follow</Button>}
             >
-              {item.isRepoPopular ? (
-                <Space vertical align="start">
-                  <Space>
-                    <IconCrown /> <Text>Popular Repo</Text>
-                  </Space>
-                  <Space>
-                    <IconBranch /> <Text strong>{item.repo}</Text>
-                  </Space>
-
-                  <Text className={styles.description}>{item.repoDescription}</Text>
-                </Space>
-              ) : (
+              <Space vertical align="start">
                 <Space>
-                  <IconGlobe /> <Text>{item.organization}</Text>
+                  <IconCrown /> <Text>Popular Repo</Text>
                 </Space>
-              )}
+                <Space>
+                  <IconBranch /> <Text strong>{item.repo.name}</Text>
+                </Space>
+
+                {item.repo.description ? (
+                  <Text className={styles.description}>{item.repo.description}</Text>
+                ) : null}
+              </Space>
             </Card>
           )
         })}
