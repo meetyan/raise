@@ -3,7 +3,7 @@ import {Divider, Form, Typography, Layout, Card, Space, Tooltip} from '@douyinfe
 import {IconBranch, IconSourceControl, IconStar} from '@douyinfe/semi-icons'
 
 import {SINCE_ARRAY, SPOKEN_LANGUAGES, LANGUAGES, SINCE, GITHUB_URL} from '@/config'
-import {truncate} from '@/utils'
+import {numberWithCommas, truncate} from '@/utils'
 import {SkeletonPlaceholder} from '@/components'
 
 import styles from './styles.scss'
@@ -118,20 +118,23 @@ const RepositoryContent = ({list, getList, loading}) => {
                 <div className={styles.top}>
                   <Space>
                     <Space className={styles.cursor} spacing={4}>
-                      <IconStar />{' '}
-                      <Text onClick={() => open(`${item.url}/stargazers`)}>{item.stars}</Text>
+                      <IconStar />
+                      <Text onClick={() => open(`${item.url}/stargazers`)}>
+                        {numberWithCommas(item.stars)}
+                      </Text>
                     </Space>
                     <Space />
                     <Space className={styles.cursor} spacing={4}>
-                      <IconSourceControl />{' '}
+                      <IconSourceControl />
                       <Text onClick={() => open(`${item.url}/network/members.${item.author}`)}>
-                        {item.forks}
+                        {numberWithCommas(item.forks)}
                       </Text>
                     </Space>
                   </Space>
 
                   <Space spacing={4}>
-                    <IconStar /> <Text>{item.currentPeriodStars} stars today</Text>
+                    <IconStar />
+                    <Text>{numberWithCommas(item.currentPeriodStars)} stars today</Text>
                   </Space>
                 </div>
 
