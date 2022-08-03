@@ -8,6 +8,7 @@
   "author": "Jiajun Yan",
   "license": "MIT",
   "scripts": {
+    "server": "cd ./github-trending-api && yarn start",
     "start": "concurrently -k \"yarn start:main\" \"yarn start:renderer\"",
     "start:main": "webpack --mode=development --config webpack/webpack.config.main.js && wait-on tcp:3000 && electron .",
     "start:renderer": "webpack server --mode=development --config webpack/webpack.config.renderer.js --hot",
@@ -22,10 +23,11 @@
     "@douyinfe/semi-icons": "^2.15.1",
     "@douyinfe/semi-ui": "^2.15.1",
     "ahooks": "^3.5.2",
-    "cheerio": "^1.0.0-rc.12",
+    "axios": "^0.27.2",
     "electron-is-dev": "^2.0.0",
-    "licia": "^1.37.0",
+    "lodash": "^4.17.21",
     "menubar": "^9.2.1",
+    "nprogress": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0"

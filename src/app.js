@@ -11,7 +11,9 @@ import {
 } from '@/components'
 import {MODE, TRENDING_TYPE} from '@/config'
 import {useMode} from '@/hooks'
+import {fetchRepositories, fetchDevelopers} from '@/io'
 
+import 'nprogress/nprogress.css'
 import '@/assets/styles/reset.scss'
 import '@/assets/styles/global.scss'
 import styles from '@/app.scss'
@@ -33,14 +35,29 @@ const App = () => {
     return trendingType === buttonType ? {type: 'primary', theme: 'solid'} : {}
   }
 
-  const getRepoList = async () => {
-    const result = await window.electron.crawl()
-    setList(result)
+  const convert = params => {
+    if (!params) return params
+
+    return Object.entries(params)
+      .map(([key, value]) => {
+        value = value === 'any' ? '' : value
+        return [key, value]
+      })
+      .reduce((final, item) => {
+        const [key, value] = item
+        final[key] = value
+        return final
+      }, {})
+  }
+
+  const getList = async params => {
+    const fetch = trendingType === REPOSITORIES ? fetchRepositories : fetchDevelopers
+    const res = await fetch(convert(params))
+    setList(res)
   }
 
   useEffect(() => {
-    console.log('called')
-    getRepoList()
+    getList()
   }, [])
 
   return (
@@ -82,7 +99,7 @@ const App = () => {
         <Divider />
       </div>
 
-      <Content list={list} />
+      <Content list={list} getList={getList} />
 
       {list.length ? (
         <Footer>

@@ -1,5 +1,5 @@
 export default [
-  {urlParam: '', name: 'Any'},
+  {urlParam: 'any', name: 'Any'},
   {urlParam: '1c-enterprise', name: '1C Enterprise'},
   {urlParam: 'abap', name: 'ABAP'},
   {urlParam: 'abnf', name: 'ABNF'},

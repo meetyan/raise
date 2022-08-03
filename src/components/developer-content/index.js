@@ -2,7 +2,7 @@ import React from 'react'
 import {Divider, Form, Typography, Layout, Card, Space, Button} from '@douyinfe/semi-ui'
 import {IconBranch, IconCrown, IconGlobe} from '@douyinfe/semi-icons'
 
-import {DATE_RANGE} from '../../../app-config'
+import {SINCE_ARRAY} from '@/config'
 
 import styles from './styles.scss'
 import sample from '@/developer-sample'
@@ -34,12 +34,10 @@ const DeveloperContent = () => {
               className={styles.bottomSelect}
               filter
             >
-              {DATE_RANGE.map(dateRange => {
-                const value = dateRange.toLocaleLowerCase().split(' ').join('-')
-
+              {SINCE_ARRAY.map(since => {
                 return (
-                  <Form.Select.Option key={value} value={value}>
-                    {dateRange}
+                  <Form.Select.Option key={since.value} value={since.value}>
+                    {since.name}
                   </Form.Select.Option>
                 )
               })}

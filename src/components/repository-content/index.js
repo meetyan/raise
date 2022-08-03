@@ -2,7 +2,7 @@ import React from 'react'
 import {Divider, Form, Typography, Layout, Card, Space, Tooltip} from '@douyinfe/semi-ui'
 import {IconBranch, IconSourceControl, IconStar} from '@douyinfe/semi-icons'
 
-import {DATE_RANGE, SPOKEN_LANGUAGES, LANGUAGES} from '@app-config'
+import {SINCE_ARRAY, SPOKEN_LANGUAGES, LANGUAGES, SINCE} from '@/config'
 
 import styles from './styles.scss'
 import {truncate} from '@/utils'
@@ -10,22 +10,27 @@ import {truncate} from '@/utils'
 const {Content} = Layout
 const {Text} = Typography
 
-const RepositoryContent = ({list}) => {
+const RepositoryContent = ({list, getList}) => {
   return (
     <>
       <div className={styles.filter}>
         <div className={styles.bottom}>
-          <Form labelPosition="left" labelAlign="left" labelWidth={180}>
+          <Form
+            labelPosition="left"
+            labelAlign="left"
+            labelWidth={180}
+            onValueChange={e => getList(e)}
+          >
             <Form.Select
-              field="spokenLanguage"
-              initValue="en"
+              field="spoken_language_code"
+              initValue="any"
               label="Spoken language"
               className={styles.bottomSelect}
               filter
             >
               {SPOKEN_LANGUAGES.map(item => {
                 return (
-                  <Form.Select.Option key={item.urlParam} value={item.urlParam}>
+                  <Form.Select.Option key={item.name} value={item.urlParam}>
                     {truncate(item.name)}
                   </Form.Select.Option>
                 )
@@ -34,14 +39,14 @@ const RepositoryContent = ({list}) => {
 
             <Form.Select
               field="language"
-              initValue="javascript"
+              initValue="any"
               label="Language"
               className={styles.bottomSelect}
               filter
             >
               {LANGUAGES.map(item => {
                 return (
-                  <Form.Select.Option key={item.urlParam} value={item.urlParam}>
+                  <Form.Select.Option key={item.name} value={item.urlParam}>
                     {truncate(item.name)}
                   </Form.Select.Option>
                 )
@@ -49,18 +54,16 @@ const RepositoryContent = ({list}) => {
             </Form.Select>
 
             <Form.Select
-              field="dateRange"
-              initValue="today"
+              field="since"
+              initValue={SINCE.DAILY}
               label="Date range"
               className={styles.bottomSelect}
               filter
             >
-              {DATE_RANGE.map(dateRange => {
-                const value = dateRange.toLocaleLowerCase().split(' ').join('-')
-
+              {SINCE_ARRAY.map(since => {
                 return (
-                  <Form.Select.Option key={value} value={value}>
-                    {dateRange}
+                  <Form.Select.Option key={since.value} value={since.value}>
+                    {since.name}
                   </Form.Select.Option>
                 )
               })}
@@ -75,25 +78,27 @@ const RepositoryContent = ({list}) => {
         {list.map(item => {
           return (
             <Card
-              key={item.repo}
+              key={item.name}
               title={
                 <div className={styles.repoHeader}>
                   <IconBranch />
                   <div className={styles.repoAuthor}>
-                    <Text>{item.author}</Text> /{' '}
-                    <Tooltip
-                      content={item.repo}
-                      position="bottom"
-                      mouseEnterDelay={1000}
-                      mouseLeaveDelay={1000}
-                    >
-                      <Text strong>{item.repo}</Text>
+                    <Text className="cursor">{item.author}</Text> /{' '}
+                    <Tooltip content={item.name} position="bottom">
+                      <Text className="cursor" strong>
+                        {item.name}
+                      </Text>
                     </Tooltip>
                   </div>
                 </div>
               }
               className={styles.repo}
-              headerExtraContent={<Text type="secondary">{item.language}</Text>}
+              headerExtraContent={
+                <Space spacing={4}>
+                  <span className={styles.languageColor} style={{background: item.languageColor}} />
+                  <Text type="secondary">{item.language}</Text>
+                </Space>
+              }
             >
               {item.description ? (
                 <Text className={styles.description}>{item.description}</Text>
@@ -107,12 +112,12 @@ const RepositoryContent = ({list}) => {
                     </Space>
                     <Space />
                     <Space>
-                      <IconSourceControl /> <Text>{item.forked}</Text>
+                      <IconSourceControl /> <Text>{item.forks}</Text>
                     </Space>
                   </Space>
 
                   <Space>
-                    <IconStar /> <Text>{item.starsToday} stars today</Text>
+                    <IconStar /> <Text>{item.currentPeriodStars} stars today</Text>
                   </Space>
                 </div>
 

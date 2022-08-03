@@ -41,6 +41,13 @@
     background-color: var(--semi-color-fill-0);
   }
 
+  .language-color {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
   .description {
     display: block;
     margin-bottom: 20px;
