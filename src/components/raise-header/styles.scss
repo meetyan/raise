@@ -6,7 +6,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  // background-color: var(--semi-color-bg-0);
   z-index: 9999;
   backdrop-filter: saturate(180%) blur(30px);
   transition: all 0.2s;
@@ -45,7 +44,7 @@
   .settings {
     display: flex;
     flex-direction: column;
-    padding: 5px 0 4px 0;
+    padding: 5px 0 3px 0;
 
     .top {
       display: flex;

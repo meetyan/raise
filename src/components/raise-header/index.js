@@ -1,5 +1,5 @@
 import React, {useEffect, useLayoutEffect, useRef, useState} from 'react'
-import {Button, Collapsible, Layout, Typography} from '@douyinfe/semi-ui'
+import {Button, Collapsible, Divider, Layout, Typography} from '@douyinfe/semi-ui'
 import {
   IconFilter,
   IconGithubLogo,
@@ -50,6 +50,14 @@ const RaiseHeader = ({refresh, getList}) => {
     )
   }
 
+  const toggleFilter = () => {
+    setShowFilter(!showFilter)
+  }
+
+  useEffect(() => {
+    console.log('scrollRef?.top', scrollRef?.top)
+  }, [scrollRef?.top])
+
   useEffect(() => {
     setShowFilter(false)
     filterRef.current.reset()
@@ -61,19 +69,12 @@ const RaiseHeader = ({refresh, getList}) => {
     setHeaderHeight(headerComponent.offsetHeight - 20)
   }, [])
 
-  const toggleFilter = () => {
-    setShowFilter(!showFilter)
-  }
-
   return (
     <>
       <Header
         className={styles.header}
         style={{
-          boxShadow:
-            scrollRef?.top > headerHeight || showFilter
-              ? '0 8px 24px -2px rgba(0, 0, 0, 0.2)'
-              : 'none',
+          boxShadow: scrollRef?.top || showFilter ? '0 8px 24px -2px rgba(0, 0, 0, 0.2)' : 'none',
         }}
       >
         <div className={styles.top}>
@@ -120,6 +121,8 @@ const RaiseHeader = ({refresh, getList}) => {
             />
           </div>
         </div>
+
+        <Divider style={{opacity: !scrollRef?.top || showFilter ? 1 : 0}} />
 
         <Collapsible isOpen={showFilter} keepDOM>
           <Filter ref={filterRef} getList={getList} />

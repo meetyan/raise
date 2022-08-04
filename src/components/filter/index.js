@@ -1,5 +1,5 @@
 import React, {forwardRef, useEffect, useImperativeHandle, useRef, useState} from 'react'
-import {Divider, Form} from '@douyinfe/semi-ui'
+import {Form} from '@douyinfe/semi-ui'
 
 import {SINCE_ARRAY, SPOKEN_LANGUAGES, LANGUAGES, SINCE, TRENDING_TYPE} from '@/config'
 import {truncate} from '@/utils'
@@ -23,47 +23,26 @@ const Filter = ({getList}, ref) => {
   }, [trendingType])
 
   return (
-    <>
-      <Divider />
-      <div className={styles.filter}>
-        <div className={styles.bottom}>
-          <Form
-            labelPosition="left"
-            labelAlign="left"
-            labelWidth={180}
-            onValueChange={getList}
-            getFormApi={formApi => (api.current = formApi)}
-          >
-            {isRepo ? (
-              <Form.Select
-                field="spoken_language_code"
-                initValue="any"
-                label="Spoken language"
-                className={styles.bottomSelect}
-                filter
-                zIndex={9999}
-                style={{width: '100%'}}
-              >
-                {SPOKEN_LANGUAGES.map(item => {
-                  return (
-                    <Form.Select.Option key={item.name} value={item.urlParam}>
-                      {truncate(item.name)}
-                    </Form.Select.Option>
-                  )
-                })}
-              </Form.Select>
-            ) : null}
-
+    <div className={styles.filter}>
+      <div className={styles.bottom}>
+        <Form
+          labelPosition="left"
+          labelAlign="left"
+          labelWidth={180}
+          onValueChange={getList}
+          getFormApi={formApi => (api.current = formApi)}
+        >
+          {isRepo ? (
             <Form.Select
-              field="language"
+              field="spoken_language_code"
               initValue="any"
-              label="Language"
+              label="Spoken language"
               className={styles.bottomSelect}
               filter
               zIndex={9999}
               style={{width: '100%'}}
             >
-              {LANGUAGES.map(item => {
+              {SPOKEN_LANGUAGES.map(item => {
                 return (
                   <Form.Select.Option key={item.name} value={item.urlParam}>
                     {truncate(item.name)}
@@ -71,28 +50,46 @@ const Filter = ({getList}, ref) => {
                 )
               })}
             </Form.Select>
+          ) : null}
 
-            <Form.Select
-              field="since"
-              initValue={SINCE.DAILY}
-              label="Date range"
-              className={styles.bottomSelect}
-              filter
-              zIndex={9999}
-              style={{width: '100%'}}
-            >
-              {SINCE_ARRAY.map(since => {
-                return (
-                  <Form.Select.Option key={since.value} value={since.value}>
-                    {since.name}
-                  </Form.Select.Option>
-                )
-              })}
-            </Form.Select>
-          </Form>
-        </div>
+          <Form.Select
+            field="language"
+            initValue="any"
+            label="Language"
+            className={styles.bottomSelect}
+            filter
+            zIndex={9999}
+            style={{width: '100%'}}
+          >
+            {LANGUAGES.map(item => {
+              return (
+                <Form.Select.Option key={item.name} value={item.urlParam}>
+                  {truncate(item.name)}
+                </Form.Select.Option>
+              )
+            })}
+          </Form.Select>
+
+          <Form.Select
+            field="since"
+            initValue={SINCE.DAILY}
+            label="Date range"
+            className={styles.bottomSelect}
+            filter
+            zIndex={9999}
+            style={{width: '100%'}}
+          >
+            {SINCE_ARRAY.map(since => {
+              return (
+                <Form.Select.Option key={since.value} value={since.value}>
+                  {since.name}
+                </Form.Select.Option>
+              )
+            })}
+          </Form.Select>
+        </Form>
       </div>
-    </>
+    </div>
   )
 }
 

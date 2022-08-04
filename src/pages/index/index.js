@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Divider, Typography, BackTop, Toast, Empty} from '@douyinfe/semi-ui'
+import {Typography, BackTop, Toast, Empty} from '@douyinfe/semi-ui'
 import {IconArrowUp} from '@douyinfe/semi-icons'
 import {IllustrationNoResult, IllustrationNoResultDark} from '@douyinfe/semi-illustrations'
 
@@ -63,21 +63,18 @@ const Index = () => {
       <Content list={list} getList={getList} loading={loading} />
 
       {empty ? (
-        <>
-          <Divider />
-          <Empty
-            className={styles.empty}
-            image={<IllustrationNoResult style={{width: 150, height: 150}} />}
-            darkModeImage={<IllustrationNoResultDark style={{width: 150, height: 150}} />}
-            description={
-              <Text className={styles.emptyDescription}>
-                {`It looks like we don’t have any trending ${
-                  trendingType === REPOSITORIES ? 'repositories' : 'developers'
-                } for your choices.`}
-              </Text>
-            }
-          />
-        </>
+        <Empty
+          className={styles.empty}
+          image={<IllustrationNoResult style={{width: 150, height: 150}} />}
+          darkModeImage={<IllustrationNoResultDark style={{width: 150, height: 150}} />}
+          description={
+            <Text className={styles.emptyDescription}>
+              {`It looks like we don’t have any trending ${
+                trendingType === REPOSITORIES ? 'repositories' : 'developers'
+              } for your choices.`}
+            </Text>
+          }
+        />
       ) : null}
 
       <BackTop className={styles.backTop}>

@@ -1,19 +1,6 @@
-.filter {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-
-  .bottom {
-    display: flex;
-    flex-direction: column;
-
-    .bottom-select {
-      width: 100%;
-    }
-  }
-}
-
 .content {
+  padding-top: 15px;
+
   .developer {
     width: 100%;
     margin-bottom: 20px;
