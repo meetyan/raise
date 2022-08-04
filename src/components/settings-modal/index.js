@@ -24,6 +24,7 @@ const SettingsModal = ({visible, setVisible}) => {
       height={300}
       centered
       footer={null}
+      zIndex={99999}
     >
       <Divider />
       <div className={styles.settingsModal}>

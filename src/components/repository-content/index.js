@@ -32,7 +32,7 @@ const RepositoryContent = ({list, loading}) => {
                     {item.author}
                   </Text>
                   {' / '}
-                  <Tooltip content={item.name} position="top">
+                  <Tooltip content={item.name} position="bottom">
                     <Text link strong onClick={() => open(item.url)}>
                       {item.name}
                     </Text>
