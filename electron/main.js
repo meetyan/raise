@@ -12,23 +12,28 @@ const browserWindowConfig = {
 }
 
 const createWindow = () => {
-  const mainWindow = new BrowserWindow(browserWindowConfig)
+  const mainWindow = new BrowserWindow({
+    ...browserWindowConfig,
+    icon: path.join(__dirname, './assets/logo.png'),
+  })
+
   mainWindow.webContents.openDevTools()
   mainWindow.loadURL(INDEX_URL.DEV)
 }
+
+app.dock.setIcon(path.join(__dirname, './assets/logo.png'))
+app.dock.show()
 
 app.setName('Raise')
 
 app.whenReady().then(async () => {
   const mb = menubar({
-    icon: path.join(__dirname, './assets/logo.png'),
+    icon: path.join(__dirname, './assets/menu-logo.png'),
     index: isDev ? INDEX_URL.DEV : INDEX_URL.PROD,
     browserWindow: {...browserWindowConfig, resizable: false},
   })
 
-  if (isDev) {
-    createWindow()
-  }
+  createWindow()
 
   mb.on('ready', () => {})
 })
