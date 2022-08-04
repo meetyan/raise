@@ -23,7 +23,7 @@ app.whenReady().then(async () => {
   const mb = menubar({
     icon: path.join(__dirname, './assets/logo.png'),
     index: isDev ? INDEX_URL.DEV : INDEX_URL.PROD,
-    browserWindow: browserWindowConfig,
+    browserWindow: {...browserWindowConfig, resizable: false},
   })
 
   if (isDev) {
