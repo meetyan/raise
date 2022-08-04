@@ -27,4 +27,15 @@
       margin-left: 5px;
     }
   }
+
+  .settings {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0 4px 0;
+
+    .top {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
 }

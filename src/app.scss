@@ -22,17 +22,6 @@
   }
 }
 
-.settings {
-  display: flex;
-  flex-direction: column;
-  padding: 5px 0 4px 0;
-
-  .top {
-    display: flex;
-    justify-content: flex-end;
-  }
-}
-
 .copyright {
   padding-top: 10px;
   display: flex;
@@ -54,7 +43,11 @@
 }
 
 .empty {
-  margin: 30px 0 50px;
+  height: 74vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   .empty-description {
     display: block;

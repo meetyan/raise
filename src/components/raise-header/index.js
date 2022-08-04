@@ -1,17 +1,39 @@
-import React, {useLayoutEffect, useRef, useState} from 'react'
-import {Layout, Typography} from '@douyinfe/semi-ui'
-import {IconGithubLogo} from '@douyinfe/semi-icons'
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react'
+import {Button, Collapsible, Layout, Typography} from '@douyinfe/semi-ui'
+import {
+  IconFilter,
+  IconGithubLogo,
+  IconInfoCircle,
+  IconMoon,
+  IconRefresh,
+  IconSetting,
+  IconSun,
+} from '@douyinfe/semi-icons'
+import {useScroll} from 'ahooks'
+
+import {Filter, SettingsModal} from '@/components'
+import {MODE} from '@/config'
+import {useMode} from '@/hooks'
 
 import styles from './styles.scss'
-import {useScroll} from 'ahooks'
 
 const {Header} = Layout
 const {Text} = Typography
 
-const RaiseHeader = ({children, right}) => {
-  const [headerHeight, setHeaderHeight] = useState(0)
-  const headerRef = useRef(null)
+const RaiseHeader = ({right, refresh, trendingType, getList}) => {
+  const headerRef = useRef()
+  const filterRef = useRef()
   const scrollRef = useScroll()
+  const [mode, setMode] = useMode()
+
+  const [headerHeight, setHeaderHeight] = useState(0)
+  const [showFilter, setShowFilter] = useState(false)
+  const [settingsModalVisible, setSettingsModalVisible] = useState(false)
+
+  useEffect(() => {
+    setShowFilter(false)
+    filterRef.current.reset()
+  }, [trendingType])
 
   useLayoutEffect(() => {
     if (!headerRef?.current) return
@@ -19,6 +41,10 @@ const RaiseHeader = ({children, right}) => {
     const [headerComponent] = document.getElementsByClassName(styles.header)
     setHeaderHeight(headerComponent.offsetHeight - 20)
   }, [])
+
+  const toggleFilter = () => {
+    setShowFilter(!showFilter)
+  }
 
   return (
     <>
@@ -37,10 +63,40 @@ const RaiseHeader = ({children, right}) => {
 
           {right}
         </div>
-        {children}
+
+        <div className={styles.settings}>
+          <div className={styles.top}>
+            <Button
+              theme="borderless"
+              icon={<IconRefresh />}
+              onClick={() => {
+                setShowFilter(false)
+                refresh()
+              }}
+            />
+            <Button theme="borderless" icon={<IconFilter />} onClick={toggleFilter} />
+            <Button
+              theme="borderless"
+              icon={mode === MODE.LIGHT ? <IconMoon /> : <IconSun />}
+              onClick={setMode}
+            />
+            <Button theme="borderless" icon={<IconInfoCircle />} />
+            <Button
+              theme="borderless"
+              icon={<IconSetting />}
+              onClick={() => setSettingsModalVisible(true)}
+            />
+          </div>
+        </div>
+
+        <Collapsible isOpen={showFilter} keepDOM>
+          <Filter ref={filterRef} trendingType={trendingType} getList={getList} />
+        </Collapsible>
       </Header>
 
       <div style={{width: '100%', height: headerHeight || 0}}></div>
+
+      <SettingsModal visible={settingsModalVisible} setVisible={setSettingsModalVisible} />
     </>
   )
 }

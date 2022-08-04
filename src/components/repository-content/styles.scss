@@ -1,26 +1,3 @@
-.filter {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-
-  .bottom {
-    display: flex;
-    flex-direction: column;
-
-    .bottom-select {
-      width: 100%;
-    }
-  }
-
-  .bottom-select-text {
-    display: block;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-
 .content {
   .repo-header {
     display: flex;

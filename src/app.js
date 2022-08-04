@@ -1,19 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {Button, Layout, Divider, Typography, BackTop, Toast, Empty} from '@douyinfe/semi-ui'
-import {
-  IconArrowUp,
-  IconFilter,
-  IconInfoCircle,
-  IconMoon,
-  IconRefresh,
-  IconSetting,
-  IconSun,
-} from '@douyinfe/semi-icons'
+import {IconArrowUp} from '@douyinfe/semi-icons'
 import {IllustrationNoResult, IllustrationNoResultDark} from '@douyinfe/semi-illustrations'
 
-import {RaiseHeader, RepositoryContent, DeveloperContent, SettingsModal} from '@/components'
-import {MODE, TRENDING_TYPE} from '@/config'
-import {useMode} from '@/hooks'
+import {RaiseHeader, RepositoryContent, DeveloperContent} from '@/components'
+import {TRENDING_TYPE} from '@/config'
 import {fetchRepositories, fetchDevelopers} from '@/io'
 import {convert} from '@/utils'
 
@@ -29,8 +20,6 @@ const {REPOSITORIES, DEVELOPERS} = TRENDING_TYPE
 
 const App = () => {
   const [trendingType, setTrendingType] = useState(REPOSITORIES)
-  const [settingsModalVisible, setSettingsModalVisible] = useState(false)
-  const [mode, setMode] = useMode()
   const [list, setList] = useState([])
   const [getListParams, setGetListParams] = useState({})
   const [loading, setLoading] = useState(false)
@@ -77,6 +66,9 @@ const App = () => {
   return (
     <Layout className={`components-layout-demo ${styles.layout}`}>
       <RaiseHeader
+        trendingType={trendingType}
+        refresh={refresh}
+        getList={getList}
         right={
           <div className={styles.trendingType}>
             <Button
@@ -95,42 +87,26 @@ const App = () => {
             </Button>
           </div>
         }
-      >
-        <div className={styles.settings}>
-          <div className={styles.top}>
-            <Button theme="borderless" icon={<IconRefresh />} onClick={refresh} />
-            <Button theme="borderless" icon={<IconFilter />} />
-            <Button
-              theme="borderless"
-              icon={mode === MODE.LIGHT ? <IconMoon /> : <IconSun />}
-              onClick={setMode}
-            />
-            <Button theme="borderless" icon={<IconInfoCircle />} />
-            <Button
-              theme="borderless"
-              icon={<IconSetting />}
-              onClick={() => setSettingsModalVisible(true)}
-            />
-          </div>
-        </div>
-      </RaiseHeader>
+      />
 
-      <Divider />
       <Content list={list} getList={getList} loading={loading} />
 
       {empty ? (
-        <Empty
-          className={styles.empty}
-          image={<IllustrationNoResult style={{width: 150, height: 150}} />}
-          darkModeImage={<IllustrationNoResultDark style={{width: 150, height: 150}} />}
-          description={
-            <Text className={styles.emptyDescription}>
-              {`It looks like we don’t have any trending ${
-                trendingType === REPOSITORIES ? 'repositories' : 'developers'
-              } for your choices.`}
-            </Text>
-          }
-        />
+        <>
+          <Divider />
+          <Empty
+            className={styles.empty}
+            image={<IllustrationNoResult style={{width: 150, height: 150}} />}
+            darkModeImage={<IllustrationNoResultDark style={{width: 150, height: 150}} />}
+            description={
+              <Text className={styles.emptyDescription}>
+                {`It looks like we don’t have any trending ${
+                  trendingType === REPOSITORIES ? 'repositories' : 'developers'
+                } for your choices.`}
+              </Text>
+            }
+          />
+        </>
       ) : null}
 
       <Footer>
@@ -139,8 +115,6 @@ const App = () => {
           <Text strong>© {new Date().getFullYear()} Raise. All rights reserved.</Text>
         </div>
       </Footer>
-
-      <SettingsModal visible={settingsModalVisible} setVisible={setSettingsModalVisible} />
 
       <BackTop className={styles.backTop}>
         <IconArrowUp />
