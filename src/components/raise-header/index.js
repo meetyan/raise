@@ -33,6 +33,7 @@ const RaiseHeader = ({right, refresh, trendingType, getList}) => {
   useEffect(() => {
     setShowFilter(false)
     filterRef.current.reset()
+    window.scrollTo({top: 0, behavior: 'smooth'})
   }, [trendingType])
 
   useLayoutEffect(() => {
@@ -52,7 +53,10 @@ const RaiseHeader = ({right, refresh, trendingType, getList}) => {
         className={styles.header}
         ref={headerRef}
         style={{
-          boxShadow: scrollRef?.top > headerHeight ? '0 8px 24px -2px rgba(0, 0, 0, 0.2)' : 'none',
+          boxShadow:
+            scrollRef?.top > headerHeight || showFilter
+              ? '0 8px 24px -2px rgba(0, 0, 0, 0.2)'
+              : 'none',
         }}
       >
         <div className={styles.top}>
