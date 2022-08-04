@@ -61,6 +61,8 @@ const Index = () => {
     <>
       <RaiseHeader refresh={refresh} getList={getList} />
 
+      <Content list={list} getList={getList} loading={loading} />
+
       {empty ? (
         <>
           <Divider />
@@ -77,9 +79,7 @@ const Index = () => {
             }
           />
         </>
-      ) : (
-        <Content list={list} getList={getList} loading={loading} />
-      )}
+      ) : null}
 
       <BackTop className={styles.backTop}>
         <IconArrowUp />

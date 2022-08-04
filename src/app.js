@@ -3,6 +3,7 @@ import {Divider, Layout, Typography} from '@douyinfe/semi-ui'
 
 import {MODE, TRENDING_TYPE} from '@/config'
 import {AppProvider} from '@/app-context'
+import {UpperContainer} from '@/components'
 import Index from '@/pages/index/index'
 
 import 'nprogress/nprogress.css'
@@ -34,9 +35,9 @@ const App = () => {
   return (
     <AppProvider value={context}>
       <Layout className={`components-layout-demo ${styles.layout}`}>
-        <div style={{minHeight: `calc(100vh - ${footerHeight}px - 40px)`}}>
+        <UpperContainer footerHeight={footerHeight}>
           <Index />
-        </div>
+        </UpperContainer>
 
         <Footer id="footer" ref={footerRef}>
           <Divider />
