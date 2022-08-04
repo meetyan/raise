@@ -21,8 +21,12 @@ const createWindow = () => {
   mainWindow.loadURL(INDEX_URL.DEV)
 }
 
-app.dock.setIcon(path.join(__dirname, './assets/logo.png'))
-app.dock.show()
+/**
+ * Show app icon in dock on macOS
+ */
+if (process.platform === 'darwin') {
+  app.dock.setIcon(path.join(__dirname, './assets/logo.png'))
+}
 
 app.setName('Raise')
 
@@ -31,9 +35,14 @@ app.whenReady().then(async () => {
     icon: path.join(__dirname, './assets/menu-logo.png'),
     index: isDev ? INDEX_URL.DEV : INDEX_URL.PROD,
     browserWindow: {...browserWindowConfig, resizable: false},
+    showDockIcon: true,
   })
 
-  createWindow()
+  if (isDev) {
+    createWindow()
+  }
 
-  mb.on('ready', () => {})
+  mb.on('ready', () => {
+    mb.showWindow()
+  })
 })
