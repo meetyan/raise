@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useRef, useState} from 'react'
+import React, {useState} from 'react'
 import {Divider, Layout, Typography} from '@douyinfe/semi-ui'
 
 import {MODE, TRENDING_TYPE} from '@/config'
@@ -17,29 +17,19 @@ const {Footer} = Layout
 const {REPOSITORIES} = TRENDING_TYPE
 
 const App = () => {
-  const footerRef = useRef()
-
   const [context] = useState({
     trendingType: REPOSITORIES,
     mode: MODE.DARK, // system themes
   })
-  const [footerHeight, setFooterHeight] = useState(0)
-
-  useLayoutEffect(() => {
-    if (!footerRef?.current) return
-
-    const footerComponent = document.getElementById('footer')
-    setFooterHeight(footerComponent.offsetHeight)
-  }, [footerRef])
 
   return (
     <AppProvider value={context}>
       <Layout className={`components-layout-demo ${styles.layout}`}>
-        <UpperContainer footerHeight={footerHeight}>
+        <UpperContainer>
           <Index />
         </UpperContainer>
 
-        <Footer id="footer" ref={footerRef}>
+        <Footer id="footer">
           <Divider />
           <div className={styles.copyright}>
             <Text strong>© {new Date().getFullYear()} Raise. All rights reserved.</Text>

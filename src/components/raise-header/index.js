@@ -23,7 +23,6 @@ const {Text} = Typography
 const {REPOSITORIES, DEVELOPERS} = TRENDING_TYPE
 
 const RaiseHeader = ({refresh, getList}) => {
-  const headerRef = useRef()
   const filterRef = useRef()
   const scrollRef = useScroll()
   const [mode, setMode] = useMode()
@@ -58,8 +57,6 @@ const RaiseHeader = ({refresh, getList}) => {
   }, [trendingType])
 
   useLayoutEffect(() => {
-    if (!headerRef?.current) return
-
     const [headerComponent] = document.getElementsByClassName(styles.header)
     setHeaderHeight(headerComponent.offsetHeight - 20)
   }, [])
@@ -72,7 +69,6 @@ const RaiseHeader = ({refresh, getList}) => {
     <>
       <Header
         className={styles.header}
-        ref={headerRef}
         style={{
           boxShadow:
             scrollRef?.top > headerHeight || showFilter

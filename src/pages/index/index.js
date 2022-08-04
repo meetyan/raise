@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Layout, Divider, Typography, BackTop, Toast, Empty} from '@douyinfe/semi-ui'
+import {Divider, Typography, BackTop, Toast, Empty} from '@douyinfe/semi-ui'
 import {IconArrowUp} from '@douyinfe/semi-icons'
 import {IllustrationNoResult, IllustrationNoResultDark} from '@douyinfe/semi-illustrations'
 
@@ -11,7 +11,6 @@ import {useTrendingType} from '@/hooks'
 
 import styles from './styles.scss'
 
-const {Footer} = Layout
 const {Text} = Typography
 
 const {REPOSITORIES} = TRENDING_TYPE
