@@ -2,7 +2,7 @@ import {sample, sampleSize, snakeCase} from 'lodash'
 
 import axios from './interceptor'
 
-const SERVER_URL = 'https://trending.tc.curve.to'
+const SERVER_URL = 'https://trending.curve.to'
 
 function buildUrl(baseUrl, params = {}) {
   const queryString = Object.keys(params)

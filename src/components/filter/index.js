@@ -3,12 +3,14 @@ import {Divider, Form} from '@douyinfe/semi-ui'
 
 import {SINCE_ARRAY, SPOKEN_LANGUAGES, LANGUAGES, SINCE, TRENDING_TYPE} from '@/config'
 import {truncate} from '@/utils'
+import {useTrendingType} from '@/hooks'
 
 import styles from './styles.scss'
 
-const Filter = ({trendingType, getList}, ref) => {
+const Filter = ({getList}, ref) => {
   const api = useRef()
   const [isRepo, setIsRepo] = useState(true)
+  const [trendingType] = useTrendingType()
 
   useImperativeHandle(ref, () => ({
     reset() {

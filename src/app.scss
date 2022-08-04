@@ -8,20 +8,6 @@
   min-width: 400px;
 }
 
-.trending-type {
-  display: flex;
-
-  .trending-type-button:first-child {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .trending-type-button:last-child {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-}
-
 .copyright {
   padding-top: 10px;
   display: flex;

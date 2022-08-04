@@ -12,23 +12,38 @@ import {
 import {useScroll} from 'ahooks'
 
 import {Filter, SettingsModal} from '@/components'
-import {MODE} from '@/config'
-import {useMode} from '@/hooks'
+import {MODE, TRENDING_TYPE} from '@/config'
+import {useMode, useTrendingType} from '@/hooks'
 
 import styles from './styles.scss'
 
 const {Header} = Layout
 const {Text} = Typography
 
-const RaiseHeader = ({right, refresh, trendingType, getList}) => {
+const {REPOSITORIES, DEVELOPERS} = TRENDING_TYPE
+
+const TrendingButton = ({type, setType, config}) => {
+  return (
+    <Button {...config(type)} className={styles.trendingTypeButton} onClick={() => setType(type)}>
+      {type}
+    </Button>
+  )
+}
+
+const RaiseHeader = ({refresh, getList}) => {
   const headerRef = useRef()
   const filterRef = useRef()
   const scrollRef = useScroll()
   const [mode, setMode] = useMode()
+  const [trendingType, setTrendingType] = useTrendingType()
 
   const [headerHeight, setHeaderHeight] = useState(0)
   const [showFilter, setShowFilter] = useState(false)
   const [settingsModalVisible, setSettingsModalVisible] = useState(false)
+
+  const trendingTypeButtonConfig = buttonType => {
+    return trendingType === buttonType ? {type: 'primary', theme: 'solid'} : {}
+  }
 
   useEffect(() => {
     setShowFilter(false)
@@ -65,7 +80,18 @@ const RaiseHeader = ({right, refresh, trendingType, getList}) => {
             <Text className={styles.headingTitle}>Trending</Text>
           </h1>
 
-          {right}
+          <div className={styles.trendingType}>
+            <TrendingButton
+              type={REPOSITORIES}
+              setType={setTrendingType}
+              config={trendingTypeButtonConfig}
+            />
+            <TrendingButton
+              type={DEVELOPERS}
+              setType={setTrendingType}
+              config={trendingTypeButtonConfig}
+            />
+          </div>
         </div>
 
         <div className={styles.settings}>
@@ -94,7 +120,7 @@ const RaiseHeader = ({right, refresh, trendingType, getList}) => {
         </div>
 
         <Collapsible isOpen={showFilter} keepDOM>
-          <Filter ref={filterRef} trendingType={trendingType} getList={getList} />
+          <Filter ref={filterRef} getList={getList} />
         </Collapsible>
       </Header>
 

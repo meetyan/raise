@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Button, Divider, Modal, Space, Switch, Typography} from '@douyinfe/semi-ui'
 import {IconExternalOpen} from '@douyinfe/semi-icons'
 
@@ -11,7 +11,6 @@ const {Text} = Typography
 
 const SettingsModal = ({visible, setVisible}) => {
   const [mode, setMode] = useMode()
-  const [isDarkMode, setIsDarkMode] = useState(mode === MODE.DARK)
 
   return (
     <Modal
@@ -31,14 +30,7 @@ const SettingsModal = ({visible, setVisible}) => {
         <Space style={{width: '100%'}} vertical spacing="medium" align="start">
           <div className={styles.settingsItem}>
             <Text strong>Dark mode</Text>
-            <Switch
-              checked={isDarkMode}
-              onChange={e => {
-                console.log('e', e)
-                setMode()
-                setIsDarkMode(e)
-              }}
-            />
+            <Switch checked={mode === MODE.DARK} onChange={setMode} />
           </div>
 
           <div className={`${styles.settingsItem}`}>
