@@ -22,14 +22,6 @@ const {Text} = Typography
 
 const {REPOSITORIES, DEVELOPERS} = TRENDING_TYPE
 
-const TrendingButton = ({type, setType, config}) => {
-  return (
-    <Button {...config(type)} className={styles.trendingTypeButton} onClick={() => setType(type)}>
-      {type}
-    </Button>
-  )
-}
-
 const RaiseHeader = ({refresh, getList}) => {
   const headerRef = useRef()
   const filterRef = useRef()
@@ -43,6 +35,21 @@ const RaiseHeader = ({refresh, getList}) => {
 
   const trendingTypeButtonConfig = buttonType => {
     return trendingType === buttonType ? {type: 'primary', theme: 'solid'} : {}
+  }
+
+  const TrendingButton = ({type}) => {
+    return (
+      <Button
+        {...trendingTypeButtonConfig(type)}
+        className={styles.trendingTypeButton}
+        onClick={() => {
+          setTrendingType(type)
+          getList()
+        }}
+      >
+        {type}
+      </Button>
+    )
   }
 
   useEffect(() => {
@@ -76,7 +83,7 @@ const RaiseHeader = ({refresh, getList}) => {
       >
         <div className={styles.top}>
           <h1 className={styles.heading}>
-            <IconGithubLogo />
+            <IconGithubLogo style={{fontSize: 18}} />
             <Text className={styles.headingTitle}>Trending</Text>
           </h1>
 

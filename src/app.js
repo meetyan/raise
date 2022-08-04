@@ -61,14 +61,12 @@ const App = () => {
 
   useEffect(() => {
     getList()
-  }, [context.trendingType])
+  }, [])
 
   return (
     <AppProvider value={context}>
       <Layout className={`components-layout-demo ${styles.layout}`}>
         <RaiseHeader refresh={refresh} getList={getList} />
-
-        <Content list={list} getList={getList} loading={loading} />
 
         {empty ? (
           <>
@@ -86,7 +84,11 @@ const App = () => {
               }
             />
           </>
-        ) : null}
+        ) : (
+          <div className={styles.content}>
+            <Content list={list} getList={getList} loading={loading} />
+          </div>
+        )}
 
         <Footer>
           <Divider />
