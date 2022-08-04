@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import {Button, Layout, Divider, Typography, BackTop, Toast, Empty} from '@douyinfe/semi-ui'
-import {IconArrowUp, IconInfoCircle, IconMoon, IconSetting, IconSun} from '@douyinfe/semi-icons'
+import {
+  IconArrowUp,
+  IconFilter,
+  IconInfoCircle,
+  IconMoon,
+  IconRefresh,
+  IconSetting,
+  IconSun,
+} from '@douyinfe/semi-icons'
 import {IllustrationNoResult, IllustrationNoResultDark} from '@douyinfe/semi-illustrations'
 
-import {
-  RaiseHeader,
-  RepositoryContent,
-  DeveloperContent,
-  SettingsModal,
-  RefreshButton,
-} from '@/components'
+import {RaiseHeader, RepositoryContent, DeveloperContent, SettingsModal} from '@/components'
 import {MODE, TRENDING_TYPE} from '@/config'
 import {useMode} from '@/hooks'
 import {fetchRepositories, fetchDevelopers} from '@/io'
@@ -74,43 +76,46 @@ const App = () => {
 
   return (
     <Layout className={`components-layout-demo ${styles.layout}`}>
-      <RaiseHeader>
-        <div className={styles.trendingType}>
-          <Button
-            {...trendingTypeButtonConfig(REPOSITORIES)}
-            className={styles.trendingTypeButton}
-            onClick={() => setTrendingType(REPOSITORIES)}
-          >
-            {REPOSITORIES}
-          </Button>
-          <Button
-            {...trendingTypeButtonConfig(DEVELOPERS)}
-            className={styles.trendingTypeButton}
-            onClick={() => setTrendingType(DEVELOPERS)}
-          >
-            {DEVELOPERS}
-          </Button>
+      <RaiseHeader
+        right={
+          <div className={styles.trendingType}>
+            <Button
+              {...trendingTypeButtonConfig(REPOSITORIES)}
+              className={styles.trendingTypeButton}
+              onClick={() => setTrendingType(REPOSITORIES)}
+            >
+              {REPOSITORIES}
+            </Button>
+            <Button
+              {...trendingTypeButtonConfig(DEVELOPERS)}
+              className={styles.trendingTypeButton}
+              onClick={() => setTrendingType(DEVELOPERS)}
+            >
+              {DEVELOPERS}
+            </Button>
+          </div>
+        }
+      >
+        <div className={styles.settings}>
+          <div className={styles.top}>
+            <Button theme="borderless" icon={<IconRefresh />} onClick={refresh} />
+            <Button theme="borderless" icon={<IconFilter />} />
+            <Button
+              theme="borderless"
+              icon={mode === MODE.LIGHT ? <IconMoon /> : <IconSun />}
+              onClick={setMode}
+            />
+            <Button theme="borderless" icon={<IconInfoCircle />} />
+            <Button
+              theme="borderless"
+              icon={<IconSetting />}
+              onClick={() => setSettingsModalVisible(true)}
+            />
+          </div>
         </div>
       </RaiseHeader>
 
-      <div className={styles.settings}>
-        <div className={styles.top}>
-          <Button
-            theme="borderless"
-            icon={mode === MODE.LIGHT ? <IconMoon /> : <IconSun />}
-            onClick={setMode}
-          />
-          <Button theme="borderless" icon={<IconInfoCircle />} />
-          <Button
-            theme="borderless"
-            icon={<IconSetting />}
-            onClick={() => setSettingsModalVisible(true)}
-          />
-        </div>
-
-        <Divider />
-      </div>
-
+      <Divider />
       <Content list={list} getList={getList} loading={loading} />
 
       {empty ? (
@@ -140,8 +145,6 @@ const App = () => {
       <BackTop className={styles.backTop}>
         <IconArrowUp />
       </BackTop>
-
-      <RefreshButton onClick={refresh} />
     </Layout>
   )
 }

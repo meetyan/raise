@@ -1,6 +1,15 @@
 .header {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding: 20px 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  // background-color: var(--semi-color-bg-0);
+  z-index: 9999;
+  backdrop-filter: saturate(180%) blur(30px);
+  transition: all 0.2s;
 
   .top {
     display: flex;
