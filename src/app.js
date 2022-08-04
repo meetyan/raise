@@ -3,7 +3,7 @@ import {Layout} from '@douyinfe/semi-ui'
 
 import {MODE, TRENDING_TYPE} from '@/config'
 import {AppProvider} from '@/app-context'
-import Index from '@/pages/index'
+import Index from '@/pages/index/index'
 
 import 'nprogress/nprogress.css'
 import '@/assets/styles/reset.scss'
