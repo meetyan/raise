@@ -78,17 +78,8 @@ const Index = () => {
           />
         </>
       ) : (
-        <div className={styles.content}>
-          <Content list={list} getList={getList} loading={loading} />
-        </div>
+        <Content list={list} getList={getList} loading={loading} />
       )}
-
-      <Footer>
-        <Divider />
-        <div className={styles.copyright}>
-          <Text strong>© {new Date().getFullYear()} Raise. All rights reserved.</Text>
-        </div>
-      </Footer>
 
       <BackTop className={styles.backTop}>
         <IconArrowUp />
