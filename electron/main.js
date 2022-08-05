@@ -67,11 +67,11 @@ app.whenReady().then(() => {
   const menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)
 
-  if (isDev) {
-    createWindow()
-  }
-
   mb.on('ready', () => {
     mb.showWindow()
+
+    if (isDev) {
+      createWindow()
+    }
   })
 })

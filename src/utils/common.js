@@ -22,5 +22,3 @@ export const numberWithCommas = number => {
 }
 
 export const isMac = window.navigator?.userAgentData?.platform.toUpperCase().includes('MAC')
-
-console.log('isMac', isMac)

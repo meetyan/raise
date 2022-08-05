@@ -29,3 +29,5 @@ export const SINCE_ARRAY = [
 ]
 
 export const GITHUB_URL = 'https://github.com'
+
+export const RAISE_CONTEXT_STORAGE = 'RAISE_CONTEXT_STORAGE'

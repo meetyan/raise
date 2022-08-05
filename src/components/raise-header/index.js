@@ -33,10 +33,6 @@ const RaiseHeader = ({refresh, getList}) => {
   const [settingsModalVisible, setSettingsModalVisible] = useState(false)
   const [aboutModalVisible, setAboutModalVisible] = useState(false)
 
-  window.electron.showAboutModal(() => {
-    setAboutModalVisible(true)
-  })
-
   const trendingTypeButtonConfig = buttonType => {
     return trendingType === buttonType ? {type: 'primary', theme: 'solid'} : {}
   }
@@ -68,6 +64,12 @@ const RaiseHeader = ({refresh, getList}) => {
   useLayoutEffect(() => {
     const [headerComponent] = document.getElementsByClassName(styles.header)
     setHeaderHeight(headerComponent.offsetHeight - 20)
+  }, [])
+
+  useEffect(() => {
+    window.electron.showAboutModal(() => {
+      setAboutModalVisible(true)
+    })
   }, [])
 
   return (
@@ -115,7 +117,7 @@ const RaiseHeader = ({refresh, getList}) => {
             <Button
               theme="borderless"
               icon={mode === MODE.LIGHT ? <IconMoon /> : <IconSun />}
-              onClick={setMode}
+              onClick={() => setMode(mode === MODE.LIGHT ? MODE.DARK : MODE.LIGHT)}
             />
             <Button
               theme="borderless"

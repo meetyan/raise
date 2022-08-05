@@ -1,4 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react'
+import {RAISE_CONTEXT_STORAGE} from './config'
+import {setStorageSync} from './utils'
 
 export const AppContext = React.createContext({})
 
@@ -29,6 +31,7 @@ export const useContextProp = propName => {
         ...preCtx,
         [propName]: val,
       }
+      setStorageSync(RAISE_CONTEXT_STORAGE, data)
       return data
     })
   }

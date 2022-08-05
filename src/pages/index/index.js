@@ -7,7 +7,7 @@ import {RaiseHeader, RepositoryContent, DeveloperContent} from '@/components'
 import {fetchRepositories, fetchDevelopers} from '@/io'
 import {convert} from '@/utils'
 import {TRENDING_TYPE} from '@/config'
-import {useBackTop, useTrendingType} from '@/hooks'
+import {useBackTop, useDockIcon, useMode, useTrendingType} from '@/hooks'
 
 import styles from './styles.scss'
 
@@ -18,6 +18,8 @@ const {REPOSITORIES} = TRENDING_TYPE
 const Index = () => {
   const [trendingType] = useTrendingType()
   const [backTop] = useBackTop()
+  const [mode, setMode] = useMode()
+  const [dockIcon, setDockIcon] = useDockIcon()
 
   const [list, setList] = useState([])
   const [getListParams, setGetListParams] = useState({})
@@ -57,6 +59,18 @@ const Index = () => {
   useEffect(() => {
     getList()
   }, [trendingType])
+
+  /**
+   * Recover settings to last state according to context storage
+   * For example, when a user toggle settings in the settings modal,
+   * a few changes have been made.
+   * After he closes the app and reopens it,
+   * all settings/context will have to be recovered.
+   */
+  useEffect(() => {
+    setMode(mode)
+    setDockIcon(dockIcon)
+  }, [])
 
   return (
     <>

@@ -2,7 +2,7 @@ import React from 'react'
 import {Divider, Modal, Space, Switch, Typography} from '@douyinfe/semi-ui'
 
 import {useBackTop, useDockIcon, useMode} from '@/hooks'
-import {MODE, VERSION} from '@/config'
+import {MODE} from '@/config'
 
 import styles from './styles.scss'
 import {isMac} from '@/utils'
@@ -32,7 +32,12 @@ const SettingsModal = ({visible, setVisible}) => {
         <Space style={{width: '100%'}} vertical spacing="medium" align="start">
           <div className={styles.settingsItem}>
             <Text strong>Dark mode</Text>
-            <Switch checked={mode === MODE.DARK} onChange={setMode} />
+            <Switch
+              checked={mode === MODE.DARK}
+              onChange={e => {
+                setMode(e ? MODE.DARK : MODE.LIGHT)
+              }}
+            />
           </div>
 
           <div className={styles.settingsItem}>
@@ -62,8 +67,6 @@ const SettingsModal = ({visible, setVisible}) => {
             <Button icon={<IconExternalOpen />}>Open</Button>
           </div> */}
         </Space>
-
-        <Text type="tertiary">Raise version {VERSION}</Text>
       </div>
     </Modal>
   )
