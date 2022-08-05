@@ -1,2 +1,3 @@
 # Raise
-An Electron-based menubar app that tracks and shows GitHub Trending.
+
+A simple (and unofficial) GitHub Trending client that lives in your menubar.
