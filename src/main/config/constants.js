@@ -1,4 +1,5 @@
 import path from 'path'
+import is from 'electron-is'
 
 export const BROWSER_WINDOW = {
   WIDTH: 1440,
@@ -20,4 +21,4 @@ export const IPC_FUNCTION = {
   SHOW_DOCK_ICON: 'show-dock-icon',
 }
 
-export const isMac = process.platform === 'darwin'
+export const isMac = is.macOS()
