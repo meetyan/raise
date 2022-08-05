@@ -22,7 +22,7 @@ const SettingsModal = ({visible, setVisible}) => {
       onCancel={() => setVisible(false)}
       closeOnEsc={true}
       width={350}
-      height={300}
+      height={270}
       centered
       footer={null}
       zIndex={99999}
@@ -41,16 +41,6 @@ const SettingsModal = ({visible, setVisible}) => {
           </div>
 
           <div className={styles.settingsItem}>
-            <Space vertical align="start" spacing={2}>
-              <Text strong>Automatic updates</Text>
-              <Text link size="small">
-                Check now
-              </Text>
-            </Space>
-            <Switch checked />
-          </div>
-
-          <div className={styles.settingsItem}>
             <Text strong>Show back to top button</Text>
             <Switch checked={backTop} onChange={setBackTop} />
           </div>
@@ -61,6 +51,16 @@ const SettingsModal = ({visible, setVisible}) => {
               <Switch checked={dockIcon} onChange={setDockIcon} />
             </div>
           ) : null}
+
+          <div className={styles.settingsItem}>
+            <Space vertical align="start" spacing={2}>
+              <Text strong>Automatic updates</Text>
+              <Text link size="small">
+                Check now
+              </Text>
+            </Space>
+            <Switch checked />
+          </div>
 
           {/* <div className={styles.settingsItem}>
             <Text strong>Open in detached window</Text>

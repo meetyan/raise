@@ -24,6 +24,8 @@ const createWindow = () => {
   return mainWindow
 }
 
+app.setName('Raise')
+
 /**
  * Show app icon in dock on macOS
  */
@@ -32,13 +34,12 @@ if (isMac) {
   app.dock.show()
 }
 
-app.setName('Raise')
-
 app.whenReady().then(() => {
   const mb = menubar({
     icon: path.join(__dirname, './assets/menu-logo.png'),
     index: isDev ? INDEX_URL.DEV : INDEX_URL.PROD,
     browserWindow: {...browserWindowConfig, resizable: false},
+    preloadWindow: true,
   })
 
   ipcMain.on(IPC_FUNCTION.SHOW_DOCK_ICON, handleShowDockIcon)
@@ -68,7 +69,14 @@ app.whenReady().then(() => {
   Menu.setApplicationMenu(menu)
 
   mb.on('ready', () => {
-    mb.showWindow()
+    /**
+     * The setTimeout is used as a hack to show window on ready.
+     * The window simply flashes and won't stay shown if no delay is set.
+     * See https://github.com/maxogden/menubar/issues/76.
+     */
+    setTimeout(() => {
+      mb.showWindow()
+    }, 500)
 
     if (isDev) {
       createWindow()
