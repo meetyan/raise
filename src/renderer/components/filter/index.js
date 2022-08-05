@@ -1,7 +1,7 @@
 import React, {forwardRef, useEffect, useImperativeHandle, useRef, useState} from 'react'
-import {Form} from '@douyinfe/semi-ui'
+import {Form, Select} from '@douyinfe/semi-ui'
 
-import {SINCE_ARRAY, SPOKEN_LANGUAGES, LANGUAGES, SINCE, TRENDING_TYPE} from '@/config'
+import {SINCE_ARRAY, SPOKEN_LANGUAGES, LANGUAGES, SINCE, TRENDING_TYPE, Z_INDEX} from '@/config'
 import {truncate} from '@/utils'
 import {useTrendingType} from '@/hooks'
 
@@ -39,7 +39,7 @@ const Filter = ({getList}, ref) => {
               label="Spoken language"
               className={styles.bottomSelect}
               filter
-              zIndex={9999}
+              zIndex={Z_INDEX.SELECT}
               style={{width: '100%'}}
             >
               {SPOKEN_LANGUAGES.map(item => {
@@ -58,7 +58,7 @@ const Filter = ({getList}, ref) => {
             label="Language"
             className={styles.bottomSelect}
             filter
-            zIndex={9999}
+            zIndex={Z_INDEX.SELECT}
             style={{width: '100%'}}
           >
             {LANGUAGES.map(item => {
@@ -76,7 +76,7 @@ const Filter = ({getList}, ref) => {
             label="Date range"
             className={styles.bottomSelect}
             filter
-            zIndex={9999}
+            zIndex={Z_INDEX.SELECT}
             style={{width: '100%'}}
           >
             {SINCE_ARRAY.map(since => {

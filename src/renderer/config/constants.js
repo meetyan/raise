@@ -28,6 +28,14 @@ export const SINCE_ARRAY = [
   {name: SINCE_MAP[SINCE.MONTHLY], value: SINCE.MONTHLY},
 ]
 
-export const GITHUB_URL = 'https://github.com'
-
 export const RAISE_CONTEXT_STORAGE = 'RAISE_CONTEXT_STORAGE'
+
+export const Z_INDEX = {
+  MODAL: 99999,
+  SELECT: 9999,
+}
+
+export const URL = {
+  GITHUB: 'https://github.com',
+  CHANGELOG: 'https://github.com/realfrancisyan/raise/blob/master/CHANGELOG.md',
+}

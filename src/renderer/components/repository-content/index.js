@@ -2,7 +2,7 @@ import React from 'react'
 import {Typography, Layout, Card, Space, Tooltip} from '@douyinfe/semi-ui'
 import {IconBranch, IconSourceControl, IconStar} from '@douyinfe/semi-icons'
 
-import {GITHUB_URL} from '@/config'
+import {URL} from '@/config'
 import {numberWithCommas} from '@/utils'
 import {SkeletonPlaceholder} from '@/components'
 
@@ -28,7 +28,7 @@ const RepositoryContent = ({list, loading}) => {
               <div className={styles.repoHeader}>
                 <IconBranch />
                 <div className={styles.repoAuthor}>
-                  <Text link onClick={() => open(`${GITHUB_URL}/${item.author}`)}>
+                  <Text link onClick={() => open(`${URL.GITHUB}/${item.author}`)}>
                     {item.author}
                   </Text>
                   {' / '}

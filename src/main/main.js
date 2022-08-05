@@ -3,8 +3,8 @@ import path from 'path'
 import isDev from 'electron-is-dev'
 import {menubar} from 'menubar'
 
-import {MENUBAR, INDEX_URL, IPC_FUNCTION, isMac} from './config'
-import {handleShowDockIcon} from './ipc-functions'
+import {MENUBAR, INDEX_URL, IPC_FUNCTION, isMac} from '@/config'
+import {handleShowDockIcon} from '@/ipc-functions'
 
 const browserWindowConfig = {
   width: MENUBAR.WIDTH,
@@ -78,8 +78,8 @@ app.whenReady().then(() => {
       mb.showWindow()
     }, 500)
 
-    if (isDev) {
-      createWindow()
-    }
+    // if (isDev) {
+    //   createWindow()
+    // }
   })
 })

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Divider, Modal, Typography} from '@douyinfe/semi-ui'
 
-import {VERSION} from '@/config'
+import {VERSION, Z_INDEX} from '@/config'
 import Logo from '@/assets/images/logo.png'
 
 import styles from './styles.scss'
@@ -21,7 +21,7 @@ const AboutModal = ({visible, setVisible}) => {
       height={400}
       centered
       footer={null}
-      zIndex={99999}
+      zIndex={Z_INDEX.MODAL}
     >
       <Divider />
       <div className={styles.aboutModal}>

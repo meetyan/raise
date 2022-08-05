@@ -1,6 +1,6 @@
 import {app} from 'electron'
 
-import {isMac} from '../config'
+import {isMac} from '@/config'
 
 export const handleShowDockIcon = (_, visible) => {
   if (!isMac) return

@@ -1,13 +1,15 @@
 import React from 'react'
-import {Divider, Modal, Space, Switch, Typography} from '@douyinfe/semi-ui'
+import {Button, Divider, Modal, Space, Switch, Typography} from '@douyinfe/semi-ui'
+import {IconExternalOpen} from '@douyinfe/semi-icons'
 
 import {useBackTop, useDockIcon, useMode} from '@/hooks'
-import {MODE} from '@/config'
+import {MODE, URL, VERSION, Z_INDEX} from '@/config'
 
 import styles from './styles.scss'
 import {isMac} from '@/utils'
 
 const {Text} = Typography
+const {open} = window.electron
 
 const SettingsModal = ({visible, setVisible}) => {
   const [mode, setMode] = useMode()
@@ -22,10 +24,10 @@ const SettingsModal = ({visible, setVisible}) => {
       onCancel={() => setVisible(false)}
       closeOnEsc={true}
       width={350}
-      height={270}
+      height={390}
       centered
       footer={null}
-      zIndex={99999}
+      zIndex={Z_INDEX.MODAL}
     >
       <Divider />
       <div className={styles.settingsModal}>
@@ -52,6 +54,8 @@ const SettingsModal = ({visible, setVisible}) => {
             </div>
           ) : null}
 
+          <Divider />
+
           <div className={styles.settingsItem}>
             <Space vertical align="start" spacing={2}>
               <Text strong>Automatic updates</Text>
@@ -62,10 +66,15 @@ const SettingsModal = ({visible, setVisible}) => {
             <Switch checked />
           </div>
 
-          {/* <div className={styles.settingsItem}>
-            <Text strong>Open in detached window</Text>
-            <Button icon={<IconExternalOpen />}>Open</Button>
-          </div> */}
+          <div className={styles.settingsItem}>
+            <Text strong>Changelog</Text>
+            <Button icon={<IconExternalOpen />} onClick={() => open(URL.CHANGELOG)}>
+              Open
+            </Button>
+          </div>
+
+          <Divider />
+          <Text type="tertiary">Raise, version {VERSION}</Text>
         </Space>
       </div>
     </Modal>
