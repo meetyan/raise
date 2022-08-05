@@ -38,4 +38,5 @@ export const Z_INDEX = {
 export const URL = {
   GITHUB: 'https://github.com',
   CHANGELOG: 'https://github.com/realfrancisyan/raise/blob/master/CHANGELOG.md',
+  SERVER: 'https://trending.curve.to',
 }

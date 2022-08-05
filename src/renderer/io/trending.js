@@ -1,8 +1,9 @@
 import {sample, sampleSize, snakeCase} from 'lodash'
 
 import axios from './interceptor'
+import {URL} from '@/config'
 
-const SERVER_URL = 'https://trending.curve.to'
+let controller
 
 function buildUrl(baseUrl, params = {}) {
   const queryString = Object.keys(params)
@@ -19,22 +20,42 @@ function checkResponse(res) {
   }
 }
 
-export async function fetchRepositories(params, serverUrl = SERVER_URL) {
-  console.log('object', `${serverUrl}/repositories`)
-  const res = await axios(buildUrl(`${serverUrl}/repositories`, params))
+export async function fetchRepositories(params, serverUrl = URL.SERVER) {
+  if (controller) {
+    controller.abort() // Makes sure that users always get the latest result
+  }
+
+  controller = new AbortController()
+
+  const res = await axios({
+    method: 'get',
+    url: buildUrl(`${serverUrl}/repositories`, params),
+    signal: controller.signal,
+  })
+
   checkResponse(res)
 
   return res.data
 }
 
-export async function fetchDevelopers(params, serverUrl = SERVER_URL) {
-  const res = await axios(buildUrl(`${serverUrl}/developers`, params))
+export async function fetchDevelopers(params, serverUrl = URL.SERVER) {
+  if (controller) {
+    controller.abort() // Makes sure that users always get the latest result
+  }
+
+  controller = new AbortController()
+  const res = await axios({
+    method: 'get',
+    url: buildUrl(`${serverUrl}/developers`, params),
+    signal: controller.signal,
+  })
+
   checkResponse(res)
 
   return res.data
 }
 
-export async function fetchRandomRepository(params, serverUrl = SERVER_URL) {
+export async function fetchRandomRepository(params, serverUrl = URL.SERVER) {
   const res = await axios(buildUrl(`${serverUrl}/repositories`, params))
   checkResponse(res)
 
@@ -42,7 +63,7 @@ export async function fetchRandomRepository(params, serverUrl = SERVER_URL) {
   return sample(json)
 }
 
-export async function fetchRandomRepositories(size = 1, params, serverUrl = SERVER_URL) {
+export async function fetchRandomRepositories(size = 1, params, serverUrl = URL.SERVER) {
   const res = await axios(buildUrl(`${serverUrl}/repositories`, params))
   checkResponse(res)
 

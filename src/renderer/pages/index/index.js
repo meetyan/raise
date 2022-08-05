@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Typography, BackTop, Toast, Empty} from '@douyinfe/semi-ui'
 import {IconArrowUp} from '@douyinfe/semi-icons'
 import {IllustrationNoResult, IllustrationNoResultDark} from '@douyinfe/semi-illustrations'
+import axios from 'axios'
 
 import {RaiseHeader, RepositoryContent, DeveloperContent} from '@/components'
 import {fetchRepositories, fetchDevelopers} from '@/io'
@@ -35,12 +36,12 @@ const Index = () => {
   }
 
   const getList = async params => {
-    if (loading) return
-
     setLoading(true)
     resetList()
     setGetListParams(params)
     setEmpty(false)
+
+    let isCancel = false
 
     try {
       const fetch = isRepo ? fetchRepositories : fetchDevelopers
@@ -48,12 +49,14 @@ const Index = () => {
       setList(res)
       setEmpty(!res.length)
     } catch (error) {
+      if (axios.isCancel(error)) return (isCancel = true)
+
       console.log('An error occurred when calling getList. Params: ', params, error)
       Toast.error(
         'Oops. It looks like an error occurs. The server might be down. Please try again.'
       )
     } finally {
-      setLoading(false)
+      setLoading(isCancel || false) // Makes sure that when a request is canceled, loading is true for next getList call
     }
   }
 
