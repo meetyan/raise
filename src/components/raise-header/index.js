@@ -2,7 +2,6 @@ import React, {useEffect, useLayoutEffect, useRef, useState} from 'react'
 import {Button, Collapsible, Divider, Layout, Typography} from '@douyinfe/semi-ui'
 import {
   IconFilter,
-  IconGithubLogo,
   IconInfoCircle,
   IconMoon,
   IconRefresh,
@@ -11,9 +10,10 @@ import {
 } from '@douyinfe/semi-icons'
 import {useScroll} from 'ahooks'
 
-import {Filter, SettingsModal} from '@/components'
+import {Filter, SettingsModal, AboutModal} from '@/components'
 import {MODE, TRENDING_TYPE} from '@/config'
 import {useMode, useTrendingType} from '@/hooks'
+import Logo from '@/assets/images/logo.png'
 
 import styles from './styles.scss'
 
@@ -31,6 +31,7 @@ const RaiseHeader = ({refresh, getList}) => {
   const [headerHeight, setHeaderHeight] = useState(0)
   const [showFilter, setShowFilter] = useState(false)
   const [settingsModalVisible, setSettingsModalVisible] = useState(false)
+  const [aboutModalVisible, setAboutModalVisible] = useState(false)
 
   const trendingTypeButtonConfig = buttonType => {
     return trendingType === buttonType ? {type: 'primary', theme: 'solid'} : {}
@@ -55,10 +56,6 @@ const RaiseHeader = ({refresh, getList}) => {
   }
 
   useEffect(() => {
-    console.log('scrollRef?.top', scrollRef?.top)
-  }, [scrollRef?.top])
-
-  useEffect(() => {
     setShowFilter(false)
     filterRef.current.reset()
     window.scrollTo({top: 0, behavior: 'smooth'})
@@ -79,8 +76,7 @@ const RaiseHeader = ({refresh, getList}) => {
       >
         <div className={styles.top}>
           <h1 className={styles.heading}>
-            <IconGithubLogo style={{fontSize: 18}} />
-            <Text className={styles.headingTitle}>Trending</Text>
+            <Text strong>GitHub Trending</Text>
           </h1>
 
           <div className={styles.trendingType}>
@@ -98,6 +94,10 @@ const RaiseHeader = ({refresh, getList}) => {
         </div>
 
         <div className={styles.settings}>
+          <div className={styles.logo}>
+            <img src={Logo} alt="logo" />
+            <Text strong>Raise</Text>
+          </div>
           <div className={styles.top}>
             <Button
               theme="borderless"
@@ -113,7 +113,11 @@ const RaiseHeader = ({refresh, getList}) => {
               icon={mode === MODE.LIGHT ? <IconMoon /> : <IconSun />}
               onClick={setMode}
             />
-            <Button theme="borderless" icon={<IconInfoCircle />} />
+            <Button
+              theme="borderless"
+              icon={<IconInfoCircle />}
+              onClick={() => setAboutModalVisible(true)}
+            />
             <Button
               theme="borderless"
               icon={<IconSetting />}
@@ -132,6 +136,7 @@ const RaiseHeader = ({refresh, getList}) => {
       <div style={{width: '100%', height: headerHeight || 0}}></div>
 
       <SettingsModal visible={settingsModalVisible} setVisible={setSettingsModalVisible} />
+      <AboutModal visible={aboutModalVisible} setVisible={setAboutModalVisible} />
     </>
   )
 }

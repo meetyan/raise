@@ -43,12 +43,23 @@
 
   .settings {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     padding: 5px 0 3px 0;
+
+    .logo {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 16px;
+        height: 16px;
+        margin-right: 4px;
+      }
+    }
 
     .top {
       display: flex;
-      justify-content: flex-end;
     }
   }
 }

@@ -1,9 +1,8 @@
 import React from 'react'
-import {Button, Divider, Modal, Space, Switch, Typography} from '@douyinfe/semi-ui'
-import {IconExternalOpen} from '@douyinfe/semi-icons'
+import {Divider, Modal, Space, Switch, Typography} from '@douyinfe/semi-ui'
 
 import {useMode} from '@/hooks'
-import {MODE} from '@/config'
+import {MODE, VERSION} from '@/config'
 
 import styles from './styles.scss'
 
@@ -43,13 +42,13 @@ const SettingsModal = ({visible, setVisible}) => {
             <Switch checked />
           </div>
 
-          <div className={styles.settingsItem}>
+          {/* <div className={styles.settingsItem}>
             <Text strong>Open in detached window</Text>
             <Button icon={<IconExternalOpen />}>Open</Button>
-          </div>
+          </div> */}
         </Space>
 
-        <Text type="tertiary">Raise version 1.0.0</Text>
+        <Text type="tertiary">Raise version {VERSION}</Text>
       </div>
     </Modal>
   )

@@ -1,0 +1,35 @@
+.about-modal {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+
+    img {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  .title {
+    margin-top: 10px;
+  }
+
+  .center-aligned {
+    text-align: center;
+  }
+
+  .version {
+    margin-bottom: 20px;
+  }
+
+  .copyright {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+}
