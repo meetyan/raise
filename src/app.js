@@ -20,6 +20,7 @@ const App = () => {
   const [context] = useState({
     trendingType: REPOSITORIES,
     mode: MODE.DARK, // system themes
+    showBackTop: true,
   })
 
   return (

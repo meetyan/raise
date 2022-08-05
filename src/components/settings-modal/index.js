@@ -1,7 +1,7 @@
 import React from 'react'
 import {Divider, Modal, Space, Switch, Typography} from '@douyinfe/semi-ui'
 
-import {useMode} from '@/hooks'
+import {useBackTop, useMode} from '@/hooks'
 import {MODE, VERSION} from '@/config'
 
 import styles from './styles.scss'
@@ -10,6 +10,7 @@ const {Text} = Typography
 
 const SettingsModal = ({visible, setVisible}) => {
   const [mode, setMode] = useMode()
+  const [backTop, setBackTop] = useBackTop()
 
   return (
     <Modal
@@ -32,7 +33,7 @@ const SettingsModal = ({visible, setVisible}) => {
             <Switch checked={mode === MODE.DARK} onChange={setMode} />
           </div>
 
-          <div className={`${styles.settingsItem}`}>
+          <div className={styles.settingsItem}>
             <Space vertical align="start" spacing={2}>
               <Text strong>Automatic updates</Text>
               <Text link size="small">
@@ -40,6 +41,11 @@ const SettingsModal = ({visible, setVisible}) => {
               </Text>
             </Space>
             <Switch checked />
+          </div>
+
+          <div className={styles.settingsItem}>
+            <Text strong>Show back to top button</Text>
+            <Switch checked={backTop} onChange={setBackTop} />
           </div>
 
           {/* <div className={styles.settingsItem}>

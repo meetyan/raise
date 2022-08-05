@@ -7,7 +7,7 @@ import {RaiseHeader, RepositoryContent, DeveloperContent} from '@/components'
 import {fetchRepositories, fetchDevelopers} from '@/io'
 import {convert} from '@/utils'
 import {TRENDING_TYPE} from '@/config'
-import {useTrendingType} from '@/hooks'
+import {useBackTop, useTrendingType} from '@/hooks'
 
 import styles from './styles.scss'
 
@@ -16,11 +16,13 @@ const {Text} = Typography
 const {REPOSITORIES} = TRENDING_TYPE
 
 const Index = () => {
+  const [trendingType] = useTrendingType()
+  const [backTop] = useBackTop()
+
   const [list, setList] = useState([])
   const [getListParams, setGetListParams] = useState({})
   const [loading, setLoading] = useState(false)
   const [empty, setEmpty] = useState(false)
-  const [trendingType] = useTrendingType()
 
   const Content = trendingType === REPOSITORIES ? RepositoryContent : DeveloperContent
 
@@ -77,9 +79,11 @@ const Index = () => {
         />
       ) : null}
 
-      <BackTop className={styles.backTop}>
-        <IconArrowUp />
-      </BackTop>
+      {backTop ? (
+        <BackTop className={styles.backTop}>
+          <IconArrowUp />
+        </BackTop>
+      ) : null}
     </>
   )
 }
