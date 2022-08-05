@@ -1,4 +1,4 @@
-import React, {forwardRef, useEffect, useImperativeHandle, useRef, useState} from 'react'
+import React, {forwardRef, useImperativeHandle, useRef} from 'react'
 import {Form} from '@douyinfe/semi-ui'
 
 import {SINCE_ARRAY, SPOKEN_LANGUAGES, LANGUAGES, SINCE, TRENDING_TYPE, Z_INDEX} from '@/config'
@@ -9,18 +9,15 @@ import styles from './styles.scss'
 
 const Filter = ({getList}, ref) => {
   const api = useRef()
-  const [isRepo, setIsRepo] = useState(true)
   const [trendingType] = useTrendingType()
+
+  const isRepo = trendingType === TRENDING_TYPE.REPOSITORIES
 
   useImperativeHandle(ref, () => ({
     reset() {
       api.current.reset()
     },
   }))
-
-  useEffect(() => {
-    setIsRepo(trendingType === TRENDING_TYPE.REPOSITORIES)
-  }, [trendingType])
 
   return (
     <div className={styles.filter}>

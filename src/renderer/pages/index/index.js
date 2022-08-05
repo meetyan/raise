@@ -26,7 +26,9 @@ const Index = () => {
   const [loading, setLoading] = useState(false)
   const [empty, setEmpty] = useState(false)
 
-  const Content = trendingType === REPOSITORIES ? RepositoryContent : DeveloperContent
+  const isRepo = trendingType === REPOSITORIES
+
+  const Content = isRepo ? RepositoryContent : DeveloperContent
 
   const resetList = () => {
     setList([])
@@ -41,7 +43,7 @@ const Index = () => {
     setEmpty(false)
 
     try {
-      const fetch = trendingType === REPOSITORIES ? fetchRepositories : fetchDevelopers
+      const fetch = isRepo ? fetchRepositories : fetchDevelopers
       const res = await fetch(convert(params))
       setList(res)
       setEmpty(!res.length)
@@ -66,7 +68,7 @@ const Index = () => {
 
   /**
    * Recover settings to last state according to context storage
-   * For example, when a user toggle settings in the settings modal,
+   * For example, when a user toggles settings in the settings modal,
    * a few changes have been made.
    * After he closes the app and reopens it,
    * all settings/context will have to be recovered.
@@ -90,7 +92,7 @@ const Index = () => {
           description={
             <Text className={styles.emptyDescription}>
               {`It looks like we don’t have any trending ${
-                trendingType === REPOSITORIES ? 'repositories' : 'developers'
+                isRepo ? 'repositories' : 'developers'
               } for your choices.`}
             </Text>
           }
