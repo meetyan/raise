@@ -76,6 +76,11 @@
   },
   "build": {
     "mac": {
+      "mergeASARs": false,
+      "target": {
+        "target": "dmg",
+        "arch": "universal"
+      },
       "publish": {
         "provider": "github",
         "owner": "realfrancisyan",
