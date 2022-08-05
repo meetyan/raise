@@ -1,9 +1,11 @@
-import {app, BrowserWindow} from 'electron'
+import {app, BrowserWindow, Menu} from 'electron'
 import path from 'path'
 import isDev from 'electron-is-dev'
 import {menubar} from 'menubar'
 
-import {MENUBAR, INDEX_URL} from './config'
+import {MENUBAR, INDEX_URL, IPC_FUNCTION} from './config'
+
+const isMac = process.platform === 'darwin'
 
 const browserWindowConfig = {
   width: MENUBAR.WIDTH,
@@ -19,24 +21,50 @@ const createWindow = () => {
 
   mainWindow.webContents.openDevTools()
   mainWindow.loadURL(INDEX_URL.DEV)
+
+  return mainWindow
 }
 
 /**
  * Show app icon in dock on macOS
  */
-if (process.platform === 'darwin') {
+if (isMac) {
   app.dock.setIcon(path.join(__dirname, './assets/logo.png'))
 }
 
 app.setName('Raise')
 
-app.whenReady().then(async () => {
+app.whenReady().then(() => {
   const mb = menubar({
     icon: path.join(__dirname, './assets/menu-logo.png'),
     index: isDev ? INDEX_URL.DEV : INDEX_URL.PROD,
     browserWindow: {...browserWindowConfig, resizable: false},
     showDockIcon: true,
   })
+
+  const template = [
+    ...(isMac
+      ? [
+          {
+            label: app.name,
+            submenu: [
+              {
+                label: 'About Raise',
+                click: () => {
+                  mb.showWindow()
+                  mb.window.send(IPC_FUNCTION.SHOW_ABOUT_MODAL)
+                },
+              },
+              {type: 'separator'},
+              {role: 'quit'},
+            ],
+          },
+        ]
+      : []),
+  ]
+
+  const menu = Menu.buildFromTemplate(template)
+  Menu.setApplicationMenu(menu)
 
   if (isDev) {
     createWindow()

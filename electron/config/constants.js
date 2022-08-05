@@ -14,3 +14,7 @@ export const INDEX_URL = {
   DEV: 'http://localhost:3000',
   PROD: `file://${path.join(__dirname, './index.html')}`,
 }
+
+export const IPC_FUNCTION = {
+  SHOW_ABOUT_MODAL: 'show-about-modal',
+}

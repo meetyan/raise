@@ -33,6 +33,10 @@ const RaiseHeader = ({refresh, getList}) => {
   const [settingsModalVisible, setSettingsModalVisible] = useState(false)
   const [aboutModalVisible, setAboutModalVisible] = useState(false)
 
+  window.electron.showAboutModal(() => {
+    setAboutModalVisible(true)
+  })
+
   const trendingTypeButtonConfig = buttonType => {
     return trendingType === buttonType ? {type: 'primary', theme: 'solid'} : {}
   }
