@@ -21,11 +21,11 @@ Toast.config({zIndex: Z_INDEX.TOAST})
 
 const App = () => {
   const [context] = useState({
-    trendingType: REPOSITORIES,
     mode: MODE.DARK, // system themes
     showBackTop: true,
     showDockIcon: true,
     ...getContextFromStorage(),
+    trendingType: REPOSITORIES,
   })
 
   return (
