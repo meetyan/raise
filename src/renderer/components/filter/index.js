@@ -38,6 +38,7 @@ const Filter = ({getList}, ref) => {
               filter
               zIndex={Z_INDEX.SELECT}
               style={{width: '100%'}}
+              emptyContent="No matches"
             >
               {SPOKEN_LANGUAGES.map(item => {
                 return (
@@ -57,6 +58,7 @@ const Filter = ({getList}, ref) => {
             filter
             zIndex={Z_INDEX.SELECT}
             style={{width: '100%'}}
+            emptyContent="No matches"
           >
             {LANGUAGES.map(item => {
               return (
@@ -75,6 +77,7 @@ const Filter = ({getList}, ref) => {
             filter
             zIndex={Z_INDEX.SELECT}
             style={{width: '100%'}}
+            emptyContent="No matches"
           >
             {SINCE_ARRAY.map(since => {
               return (
