@@ -32,6 +32,7 @@ export const RAISE_CONTEXT_STORAGE = 'RAISE_CONTEXT_STORAGE'
 
 export const Z_INDEX = {
   MODAL: 99999,
+  TOAST: 99999,
   SELECT: 9999,
 }
 

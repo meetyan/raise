@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import {Divider, Layout, Typography} from '@douyinfe/semi-ui'
+import {Divider, Layout, Toast, Typography} from '@douyinfe/semi-ui'
 
-import {MODE, TRENDING_TYPE} from '@/config'
+import {MODE, TRENDING_TYPE, Z_INDEX} from '@/config'
 import {AppProvider} from '@/app-context'
 import {UpperContainer} from '@/components'
 import Index from '@/pages/index/index'
@@ -16,6 +16,8 @@ const {Text} = Typography
 const {Footer} = Layout
 
 const {REPOSITORIES} = TRENDING_TYPE
+
+Toast.config({zIndex: Z_INDEX.TOAST})
 
 const App = () => {
   const [context] = useState({
