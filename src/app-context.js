@@ -14,7 +14,7 @@ export const useAppContext = () => {
   return useContext(AppContext)
 }
 
-export function useContextProp(propName) {
+export const useContextProp = propName => {
   const [context, setContext] = useAppContext()
   const [prop, _setProp] = useState(context[propName])
 

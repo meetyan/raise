@@ -1,11 +1,10 @@
-import {app, BrowserWindow, Menu} from 'electron'
+import {app, BrowserWindow, ipcMain, Menu} from 'electron'
 import path from 'path'
 import isDev from 'electron-is-dev'
 import {menubar} from 'menubar'
 
-import {MENUBAR, INDEX_URL, IPC_FUNCTION} from './config'
-
-const isMac = process.platform === 'darwin'
+import {MENUBAR, INDEX_URL, IPC_FUNCTION, isMac} from './config'
+import {handleShowDockIcon} from './ipc-functions'
 
 const browserWindowConfig = {
   width: MENUBAR.WIDTH,
@@ -30,6 +29,7 @@ const createWindow = () => {
  */
 if (isMac) {
   app.dock.setIcon(path.join(__dirname, './assets/logo.png'))
+  app.dock.show()
 }
 
 app.setName('Raise')
@@ -39,8 +39,9 @@ app.whenReady().then(() => {
     icon: path.join(__dirname, './assets/menu-logo.png'),
     index: isDev ? INDEX_URL.DEV : INDEX_URL.PROD,
     browserWindow: {...browserWindowConfig, resizable: false},
-    showDockIcon: true,
   })
+
+  ipcMain.on(IPC_FUNCTION.SHOW_DOCK_ICON, handleShowDockIcon)
 
   const template = [
     ...(isMac

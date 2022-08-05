@@ -17,4 +17,7 @@ export const INDEX_URL = {
 
 export const IPC_FUNCTION = {
   SHOW_ABOUT_MODAL: 'show-about-modal',
+  SHOW_DOCK_ICON: 'show-dock-icon',
 }
+
+export const isMac = process.platform === 'darwin'

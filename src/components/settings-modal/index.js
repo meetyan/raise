@@ -1,16 +1,18 @@
 import React from 'react'
 import {Divider, Modal, Space, Switch, Typography} from '@douyinfe/semi-ui'
 
-import {useBackTop, useMode} from '@/hooks'
+import {useBackTop, useDockIcon, useMode} from '@/hooks'
 import {MODE, VERSION} from '@/config'
 
 import styles from './styles.scss'
+import {isMac} from '@/utils'
 
 const {Text} = Typography
 
 const SettingsModal = ({visible, setVisible}) => {
   const [mode, setMode] = useMode()
   const [backTop, setBackTop] = useBackTop()
+  const [dockIcon, setDockIcon] = useDockIcon()
 
   return (
     <Modal
@@ -47,6 +49,13 @@ const SettingsModal = ({visible, setVisible}) => {
             <Text strong>Show back to top button</Text>
             <Switch checked={backTop} onChange={setBackTop} />
           </div>
+
+          {isMac ? (
+            <div className={styles.settingsItem}>
+              <Text strong>Show app icon in dock</Text>
+              <Switch checked={dockIcon} onChange={setDockIcon} />
+            </div>
+          ) : null}
 
           {/* <div className={styles.settingsItem}>
             <Text strong>Open in detached window</Text>

@@ -21,6 +21,7 @@ const App = () => {
     trendingType: REPOSITORIES,
     mode: MODE.DARK, // system themes
     showBackTop: true,
+    showDockIcon: true,
   })
 
   return (
