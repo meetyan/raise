@@ -28,11 +28,15 @@ const Index = () => {
 
   const Content = trendingType === REPOSITORIES ? RepositoryContent : DeveloperContent
 
+  const resetList = () => {
+    setList([])
+  }
+
   const getList = async params => {
     if (loading) return
 
     setLoading(true)
-    setList([])
+    resetList()
     setGetListParams(params)
     setEmpty(false)
 
@@ -74,7 +78,7 @@ const Index = () => {
 
   return (
     <>
-      <RaiseHeader refresh={refresh} getList={getList} />
+      <RaiseHeader refresh={refresh} getList={getList} resetList={resetList} />
 
       <Content list={list} getList={getList} loading={loading} />
 

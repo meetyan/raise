@@ -22,7 +22,7 @@ const {Text} = Typography
 
 const {REPOSITORIES, DEVELOPERS} = TRENDING_TYPE
 
-const RaiseHeader = ({refresh, getList}) => {
+const RaiseHeader = ({refresh, getList, resetList}) => {
   const filterRef = useRef()
   const scrollRef = useScroll()
   const [mode, setMode] = useMode()
@@ -43,6 +43,7 @@ const RaiseHeader = ({refresh, getList}) => {
         {...trendingTypeButtonConfig(type)}
         className={styles.trendingTypeButton}
         onClick={() => {
+          resetList()
           setTrendingType(type)
         }}
       >
