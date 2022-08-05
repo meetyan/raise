@@ -1,6 +1,6 @@
 import {contextBridge, ipcRenderer, shell} from 'electron'
 
-import {IPC_FUNCTION} from '@/config'
+import {IPC_FUNCTION} from './config'
 
 contextBridge.exposeInMainWorld('electron', {
   open: url => shell.openExternal(url),

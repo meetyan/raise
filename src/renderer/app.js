@@ -5,7 +5,7 @@ import {MODE, TRENDING_TYPE} from '@/config'
 import {AppProvider} from '@/app-context'
 import {UpperContainer} from '@/components'
 import Index from '@/pages/index/index'
-import {getContextFromStorage} from './utils'
+import {getContextFromStorage} from '@/utils'
 
 import 'nprogress/nprogress.css'
 import '@/assets/styles/reset.scss'

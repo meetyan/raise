@@ -11,13 +11,6 @@ module.exports = {
     filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
   },
-  resolve: {
-    symlinks: false,
-    cacheWithContext: false,
-    alias: {
-      '@': path.resolve('./src/main'),
-    },
-  },
   module: {
     rules: [
       {

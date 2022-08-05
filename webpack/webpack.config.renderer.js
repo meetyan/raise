@@ -128,9 +128,9 @@ module.exports = (env, argv) => {
       new webpack.DefinePlugin({
         WEBPACK_DEV: DEV,
       }),
-      new CopyWebpackPlugin({
-        patterns: [{from: './src/renderer/public', to: './public'}],
-      }),
+      // new CopyWebpackPlugin({
+      //   patterns: [{from: './public', to: './public'}],
+      // }),
       new HtmlWebpackPlugin({
         template: 'src/renderer/index.html',
         chunks: ['main'],

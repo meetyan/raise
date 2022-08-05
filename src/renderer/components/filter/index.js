@@ -1,5 +1,5 @@
 import React, {forwardRef, useEffect, useImperativeHandle, useRef, useState} from 'react'
-import {Form, Select} from '@douyinfe/semi-ui'
+import {Form} from '@douyinfe/semi-ui'
 
 import {SINCE_ARRAY, SPOKEN_LANGUAGES, LANGUAGES, SINCE, TRENDING_TYPE, Z_INDEX} from '@/config'
 import {truncate} from '@/utils'

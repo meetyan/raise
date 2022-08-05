@@ -2,6 +2,7 @@ module.exports = {
   root: true,
   env: {
     browser: true,
+    node: true,
     commonjs: true,
   },
   parser: '@babel/eslint-parser',
@@ -12,7 +13,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       alias: {
-        map: [['@', './src']],
+        map: [['@', './src/renderer']],
         extensions: ['.js', '.jsx'],
       },
     },
