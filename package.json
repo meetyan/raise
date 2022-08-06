@@ -84,6 +84,9 @@
     "dmg": {
       "sign": false
     },
+    "directories": {
+      "output": "out"
+    },
     "mac": {
       "mergeASARs": false,
       "target": [

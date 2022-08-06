@@ -1,3 +1,4 @@
+// See https://kilianvalkhof.com/2019/electron/notarizing-your-electron-application/
 // See https://philo.dev/notarizing-your-electron-application/
 
 require('dotenv').config()
