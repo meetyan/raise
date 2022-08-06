@@ -1,10 +1,10 @@
-import {app, BrowserWindow, ipcMain, Menu} from 'electron'
+import {app, BrowserWindow, ipcMain, Menu, Tray} from 'electron'
 import path from 'path'
 import isDev from 'electron-is-dev'
 import {menubar} from 'menubar'
 
 import {MENUBAR, INDEX_URL, IPC_FUNCTION, isMac} from './config'
-import {handleShowDockIcon} from './ipc-functions'
+import {handleShowDockIcon} from './ipc'
 
 const browserWindowConfig = {
   width: MENUBAR.WIDTH,
@@ -24,6 +24,13 @@ const createWindow = () => {
   return mainWindow
 }
 
+const createTray = () => {
+  const tray = new Tray(path.join(__dirname, './assets/menu-logo.png'))
+  const contextMenu = Menu.buildFromTemplate([{role: 'quit'}])
+  tray.setContextMenu(contextMenu)
+  return tray
+}
+
 app.setName('Raise')
 
 /**
@@ -35,14 +42,14 @@ if (isMac) {
 }
 
 app.whenReady().then(() => {
+  ipcMain.on(IPC_FUNCTION.SHOW_DOCK_ICON, handleShowDockIcon)
+
   const mb = menubar({
-    icon: path.join(__dirname, './assets/menu-logo.png'),
     index: isDev ? INDEX_URL.DEV : INDEX_URL.PROD,
     browserWindow: {...browserWindowConfig, resizable: false},
     preloadWindow: true,
+    tray: createTray(),
   })
-
-  ipcMain.on(IPC_FUNCTION.SHOW_DOCK_ICON, handleShowDockIcon)
 
   const template = [
     ...(isMac
@@ -69,6 +76,10 @@ app.whenReady().then(() => {
   Menu.setApplicationMenu(menu)
 
   mb.on('ready', () => {
+    if (isDev) {
+      createWindow()
+    }
+
     /**
      * The setTimeout is used as a hack to show window on ready.
      * The window simply flashes and won't stay shown if no delay is set.
@@ -77,9 +88,5 @@ app.whenReady().then(() => {
     setTimeout(() => {
       mb.showWindow()
     }, 500)
-
-    if (isDev) {
-      createWindow()
-    }
   })
 })
