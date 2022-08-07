@@ -3,6 +3,7 @@ import {Divider, Modal, Typography} from '@douyinfe/semi-ui'
 
 import {VERSION, Z_INDEX} from '@/config'
 import Logo from '@/assets/images/logo.png'
+import pkg from '../../../../package.json'
 
 import styles from './styles.scss'
 
@@ -36,11 +37,7 @@ const AboutModal = ({visible, setVisible}) => {
           A simple (and unofficial) GitHub Trending client that lives in your menubar.
         </Text>
         <div className={styles.copyright}>
-          <Text
-            link
-            className={styles.centerAligned}
-            onClick={() => open('https://github.com/realfrancisyan/raise')}
-          >
+          <Text link className={styles.centerAligned} onClick={() => open(pkg.repository)}>
             An open-source project by Jiajun Yan.
           </Text>
           <Text className={styles.centerAligned}>
