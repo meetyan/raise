@@ -5,7 +5,7 @@ import {menubar} from 'menubar'
 
 import {INDEX_URL, IPC_FUNCTION, isMac} from './config'
 import {handleShowDockIcon} from './ipc'
-import {browserWindowConfig, createMenu} from './common'
+import {browserWindowConfig, createMenu, createWindow} from './common'
 import pkg from '../../package.json'
 
 app.setName(pkg.productName)
@@ -30,7 +30,7 @@ app.whenReady().then(() => {
 
   mb.on('ready', () => {
     if (isDev) {
-      // createWindow()
+      createWindow()
     }
 
     createMenu(mb)
