@@ -74,6 +74,9 @@ const RaiseHeader = ({refresh, getList, resetList}) => {
     window.electron.showAboutModal(() => {
       setAboutModalVisible(true)
     })
+    window.electron.showSettingsModal(() => {
+      setSettingsModalVisible(true)
+    })
   }, [])
 
   return (
