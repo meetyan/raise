@@ -5,6 +5,7 @@ import {menubar} from 'menubar'
 import {IPC_FUNCTION} from '@shared'
 import {INDEX_URL, isMac, ICON} from './config'
 import {handleShowDockIcon} from './ipc'
+// eslint-disable-next-line no-unused-vars
 import {browserWindowConfig, createMenu, createTray, createWindow} from './common'
 import pkg from '../../package.json'
 
