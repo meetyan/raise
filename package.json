@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "A simple (and unofficial) GitHub Trending client that lives in your menubar",
   "main": "dist/main.js",
-  "repository": "https://github.com/jiajunyanx/raise.git",
+  "repository": "https://github.com/meetyan/raise.git",
   "homepage": "./",
   "author": "Jiajun Yan",
   "license": "MIT",
@@ -101,7 +101,7 @@
       ],
       "publish": {
         "provider": "github",
-        "owner": "jiajunyanx",
+        "owner": "meetyan",
         "repo": "raise",
         "private": true,
         "token": ""
@@ -124,7 +124,7 @@
       ],
       "publish": {
         "provider": "github",
-        "owner": "jiajunyanx",
+        "owner": "meetyan",
         "repo": "raise",
         "private": true,
         "token": ""
@@ -137,7 +137,7 @@
     "publish": {
       "provider": "github",
       "private": true,
-      "owner": "jiajunyanx"
+      "owner": "meetyan"
     }
   }
 }

@@ -1,5 +1,4 @@
-import {app, ipcMain, Menu, Tray} from 'electron'
-import path from 'path'
+import {app, ipcMain} from 'electron'
 import isDev from 'electron-is-dev'
 import {menubar} from 'menubar'
 
@@ -41,11 +40,11 @@ app.whenReady().then(() => {
 
     /**
      * The setTimeout is used as a hack to show window on ready.
-     * The window simply flashes and won't stay shown if no delay is set.
+     * Otherwise the window simply flashes and won't stay shown.
      * See https://github.com/maxogden/menubar/issues/76.
      */
     setTimeout(() => {
-      // mb.showWindow()
+      mb.showWindow()
     }, 500)
   })
 

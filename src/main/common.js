@@ -9,7 +9,7 @@ import {INDEX_URL, isMac, ICON, MENUBAR} from './config'
 export const browserWindowConfig = {
   width: MENUBAR.WIDTH,
   height: MENUBAR.HEIGHT,
-  webPreferences: {preload: path.join(__dirname, 'preload.js')},
+  webPreferences: {preload: path.join(__dirname, './preload.js')},
 }
 
 export const createWindow = () => {
