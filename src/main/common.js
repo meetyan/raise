@@ -1,8 +1,10 @@
 import {app, BrowserWindow, Menu, shell} from 'electron'
 import path from 'path'
 import isDev from 'electron-is-dev'
+
+import {IPC_FUNCTION} from '@shared'
 import pkg from '../../package.json'
-import {INDEX_URL, IPC_FUNCTION, isMac, MENUBAR} from './config'
+import {INDEX_URL, isMac, MENUBAR} from './config'
 
 export const browserWindowConfig = {
   width: MENUBAR.WIDTH,

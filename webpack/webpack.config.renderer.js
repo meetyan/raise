@@ -38,6 +38,7 @@ module.exports = (env, argv) => {
       cacheWithContext: false,
       alias: {
         '@': path.resolve('./src/renderer'),
+        '@shared': path.resolve('./src/shared'),
       },
     },
     devServer: {

@@ -5,16 +5,18 @@ import {IllustrationNoResult, IllustrationNoResultDark} from '@douyinfe/semi-ill
 import axios from 'axios'
 
 import {RaiseHeader, RepositoryContent, DeveloperContent} from '@/components'
-import {fetchRepositories, fetchDevelopers} from '@/io'
+import {fetchRepositories, fetchDevelopers, lastTimestamp} from '@/io'
 import {convert} from '@/utils'
-import {TRENDING_TYPE} from '@/config'
+import {ALLOWED_TIME_OF_INACTIVITY, TRENDING_TYPE} from '@/config'
 import {useBackTop, useDockIcon, useMode, useTrendingType} from '@/hooks'
+import {IPC_FUNCTION} from '@shared'
 
 import styles from './styles.scss'
 
 const {Text} = Typography
 
 const {REPOSITORIES} = TRENDING_TYPE
+const {RELOAD_AFTER_INACTIVITY} = IPC_FUNCTION
 
 const Index = () => {
   const [trendingType] = useTrendingType()
@@ -36,6 +38,7 @@ const Index = () => {
   }
 
   const getList = async params => {
+    window.scrollTo({top: 0, behavior: 'smooth'})
     setLoading(true)
     resetList()
     setGetListParams(params)
@@ -61,7 +64,6 @@ const Index = () => {
   }
 
   const refresh = () => {
-    window.scrollTo({top: 0, behavior: 'smooth'})
     getList(getListParams)
   }
 
@@ -80,6 +82,23 @@ const Index = () => {
     setMode(mode)
     setDockIcon(dockIcon)
   }, [])
+
+  useEffect(() => {
+    const {receive} = window.electron
+
+    const removeReloadListener = receive(RELOAD_AFTER_INACTIVITY, () => {
+      const now = new Date().getTime()
+
+      if (lastTimestamp && now - lastTimestamp > ALLOWED_TIME_OF_INACTIVITY) {
+        console.log('getListParams', getListParams)
+        getList(getListParams)
+      }
+    })
+
+    return () => {
+      removeReloadListener()
+    }
+  }, [getListParams])
 
   return (
     <>

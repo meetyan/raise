@@ -13,7 +13,10 @@ module.exports = {
   settings: {
     'import/resolver': {
       alias: {
-        map: [['@', './src/renderer']],
+        map: [
+          ['@', './src/renderer'],
+          ['@shared', './src/shared'],
+        ],
         extensions: ['.js', '.jsx'],
       },
     },

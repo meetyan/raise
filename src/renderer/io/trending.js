@@ -1,11 +1,13 @@
-import {sample, sampleSize, snakeCase} from 'lodash'
+import {snakeCase} from 'lodash'
 
 import axios from './interceptor'
-import {URL} from '@/config'
+import {TRENDING_TYPE, URL} from '@/config'
+import {getTimeStamp} from '@/utils'
 
 let controller
+export let lastTimestamp = 0
 
-function buildUrl(baseUrl, params = {}) {
+const buildUrl = (baseUrl, params = {}) => {
   const queryString = Object.keys(params)
     .filter(key => params[key])
     .map(key => `${snakeCase(key)}=${params[key]}`)
@@ -14,22 +16,28 @@ function buildUrl(baseUrl, params = {}) {
   return queryString === '' ? baseUrl : `${baseUrl}?${queryString}`
 }
 
-function checkResponse(res) {
+const checkResponse = res => {
   if (res.status !== 200) {
     throw new Error('Something went wrong')
   }
 }
 
-export async function fetchRepositories(params, serverUrl = URL.SERVER) {
+const fetch = async ({params = {}, type, serverUrl = URL.SERVER} = {}) => {
   if (controller) {
     controller.abort() // Makes sure that users always get the latest result
   }
 
   controller = new AbortController()
 
+  /**
+   * Used to compare between now and inactivity.
+   * Reloads if time of inactivity is too long
+   */
+  lastTimestamp = getTimeStamp()
+
   const res = await axios({
     method: 'get',
-    url: buildUrl(`${serverUrl}/repositories`, params),
+    url: buildUrl(`${serverUrl}/${type}`, params),
     signal: controller.signal,
   })
 
@@ -38,35 +46,10 @@ export async function fetchRepositories(params, serverUrl = URL.SERVER) {
   return res.data
 }
 
-export async function fetchDevelopers(params, serverUrl = URL.SERVER) {
-  if (controller) {
-    controller.abort() // Makes sure that users always get the latest result
-  }
-
-  controller = new AbortController()
-  const res = await axios({
-    method: 'get',
-    url: buildUrl(`${serverUrl}/developers`, params),
-    signal: controller.signal,
-  })
-
-  checkResponse(res)
-
-  return res.data
+export const fetchRepositories = (params, serverUrl = URL.SERVER) => {
+  return fetch({params, serverUrl, type: TRENDING_TYPE.REPOSITORIES.toLocaleLowerCase()})
 }
 
-export async function fetchRandomRepository(params, serverUrl = URL.SERVER) {
-  const res = await axios(buildUrl(`${serverUrl}/repositories`, params))
-  checkResponse(res)
-
-  const json = res.data
-  return sample(json)
-}
-
-export async function fetchRandomRepositories(size = 1, params, serverUrl = URL.SERVER) {
-  const res = await axios(buildUrl(`${serverUrl}/repositories`, params))
-  checkResponse(res)
-
-  const json = res.data
-  return sampleSize(json, size)
+export const fetchDevelopers = async (params, serverUrl = URL.SERVER) => {
+  return fetch({params, serverUrl, type: TRENDING_TYPE.DEVELOPERS.toLocaleLowerCase()})
 }

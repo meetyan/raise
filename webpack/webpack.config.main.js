@@ -24,6 +24,13 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    symlinks: false,
+    cacheWithContext: false,
+    alias: {
+      '@shared': path.resolve('./src/shared'),
+    },
+  },
   node: {
     __dirname: false,
     __filename: false,

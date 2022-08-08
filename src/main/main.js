@@ -3,12 +3,15 @@ import path from 'path'
 import isDev from 'electron-is-dev'
 import {menubar} from 'menubar'
 
-import {INDEX_URL, IPC_FUNCTION, isMac} from './config'
+import {IPC_FUNCTION} from '@shared'
+import {INDEX_URL, isMac} from './config'
 import {handleShowDockIcon} from './ipc'
 import {browserWindowConfig, createMenu, createWindow} from './common'
 import pkg from '../../package.json'
 
 app.setName(pkg.productName)
+
+let isFirstLoad = true
 
 /**
  * Show app icon in dock on macOS
@@ -43,5 +46,13 @@ app.whenReady().then(() => {
     setTimeout(() => {
       mb.showWindow()
     }, 500)
+  })
+
+  mb.on('show', () => {
+    if (isFirstLoad) return (isFirstLoad = false)
+
+    mb.window.send(IPC_FUNCTION.RELOAD_AFTER_INACTIVITY)
+
+    console.log('on show')
   })
 })

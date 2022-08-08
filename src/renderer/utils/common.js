@@ -22,3 +22,5 @@ export const numberWithCommas = number => {
 }
 
 export const isMac = window.navigator?.userAgentData?.platform.toUpperCase().includes('MAC')
+
+export const getTimeStamp = () => new Date().getTime()

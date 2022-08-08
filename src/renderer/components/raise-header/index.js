@@ -16,11 +16,13 @@ import {useMode, useOutsideClick, useTrendingType} from '@/hooks'
 import Logo from '@/assets/images/logo.png'
 
 import styles from './styles.scss'
+import {IPC_FUNCTION} from '@shared'
 
 const {Header} = Layout
 const {Text} = Typography
 
 const {REPOSITORIES, DEVELOPERS} = TRENDING_TYPE
+const {SHOW_ABOUT_MODAL} = IPC_FUNCTION
 
 const RaiseHeader = ({refresh, getList, resetList}) => {
   const headerRef = useRef()
@@ -60,24 +62,20 @@ const RaiseHeader = ({refresh, getList, resetList}) => {
     setShowFilter(!showFilter)
   }
 
-  useEffect(() => {
-    setShowFilter(false)
-    filterRef.current.reset()
-    window.scrollTo({top: 0, behavior: 'smooth'})
-  }, [trendingType])
-
   useLayoutEffect(() => {
     const [headerComponent] = document.getElementsByClassName(styles.header)
     setHeaderHeight(headerComponent.offsetHeight - 20)
   }, [])
 
   useEffect(() => {
-    window.electron.showAboutModal(() => {
-      setAboutModalVisible(true)
-    })
-    window.electron.showSettingsModal(() => {
-      setSettingsModalVisible(true)
-    })
+    setShowFilter(false)
+    filterRef.current.reset()
+  }, [trendingType])
+
+  useEffect(() => {
+    const {receive} = window.electron
+    receive(SHOW_ABOUT_MODAL, () => setAboutModalVisible(true))
+    receive(SHOW_ABOUT_MODAL, () => setSettingsModalVisible(true))
   }, [])
 
   return (
