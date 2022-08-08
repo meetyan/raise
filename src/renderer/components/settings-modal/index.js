@@ -24,7 +24,7 @@ const SettingsModal = ({visible, setVisible}) => {
       onCancel={() => setVisible(false)}
       closeOnEsc={true}
       width={350}
-      height={390}
+      height={isMac ? 390 : 350}
       centered
       footer={null}
       zIndex={Z_INDEX.MODAL}
