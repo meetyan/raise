@@ -23,7 +23,7 @@ const RepositoryContent = ({list, loading}) => {
       {list.map(item => {
         return (
           <Card
-            key={item.name}
+            key={item.name + item.author}
             title={
               <div className={styles.repoHeader}>
                 <IconBranch />
