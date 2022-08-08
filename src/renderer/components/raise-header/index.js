@@ -46,6 +46,7 @@ const RaiseHeader = ({refresh, getList, resetList}) => {
         {...trendingTypeButtonConfig(type)}
         className={styles.trendingTypeButton}
         onClick={() => {
+          if (trendingType === type) return
           resetList()
           setTrendingType(type)
         }}
