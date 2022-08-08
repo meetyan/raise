@@ -61,7 +61,11 @@ export const createMenu = mb => {
       : []),
     {
       label: 'View',
-      submenu: [{role: 'reload'}, {role: 'forceReload'}, isDev ? {role: 'toggleDevTools'} : {}],
+      submenu: [
+        {role: 'reload'},
+        {role: 'forceReload'},
+        ...(isDev ? [{role: 'toggleDevTools'}] : []),
+      ],
     },
     {
       role: 'help',

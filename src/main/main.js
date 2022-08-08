@@ -31,12 +31,12 @@ app.whenReady().then(() => {
     tray: createTray(),
   })
 
+  createMenu(mb)
+
   mb.on('ready', () => {
     if (isDev) {
       // createWindow() // enable this if you need an extra window open
     }
-
-    createMenu(mb)
 
     /**
      * The setTimeout is used as a hack to show window on ready.
