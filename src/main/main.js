@@ -29,6 +29,7 @@ app.whenReady().then(() => {
     browserWindow: {...browserWindowConfig, resizable: false},
     preloadWindow: true,
     tray: createTray(),
+    tooltip: pkg.productName,
   })
 
   createMenu(mb)
