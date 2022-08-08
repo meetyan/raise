@@ -14,7 +14,7 @@ app.setName(pkg.productName)
 let isFirstLoad = true
 
 /**
- * Show app icon in dock on macOS
+ * Shows app icon in dock on macOS
  */
 if (isMac) {
   app.dock.setIcon(path.join(__dirname, './assets/logo.png'))
@@ -33,7 +33,7 @@ app.whenReady().then(() => {
 
   mb.on('ready', () => {
     if (isDev) {
-      createWindow()
+      // createWindow() // enable this if you need an extra window open
     }
 
     createMenu(mb)
@@ -49,10 +49,11 @@ app.whenReady().then(() => {
   })
 
   mb.on('show', () => {
+    /**
+     * Reloads page after a long period of inactivity.
+     * Checks on every show() call (except when the app loads for the very first time).
+     */
     if (isFirstLoad) return (isFirstLoad = false)
-
     mb.window.send(IPC_FUNCTION.RELOAD_AFTER_INACTIVITY)
-
-    console.log('on show')
   })
 })
