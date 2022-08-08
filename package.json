@@ -83,9 +83,6 @@
     "appId": "to.curve.raise",
     "afterAllArtifactBuild": "./build/after-all-artifact-build.js",
     "afterSign": "./build/after-sign-hook.js",
-    "dmg": {
-      "sign": false
-    },
     "directories": {
       "output": "out"
     },
@@ -93,7 +90,7 @@
       "mergeASARs": false,
       "target": [
         {
-          "target": "zip",
+          "target": "dmg",
           "arch": [
             "x64",
             "arm64"
