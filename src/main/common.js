@@ -1,10 +1,10 @@
-import {app, BrowserWindow, Menu, shell} from 'electron'
+import {app, BrowserWindow, Menu, shell, Tray} from 'electron'
 import path from 'path'
 import isDev from 'electron-is-dev'
 
 import {IPC_FUNCTION} from '@shared'
 import pkg from '../../package.json'
-import {INDEX_URL, isMac, MENUBAR} from './config'
+import {INDEX_URL, isMac, ICON, MENUBAR} from './config'
 
 export const browserWindowConfig = {
   width: MENUBAR.WIDTH,
@@ -15,7 +15,7 @@ export const browserWindowConfig = {
 export const createWindow = () => {
   const mainWindow = new BrowserWindow({
     ...browserWindowConfig,
-    icon: path.join(__dirname, './assets/logo.png'),
+    icon: ICON.LOGO,
   })
 
   mainWindow.webContents.openDevTools()
@@ -75,4 +75,17 @@ export const createMenu = mb => {
 
   const menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)
+}
+
+/**
+ * Creates a right-clickable tray
+ * See https://erikmartinjordan.com/menu-contextual-electron
+ */
+export const createTray = () => {
+  const tray = new Tray(ICON.MENU)
+  const contextMenu = Menu.buildFromTemplate([{role: 'quit'}])
+
+  tray.on('right-click', () => tray.popUpContextMenu(contextMenu))
+
+  return tray
 }

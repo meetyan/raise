@@ -17,3 +17,8 @@ export const INDEX_URL = {
 }
 
 export const isMac = is.macOS()
+
+export const ICON = {
+  LOGO: path.join(__dirname, './assets/logo.png'),
+  MENU: path.join(__dirname, './assets/menu-logo.png'),
+}
