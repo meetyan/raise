@@ -21,7 +21,7 @@ Toast.config({zIndex: Z_INDEX.TOAST})
 
 const App = () => {
   const [context] = useState({
-    mode: MODE.DARK, // system themes
+    mode: MODE.LIGHT, // system themes
     showBackTop: true,
     showDockIcon: true,
     ...getContextFromStorage(),
