@@ -6,6 +6,9 @@ import {IPC_FUNCTION} from '@shared'
 import pkg from '../../package.json'
 import {INDEX_URL, isMac, ICON, MENUBAR} from './config'
 
+// See https://github.com/electron/electron/issues/19775.
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'
+
 export const browserWindowConfig = {
   width: MENUBAR.WIDTH,
   height: MENUBAR.HEIGHT,
