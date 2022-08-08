@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "A simple (and unofficial) GitHub Trending client that lives in your menubar",
   "main": "dist/main.js",
-  "repository": "https://github.com/realfrancisyan/raise.git",
+  "repository": "https://github.com/jiajunyanx/raise.git",
   "homepage": "./",
   "author": "Jiajun Yan",
   "license": "MIT",
@@ -32,7 +32,8 @@
     "nprogress": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "update-electron-app": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.4",
@@ -100,7 +101,7 @@
       ],
       "publish": {
         "provider": "github",
-        "owner": "realfrancisyan",
+        "owner": "jiajunyanx",
         "repo": "raise",
         "private": true,
         "token": ""
@@ -123,7 +124,7 @@
       ],
       "publish": {
         "provider": "github",
-        "owner": "realfrancisyan",
+        "owner": "jiajunyanx",
         "repo": "raise",
         "private": true,
         "token": ""
@@ -136,7 +137,7 @@
     "publish": {
       "provider": "github",
       "private": true,
-      "owner": "realfrancisyan"
+      "owner": "jiajunyanx"
     }
   }
 }
