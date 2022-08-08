@@ -16,7 +16,7 @@
     "build:main": "webpack --mode=production --config webpack/webpack.config.main.js --progress",
     "build:renderer": "webpack --mode=production --config webpack/webpack.config.renderer.js --progress",
     "lint": "eslint 'src/**/*.{js,jsx}' --cache --fix",
-    "package": "rimraf ./out && electron-builder build --win -c.extraMetadata.main=dist/main.js --publish never",
+    "package": "rimraf ./out && electron-builder build --mac -c.extraMetadata.main=dist/main.js --publish never",
     "publish": "electron-builder build --mac --publish always"
   },
   "dependencies": {
@@ -80,7 +80,7 @@
   },
   "build": {
     "productName": "Raise",
-    "appId": "com.jiajunyan.Raise",
+    "appId": "to.curve.raise",
     "afterAllArtifactBuild": "./build/after-all-artifact-build.js",
     "afterSign": "./build/after-sign-hook.js",
     "dmg": {
