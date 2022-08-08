@@ -22,7 +22,7 @@ const {Header} = Layout
 const {Text} = Typography
 
 const {REPOSITORIES, DEVELOPERS} = TRENDING_TYPE
-const {SHOW_ABOUT_MODAL} = IPC_FUNCTION
+const {SHOW_ABOUT_MODAL, SHOW_SETTINGS_MODAL} = IPC_FUNCTION
 
 const RaiseHeader = ({refresh, getList, resetList}) => {
   const headerRef = useRef()
@@ -75,7 +75,7 @@ const RaiseHeader = ({refresh, getList, resetList}) => {
   useEffect(() => {
     const {receive} = window.electron
     receive(SHOW_ABOUT_MODAL, () => setAboutModalVisible(true))
-    receive(SHOW_ABOUT_MODAL, () => setSettingsModalVisible(true))
+    receive(SHOW_SETTINGS_MODAL, () => setSettingsModalVisible(true))
   }, [])
 
   return (
