@@ -40,6 +40,8 @@ export const Z_INDEX = {
 
 export const URL = {
   GITHUB: 'https://github.com',
-  CHANGELOG: 'https://github.com/realfrancisyan/raise/blob/master/CHANGELOG.md',
+  CHANGELOG: 'https://github.com/jiajunyanx/raise/blob/master/CHANGELOG.md',
   SERVER: 'https://trending.curve.to',
 }
+
+export const ALLOWED_TIME_OF_INACTIVITY = 1000 * 60 * 60 * 3 // 3 hours
