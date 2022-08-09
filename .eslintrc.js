@@ -16,6 +16,7 @@ module.exports = {
         map: [
           ['@', './src/renderer'],
           ['@shared', './src/shared'],
+          ['@pkg', './package.json'],
         ],
         extensions: ['.js', '.jsx'],
       },

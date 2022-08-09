@@ -14,9 +14,10 @@ import {Filter, SettingsModal, AboutModal} from '@/components'
 import {MODE, TRENDING_TYPE} from '@/config'
 import {useMode, useOutsideClick, useTrendingType} from '@/hooks'
 import Logo from '@/assets/images/logo.png'
+import {IPC_FUNCTION} from '@shared'
+import pkg from '@pkg'
 
 import styles from './styles.scss'
-import {IPC_FUNCTION} from '@shared'
 
 const {Header} = Layout
 const {Text} = Typography
@@ -109,7 +110,7 @@ const RaiseHeader = ({refresh, getList, resetList}) => {
           <div className={styles.settings}>
             <div className={styles.logo}>
               <img src={Logo} alt="logo" />
-              <Text strong>Raise</Text>
+              <Text strong>{pkg.productName}</Text>
             </div>
             <div className={styles.top}>
               <Button

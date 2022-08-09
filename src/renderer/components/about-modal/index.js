@@ -3,7 +3,7 @@ import {Divider, Modal, Typography} from '@douyinfe/semi-ui'
 
 import {VERSION, Z_INDEX} from '@/config'
 import Logo from '@/assets/images/logo.png'
-import pkg from '../../../../package.json'
+import pkg from '@pkg'
 
 import styles from './styles.scss'
 
@@ -29,7 +29,7 @@ const AboutModal = ({visible, setVisible}) => {
         <div className={styles.logo}>
           <img src={Logo} alt="logo" />
           <Title className={styles.title} heading={5}>
-            Raise
+            {pkg.productName}
           </Title>
         </div>
         <Text className={`${styles.centerAligned} ${styles.version}`}>Version {VERSION}</Text>

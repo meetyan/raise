@@ -3,7 +3,7 @@ import path from 'path'
 import isDev from 'electron-is-dev'
 
 import {IPC_FUNCTION} from '@shared'
-import pkg from '../../package.json'
+import pkg from '@pkg'
 import {INDEX_URL, isMac, ICON, MENUBAR} from './config'
 
 // See https://github.com/electron/electron/issues/19775.
@@ -35,7 +35,7 @@ export const createMenu = mb => {
             label: app.name,
             submenu: [
               {
-                label: 'About Raise',
+                label: `About ${pkg.productName}`,
                 click: () => {
                   mb.showWindow()
                   mb.window.send(IPC_FUNCTION.SHOW_ABOUT_MODAL)

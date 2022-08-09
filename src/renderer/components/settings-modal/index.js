@@ -4,9 +4,10 @@ import {IconExternalOpen} from '@douyinfe/semi-icons'
 
 import {useBackTop, useDockIcon, useMode} from '@/hooks'
 import {MODE, URL, VERSION, Z_INDEX} from '@/config'
+import {isMac} from '@/utils'
+import pkg from '@pkg'
 
 import styles from './styles.scss'
-import {isMac} from '@/utils'
 
 const {Text} = Typography
 const {open} = window.electron
@@ -24,7 +25,7 @@ const SettingsModal = ({visible, setVisible}) => {
       onCancel={() => setVisible(false)}
       closeOnEsc={true}
       width={350}
-      height={isMac ? 390 : 350}
+      height={isMac ? 375 : 335}
       centered
       footer={null}
       zIndex={Z_INDEX.MODAL}
@@ -57,12 +58,7 @@ const SettingsModal = ({visible, setVisible}) => {
           <Divider />
 
           <div className={styles.settingsItem}>
-            <Space vertical align="start" spacing={2}>
-              <Text strong>Automatic updates</Text>
-              <Text link size="small">
-                Check now
-              </Text>
-            </Space>
+            <Text strong>Automatic updates</Text>
             <Switch checked />
           </div>
 
@@ -74,7 +70,9 @@ const SettingsModal = ({visible, setVisible}) => {
           </div>
 
           <Divider />
-          <Text type="tertiary">Raise, version {VERSION}</Text>
+          <Text type="tertiary">
+            {pkg.productName}, version {VERSION}
+          </Text>
         </Space>
       </div>
     </Modal>

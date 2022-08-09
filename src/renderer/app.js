@@ -6,6 +6,7 @@ import {AppProvider} from '@/app-context'
 import {UpperContainer} from '@/components'
 import Index from '@/pages/index/index'
 import {getContextFromStorage} from '@/utils'
+import pkg from '@pkg'
 
 import 'nprogress/nprogress.css'
 import '@/assets/styles/reset.scss'
@@ -38,7 +39,9 @@ const App = () => {
         <Footer id="footer">
           <Divider />
           <div className={styles.copyright}>
-            <Text strong>© {new Date().getFullYear()} Raise. All rights reserved.</Text>
+            <Text strong>
+              © {new Date().getFullYear()} {pkg.productName}. All rights reserved.
+            </Text>
           </div>
         </Footer>
       </Layout>

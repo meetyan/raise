@@ -1,4 +1,4 @@
-import pkg from '../../../package.json'
+import pkg from '@pkg'
 
 export const VERSION = pkg.version
 

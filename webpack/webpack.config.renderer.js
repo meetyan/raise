@@ -39,6 +39,7 @@ module.exports = (env, argv) => {
       alias: {
         '@': path.resolve('./src/renderer'),
         '@shared': path.resolve('./src/shared'),
+        '@pkg': path.resolve('./package.json'),
       },
     },
     devServer: {

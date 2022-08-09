@@ -29,6 +29,7 @@ module.exports = {
     cacheWithContext: false,
     alias: {
       '@shared': path.resolve('./src/shared'),
+      '@pkg': path.resolve('./package.json'),
     },
   },
   node: {
