@@ -3,11 +3,12 @@ import isDev from 'electron-is-dev'
 import {menubar} from 'menubar'
 
 import {IPC_FUNCTION} from '@shared'
+import pkg from '@pkg'
 import {INDEX_URL, isMac, ICON} from './config'
 import {handleShowDockIcon} from './ipc'
 // eslint-disable-next-line no-unused-vars
 import {browserWindowConfig, createMenu, createTray, createWindow} from './common'
-import pkg from '../../package.json'
+import updateManager from './update-manager'
 
 app.setName(pkg.productName)
 
@@ -36,6 +37,8 @@ app.whenReady().then(() => {
   createMenu(mb)
 
   mb.on('ready', () => {
+    updateManager.init()
+
     if (isDev) {
       // createWindow() // enable this if you need an extra window open
     }
@@ -46,7 +49,7 @@ app.whenReady().then(() => {
      * See https://github.com/maxogden/menubar/issues/76.
      */
     setTimeout(() => {
-      mb.showWindow()
+      // mb.showWindow()
     }, 500)
   })
 

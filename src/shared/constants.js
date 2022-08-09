@@ -4,3 +4,7 @@ export const IPC_FUNCTION = {
   SHOW_DOCK_ICON: 'show-dock-icon',
   RELOAD_AFTER_INACTIVITY: 'reload-after-inactivity',
 }
+
+export const INTERVAL = {
+  UPDATE: 1000 * 60 * 5,
+}
