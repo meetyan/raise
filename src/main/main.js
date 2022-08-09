@@ -49,7 +49,7 @@ app.whenReady().then(() => {
      * See https://github.com/maxogden/menubar/issues/76.
      */
     setTimeout(() => {
-      // mb.showWindow()
+      mb.showWindow()
     }, 500)
   })
 

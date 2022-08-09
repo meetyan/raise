@@ -18,6 +18,7 @@ import {IPC_FUNCTION} from '@shared'
 import pkg from '@pkg'
 
 import styles from './styles.scss'
+import {isMac} from '@/utils'
 
 const {Header} = Layout
 const {Text} = Typography
@@ -86,6 +87,7 @@ const RaiseHeader = ({refresh, getList, resetList}) => {
           className={styles.header}
           style={{
             boxShadow: scrollRef?.top || showFilter ? '0 8px 24px -2px rgba(0, 0, 0, 0.2)' : 'none',
+            ...(isMac ? {backgroundColor: 'initial'} : {}),
           }}
         >
           <div className={styles.top}>

@@ -7,6 +7,7 @@
   top: 0;
   left: 0;
   z-index: 9999;
+  background-color: var(--semi-color-bg-0);
   backdrop-filter: saturate(180%) blur(30px);
   transition: all 0.2s;
 
