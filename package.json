@@ -27,13 +27,12 @@
     "axios": "^0.27.2",
     "electron-is": "^3.0.0",
     "electron-is-dev": "^2.0.0",
+    "electron-updater": "^5.2.1",
     "lodash": "^4.17.21",
     "menubar": "^9.2.1",
     "nprogress": "^0.2.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.3.0",
-    "update-electron-app": "^2.0.1"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.4",
@@ -97,18 +96,16 @@
           ]
         }
       ],
-      "publish": {
-        "provider": "github",
-        "owner": "meetyan",
-        "repo": "raise",
-        "private": true,
-        "token": ""
-      },
       "type": "distribution",
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
       "entitlements": "build/mac/entitlements.plist",
-      "entitlementsInherit": "build/mac/entitlements.plist"
+      "entitlementsInherit": "build/mac/entitlements.plist",
+      "publish": {
+        "provider": "github",
+        "owner": "meetyan",
+        "repo": "raise"
+      }
     },
     "win": {
       "target": [
@@ -123,9 +120,7 @@
       "publish": {
         "provider": "github",
         "owner": "meetyan",
-        "repo": "raise",
-        "private": true,
-        "token": ""
+        "repo": "raise"
       }
     },
     "files": [
@@ -134,7 +129,6 @@
     ],
     "publish": {
       "provider": "github",
-      "private": true,
       "owner": "meetyan"
     }
   }
