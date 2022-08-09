@@ -1,6 +1,6 @@
 import {dialog} from 'electron'
 import {autoUpdater} from 'electron-updater'
-import isDev from 'electron-is-dev'
+import log from 'electron-log'
 
 import {INTERVAL} from '@shared'
 import pkg from '@pkg'
@@ -8,7 +8,7 @@ import pkg from '@pkg'
 let updateInterval = null
 
 const onUpdateDownloaded = () => {
-  autoUpdater.on('update-downloaded', (_, releaseNotes, releaseName) => {
+  autoUpdater.on('update-downloaded', () => {
     dialog
       .showMessageBox({
         type: 'info',
@@ -19,10 +19,10 @@ const onUpdateDownloaded = () => {
           'This version includes bug fixes and feature updates. Would you like to restart to update now?',
       })
       .then(res => {
-        if (res.response === 0) {
-          autoUpdater.quitAndInstall()
-          clearInterval(updateInterval)
-        }
+        if (res.response !== 0) return
+
+        autoUpdater.quitAndInstall()
+        clearInterval(updateInterval)
       })
   })
 }
@@ -36,6 +36,9 @@ const checkForUpdates = () => {
 }
 
 const init = () => {
+  autoUpdater.logger = log
+  autoUpdater.logger.transports.file.level = 'info'
+
   checkForUpdates()
 
   /**
