@@ -1,6 +1,6 @@
 # Raise
 
-<img src="./static/logo-without-padding.png" width="256" alt="Raise App" />
+<img src="./static/logo-without-padding.png" width="150" alt="Raise App" />
 
 A simple (and unofficial) GitHub Trending client that lives in your menubar.
 
@@ -14,7 +14,7 @@ Currently Raise can run on macOS and Windows machines.
 
 ### macOS
 
-If you use an Intel machine, please download the `.dmg` or `.zip` file with its filename containing `x64`. Use `arm64` if you are on a hardware armed with Apple Silicon (M1/M2).
+If you use an Intel machine, please download the `.dmg` or `.zip` file with its filename containing `x64`. Use `arm64` if your hardware is armed with Apple Silicon (M1/M2).
 
 ### Windows
 
@@ -24,17 +24,25 @@ If it's your first time to open Raise, please make sure xxx is turned on. See []
 
 ## Features
 
+- Lists of GitHub's trending repos and developers
+- Simple and intuitive user interface
+- Language and date range filtering
+- Dark mode
+- More under development
+
 ## Tech Involved
 
 - [Electron](https://electronjs.org/)
 - [React](https://reactjs.org/)
+- [Semi Design](https://semi.design/)
 - [GitHub Trending API](https://github.com/huchenme/github-trending-api)
-- [PM2](https://pm2.keymetrics.io/)
 - [Umami](https://github.com/gmasclet/umami)
+- [PM2](https://pm2.keymetrics.io/)
+- [Webpack](https://webpack.js.org/)
 
 ## How to Develop
 
-Raise is developed on NodeJS version 16.16.0. Other NodeJS versions have not been tested.
+Raise is developed on Node.js v16. Other Node.js versions have not been tested.
 
 Run the following commands in `Terminal.app` on macOS or `PowerShell` on Windows:
 
@@ -47,6 +55,8 @@ yarn start
 ```
 
 ## Build and Deploy
+
+To build and deploy, run the following:
 
 ```bash
 
