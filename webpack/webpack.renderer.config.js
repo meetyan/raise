@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -130,12 +129,13 @@ module.exports = (env, argv) => {
       new webpack.DefinePlugin({
         WEBPACK_DEV: DEV,
       }),
-      // new CopyWebpackPlugin({
-      //   patterns: [{from: './public', to: './public'}],
-      // }),
       new HtmlWebpackPlugin({
-        template: 'src/renderer/index.html',
+        template: path.join(__dirname, '../src/renderer/index.ejs'),
+        filename: 'index.html',
         chunks: ['main'],
+        analyticsId: DEV
+          ? 'de05c6be-10c6-4ef8-ad28-ae9a122e4d78' // dev
+          : '065c72b6-f23a-4104-9327-60b0beef40ac', // prod
       }),
       PROD &&
         new MiniCssExtractPlugin({
