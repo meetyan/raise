@@ -1,7 +1,7 @@
 {
   "name": "raise",
   "productName": "Raise",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "A simple (and unofficial) GitHub Trending client that lives in your menubar",
   "main": "dist/main.js",
   "repository": "https://github.com/meetyan/raise.git",
@@ -16,8 +16,8 @@
     "build:main": "webpack --mode=production --config webpack/webpack.main.config.js --progress",
     "build:renderer": "webpack --mode=production --config webpack/webpack.renderer.config.js --progress",
     "lint": "eslint 'src/**/*.{js,jsx}' --cache --fix",
-    "package": "rimraf ./out && electron-builder build --mac --publish never",
-    "release": "rimraf ./out && electron-builder build --win --publish always"
+    "package": "rimraf ./out && electron-builder build --mac --win --publish never",
+    "release": "rimraf ./out && electron-builder build --mac --win --publish always"
   },
   "dependencies": {
     "@douyinfe/semi-icons": "^2.15.1",
@@ -90,9 +90,10 @@
       "mergeASARs": false,
       "target": [
         {
-          "target": "zip",
+          "target": "dmg",
           "arch": [
-            "x64"
+            "x64",
+            "arm64"
           ]
         }
       ],
@@ -112,16 +113,15 @@
         {
           "target": "nsis",
           "arch": [
-            "x64"
+            "x64",
+            "ia32"
           ]
         }
       ],
       "publish": {
         "provider": "github",
         "owner": "meetyan",
-        "repo": "raise",
-        "private": true,
-        "token": "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"
+        "repo": "raise"
       }
     },
     "files": [
@@ -130,8 +130,7 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "meetyan",
-      "private": true
+      "owner": "meetyan"
     }
   }
 }
