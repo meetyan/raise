@@ -18,11 +18,11 @@ Currently Raise can run on macOS and Windows machines.
 
 ### macOS
 
-If you use an Intel machine, please download the `.dmg` or `.zip` file with its filename containing `x64`. Use `arm64` if your hardware is armed with Apple Silicon (M1/M2).
+If you use an Intel machine, please download the `.dmg` file with its filename containing no architecture. Otherwise use `arm64.dmg` if your hardware is armed with Apple Silicon (M1/M2).
 
 ### Windows
 
-If your system is supported by `x64` architecture, simply download the `.exe` file with its filename containing `x64`. On a 32-bit system, use `ia32`.
+For Windows users simply download the package with `.exe` extension.
 
 If it's your first time to open Raise, you might see a screen saying `Windows protected your PC. Windows SmartScreen prevented an unrecognized app from start. Running this app might put your PC at risk.`. To bypass it, click `More Info` and then click `Run anyway`. This is simply because Raise on Windows is not [code signed](https://www.electronjs.org/docs/latest/tutorial/code-signing). Read [this](https://stackoverflow.com/questions/48946680/how-to-avoid-the-windows-defender-smartscreen-prevented-an-unrecognized-app-fro) for your reference.
 
