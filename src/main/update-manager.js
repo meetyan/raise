@@ -31,10 +31,6 @@ const onUpdateDownloaded = () => {
   })
 }
 
-/**
- * If not wrapped, an TypeError will be thrown as follow:
- * TypeError: Cannot read properties of undefined (reading 'isUpdaterActive')
- */
 const checkForUpdates = () => {
   const shouldAutoUpdate = store.get(STORAGE_KEY.ENABLE_AUTO_UPDATE)
 

@@ -90,7 +90,6 @@ const Index = () => {
       const now = new Date().getTime()
 
       if (lastTimestamp && now - lastTimestamp > ALLOWED_TIME_OF_INACTIVITY) {
-        console.log('getListParams', getListParams)
         getList(getListParams)
       }
     })
