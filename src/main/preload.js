@@ -7,7 +7,6 @@ contextBridge.exposeInMainWorld('electron', {
   storage: {
     set: (key, val) => store.set(key, val),
     get: key => store.get(key),
-    clear: () => store.clear(),
     store: () => store.store,
   },
 
