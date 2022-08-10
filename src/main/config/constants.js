@@ -20,7 +20,7 @@ export const isMac = is.macOS()
 
 export const ICON = {
   LOGO: path.join(__dirname, './static/logo.png'),
-  MENU: path.join(__dirname, './static/menu-logo.png'),
+  MENU: path.join(__dirname, `./static/${isMac ? 'menu-' : ''}logo.png`),
 }
 
 export const INTERVAL = {
