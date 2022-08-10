@@ -38,7 +38,7 @@ const Index = () => {
   }
 
   const getList = async params => {
-    window.scrollTo({top: 0, behavior: 'smooth'})
+    window.scrollTo({top: 0})
     setLoading(true)
     resetList()
     setGetListParams(params)
