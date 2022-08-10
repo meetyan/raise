@@ -6,6 +6,8 @@ A simple (and unofficial) GitHub Trending client that lives in your menubar.
 
 ## Screenshots
 
+![Raise App Screenshots](./static/screenshots/banner.png)
+
 ![Raise App Screenshots](./static/screenshots/ui.png)
 
 ## Installation
