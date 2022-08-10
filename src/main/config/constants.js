@@ -24,5 +24,5 @@ export const ICON = {
 }
 
 export const INTERVAL = {
-  UPDATE: 1000 * 60 * 5,
+  UPDATE: 1000 * 60 * 60 * 24, // every 24 hours
 }
