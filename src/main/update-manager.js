@@ -32,7 +32,11 @@ const onUpdateDownloaded = () => {
 }
 
 const checkForUpdates = () => {
+  log.info('store info', store.store)
+
   const shouldAutoUpdate = store.get(STORAGE_KEY.ENABLE_AUTO_UPDATE)
+
+  log.info('shouldAutoUpdate', shouldAutoUpdate)
 
   if (!shouldAutoUpdate) {
     log.info('AUTO_UPDATE is set to false. Abort auto update...')

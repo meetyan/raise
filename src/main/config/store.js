@@ -4,6 +4,6 @@ import {STORAGE_KEY} from '@shared'
 
 export const store = new Store({
   defaults: {
-    [STORAGE_KEY.AUTO_UPDATE]: true,
+    [STORAGE_KEY.ENABLE_AUTO_UPDATE]: true,
   },
 })
