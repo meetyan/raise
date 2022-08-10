@@ -7,6 +7,7 @@ import {UpperContainer} from '@/components'
 import Index from '@/pages/index/index'
 import {getContextFromStorage} from '@/utils'
 import pkg from '@pkg'
+import {STORAGE_KEY} from '@shared'
 
 import 'nprogress/nprogress.css'
 import '@/assets/styles/reset.scss'
@@ -22,11 +23,12 @@ Toast.config({zIndex: Z_INDEX.TOAST})
 
 const App = () => {
   const [context] = useState({
-    mode: MODE.LIGHT, // system themes
-    showBackTop: true,
-    showDockIcon: true,
+    [STORAGE_KEY.MODE]: MODE.LIGHT, // system themes
+    [STORAGE_KEY.SHOW_BACK_TOP]: true,
+    [STORAGE_KEY.SHOW_DOCK_ICON]: true,
+    [STORAGE_KEY.ENABLE_AUTO_UPDATE]: true,
     ...getContextFromStorage(),
-    trendingType: REPOSITORIES,
+    [STORAGE_KEY.TRENDING_TYPE]: REPOSITORIES,
   })
 
   return (

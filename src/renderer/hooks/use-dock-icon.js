@@ -1,8 +1,8 @@
 import {useContextProp} from '@/app-context'
-import {IPC_FUNCTION} from '@shared'
+import {IPC_FUNCTION, STORAGE_KEY} from '@shared'
 
 const useDockIcon = () => {
-  const [dockIcon, setDockIcon] = useContextProp('showDockIcon')
+  const [dockIcon, setDockIcon] = useContextProp(STORAGE_KEY.SHOW_DOCK_ICON)
 
   const _setDockIcon = visible => {
     window.electron.send(IPC_FUNCTION.SHOW_DOCK_ICON, visible)

@@ -1,8 +1,16 @@
 import {contextBridge, ipcRenderer, shell} from 'electron'
 
 import {IPC_FUNCTION} from '@shared'
+import {store} from './config'
 
 contextBridge.exposeInMainWorld('electron', {
+  storage: {
+    set: (key, val) => store.set(key, val),
+    get: key => store.get(key),
+    clear: () => store.clear(),
+    store: () => store.store,
+  },
+
   open: url => shell.openExternal(url),
 
   /**

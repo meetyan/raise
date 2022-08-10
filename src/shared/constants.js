@@ -5,6 +5,10 @@ export const IPC_FUNCTION = {
   RELOAD_AFTER_INACTIVITY: 'reload-after-inactivity',
 }
 
-export const INTERVAL = {
-  UPDATE: 1000 * 60 * 5,
+export const STORAGE_KEY = {
+  MODE: 'mode',
+  SHOW_BACK_TOP: 'show-back-top',
+  SHOW_DOCK_ICON: 'show-dock-icon',
+  TRENDING_TYPE: 'trending-type',
+  ENABLE_AUTO_UPDATE: 'enable-auto-update',
 }

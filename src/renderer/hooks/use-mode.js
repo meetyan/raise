@@ -1,8 +1,9 @@
 import {useContextProp} from '@/app-context'
 import {MODE} from '@/config'
+import {STORAGE_KEY} from '@shared'
 
 const useMode = () => {
-  const [mode, setMode] = useContextProp('mode')
+  const [mode, setMode] = useContextProp(STORAGE_KEY.MODE)
 
   const _setMode = target => {
     const body = document.body

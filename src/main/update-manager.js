@@ -2,8 +2,12 @@ import {dialog} from 'electron'
 import {autoUpdater} from 'electron-updater'
 import log from 'electron-log'
 
-import {INTERVAL} from '@shared'
+import {STORAGE_KEY} from '@shared'
 import pkg from '@pkg'
+import {store, INTERVAL} from './config'
+
+autoUpdater.logger = log
+autoUpdater.logger.transports.file.level = 'info'
 
 let updateInterval = null
 
@@ -32,13 +36,17 @@ const onUpdateDownloaded = () => {
  * TypeError: Cannot read properties of undefined (reading 'isUpdaterActive')
  */
 const checkForUpdates = () => {
+  const shouldAutoUpdate = store.get(STORAGE_KEY.ENABLE_AUTO_UPDATE)
+
+  if (!shouldAutoUpdate) {
+    log.info('AUTO_UPDATE is set to false. Abort auto update...')
+    return
+  }
+
   autoUpdater.checkForUpdates()
 }
 
 const init = () => {
-  autoUpdater.logger = log
-  autoUpdater.logger.transports.file.level = 'info'
-
   checkForUpdates()
 
   /**

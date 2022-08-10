@@ -2,7 +2,7 @@ import React from 'react'
 import {Button, Divider, Modal, Space, Switch, Typography} from '@douyinfe/semi-ui'
 import {IconExternalOpen} from '@douyinfe/semi-icons'
 
-import {useBackTop, useDockIcon, useMode} from '@/hooks'
+import {useAutoUpdate, useBackTop, useDockIcon, useMode} from '@/hooks'
 import {MODE, URL, VERSION, Z_INDEX} from '@/config'
 import {isMac} from '@/utils'
 import pkg from '@pkg'
@@ -16,6 +16,7 @@ const SettingsModal = ({visible, setVisible}) => {
   const [mode, setMode] = useMode()
   const [backTop, setBackTop] = useBackTop()
   const [dockIcon, setDockIcon] = useDockIcon()
+  const [autoUpdate, setAutoUpdate] = useAutoUpdate()
 
   return (
     <Modal
@@ -59,7 +60,7 @@ const SettingsModal = ({visible, setVisible}) => {
 
           <div className={styles.settingsItem}>
             <Text strong>Automatic updates</Text>
-            <Switch checked />
+            <Switch checked={autoUpdate} onChange={setAutoUpdate} />
           </div>
 
           <div className={styles.settingsItem}>

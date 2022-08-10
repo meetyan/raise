@@ -22,3 +22,7 @@ export const ICON = {
   LOGO: path.join(__dirname, './assets/logo.png'),
   MENU: path.join(__dirname, './assets/menu-logo.png'),
 }
+
+export const INTERVAL = {
+  UPDATE: 1000 * 60 * 5,
+}
