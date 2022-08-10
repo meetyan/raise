@@ -6,11 +6,11 @@ A simple (and unofficial) GitHub Trending client that lives in your menubar.
 
 ## Screenshots
 
-![Raise App Screenshots](./static/ui.png)
+![Raise App Screenshots](./static/screenshots/ui.png)
 
 ## Installation
 
-Download from [GitHub Releases](https://github.com/meetya/raise/releases) and install.
+Download from [GitHub Releases](https://github.com/meetyan/raise/releases) and install.
 
 Currently Raise can run on macOS and Windows machines.
 
