@@ -1,14 +1,16 @@
 # Raise
 
-<img src="./static/logo-without-padding.png" width="150" alt="Raise App" />
+<img src="./static/logo.png" width="180" alt="Raise App" />
 
 A simple (and unofficial) GitHub Trending client that lives in your menubar.
 
 ## Screenshots
 
+![Raise App Screenshots](./static/ui.png)
+
 ## Installation
 
-Download from [GitHub Releases](https://github.com/meetya/raise/releases) and install it.
+Download from [GitHub Releases](https://github.com/meetya/raise/releases) and install.
 
 Currently Raise can run on macOS and Windows machines.
 
@@ -20,11 +22,11 @@ If you use an Intel machine, please download the `.dmg` or `.zip` file with its 
 
 If your system is supported by `x64` architecture, simply download the `.exe` file with its filename containing `x64`. On a 32-bit system, use `ia32`.
 
-If it's your first time to open Raise, please make sure xxx is turned on. See []() for reference.
+If it's your first time to open Raise, you might see a screen saying `Windows protected your PC. Windows SmartScreen prevented an unrecognized app from start. Running this app might put your PC at risk.`. To bypass it, click `More Info` and then click `Run anyway`. This is simply because Raise on Windows is not [code signed](https://www.electronjs.org/docs/latest/tutorial/code-signing). Read [this](https://stackoverflow.com/questions/48946680/how-to-avoid-the-windows-defender-smartscreen-prevented-an-unrecognized-app-fro) for your reference.
 
 ## Features
 
-- Lists of GitHub's trending repos and developers
+- Showcasing GitHub's trending repos and developers
 - Simple and intuitive user interface
 - Language and date range filtering
 - Dark mode
