@@ -1,12 +1,10 @@
 # Raise
 
-<img src="./static/logo.png" width="180" alt="Raise App" />
-
 A simple (and unofficial) GitHub Trending client that lives in your menubar.
 
-## Screenshots
-
 ![Raise App Screenshots](./static/screenshots/banner.png)
+
+## Screenshots
 
 ![Raise App Screenshots](./static/screenshots/ui.png)
 
