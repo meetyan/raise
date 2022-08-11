@@ -8,7 +8,7 @@ import {RaiseHeader, RepositoryContent, DeveloperContent} from '@/components'
 import {fetchRepositories, fetchDevelopers, lastTimestamp} from '@/io'
 import {convert} from '@/utils'
 import {ALLOWED_TIME_OF_INACTIVITY, TRENDING_TYPE} from '@/config'
-import {useBackTop, useDockIcon, useMode, useTrendingType} from '@/hooks'
+import {useBackTop, useMode, useTrendingType} from '@/hooks'
 import {IPC_FUNCTION} from '@shared'
 
 import styles from './styles.scss'
@@ -22,7 +22,6 @@ const Index = () => {
   const [trendingType] = useTrendingType()
   const [backTop] = useBackTop()
   const [mode, setMode] = useMode()
-  const [dockIcon, setDockIcon] = useDockIcon()
 
   const [list, setList] = useState([])
   const [getListParams, setGetListParams] = useState({})
@@ -80,7 +79,6 @@ const Index = () => {
    */
   useEffect(() => {
     setMode(mode)
-    setDockIcon(dockIcon)
   }, [])
 
   useEffect(() => {

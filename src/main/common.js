@@ -1,10 +1,11 @@
 import {app, BrowserWindow, Menu, shell, Tray} from 'electron'
 import path from 'path'
 import isDev from 'electron-is-dev'
+import log from 'electron-log'
 
-import {IPC_FUNCTION} from '@shared'
+import {IPC_FUNCTION, STORAGE_KEY} from '@shared'
 import pkg from '@pkg'
-import {INDEX_URL, isMac, ICON, MENUBAR} from './config'
+import {INDEX_URL, isMac, ICON, MENUBAR, store} from './config'
 
 // See https://github.com/electron/electron/issues/19775.
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'
@@ -95,4 +96,13 @@ export const createTray = () => {
   tray.on('right-click', () => tray.popUpContextMenu(contextMenu))
 
   return tray
+}
+
+export const showDockIconAtLogin = () => {
+  const shouldShowDockIcon = store.get(STORAGE_KEY.SHOW_DOCK_ICON)
+  log.info('shouldShowDockIcon', shouldShowDockIcon)
+  // Dock icon persists in the dock except a user disables it
+  if (shouldShowDockIcon === false) {
+    app.dock.hide()
+  }
 }

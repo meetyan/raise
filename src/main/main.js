@@ -6,8 +6,14 @@ import {IPC_FUNCTION} from '@shared'
 import pkg from '@pkg'
 import {INDEX_URL, isMac, ICON} from './config'
 import {handleShowDockIcon} from './ipc'
-// eslint-disable-next-line no-unused-vars
-import {browserWindowConfig, createMenu, createTray, createWindow} from './common'
+import {
+  browserWindowConfig,
+  createMenu,
+  createTray,
+  // eslint-disable-next-line no-unused-vars
+  createWindow,
+  showDockIconAtLogin,
+} from './common'
 import updateManager from './update-manager'
 
 app.setName(pkg.productName)
@@ -38,6 +44,7 @@ app.whenReady().then(() => {
 
   mb.on('ready', () => {
     updateManager.init()
+    showDockIconAtLogin()
 
     if (isDev) {
       // createWindow() // enable this if you need an extra window open
