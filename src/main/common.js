@@ -99,6 +99,8 @@ export const createTray = () => {
 }
 
 export const showDockIconAtLogin = () => {
+  if (!isMac) return
+
   const shouldShowDockIcon = store.get(STORAGE_KEY.SHOW_DOCK_ICON)
   log.info('shouldShowDockIcon', shouldShowDockIcon)
   // Dock icon persists in the dock except a user disables it
