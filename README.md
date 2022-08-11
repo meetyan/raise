@@ -4,11 +4,11 @@ A simple (and unofficial) GitHub Trending client that lives in your menubar.
 
 ![Raise App Screenshots](./static/screenshots/banner.png)
 
-## Screenshots
+## 📸 Screenshots
 
 ![Raise App Screenshots](./static/screenshots/ui.png)
 
-## Installation
+## 🖥 Installation
 
 Download from [GitHub Releases](https://github.com/meetyan/raise/releases) and install.
 
@@ -22,17 +22,17 @@ If you use an Intel machine, please download the `.dmg` file with its filename c
 
 For Windows users simply download the package with `.exe` extension.
 
-If it's your first time to open Raise, you might see a screen saying `Windows protected your PC. Windows SmartScreen prevented an unrecognized app from start. Running this app might put your PC at risk.`. To bypass it, click `More Info` and then click `Run anyway`. This is simply because Raise on Windows is not yet [code signed](https://www.electronjs.org/docs/latest/tutorial/code-signing). Read [this](https://stackoverflow.com/questions/48946680/how-to-avoid-the-windows-defender-smartscreen-prevented-an-unrecognized-app-fro) for your reference.
+If it's your first time to open Raise, you might see a screen saying `Windows protected your PC. Windows SmartScreen prevented an unrecognized app from start. Running this app might put your PC at risk.`. To bypass it, click `More Info` and then click `Run anyway`. This is simply because Raise on Windows is not yet [code signed](https://www.electronjs.org/docs/latest/tutorial/code-signing). Read [this](https://stackoverflow.com/questions/48946680/how-to-avoid-the-windows-defender-smartscreen-prevented-an-unrecognized-app-fro) for your information.
 
-## Features
+## 🙌🏻 Features
 
-- Showcasing GitHub's trending repos and developers
-- Simple and intuitive user interface
-- Language and date range filtering
-- Dark mode
-- More under development
+- 🌠 Showcasing GitHub's trending repos and developers
+- 🗺 Simple and intuitive user interface
+- 🌍 Language and date range filtering
+- 🌗 Dark mode
+- 💻 More under development
 
-## Tech Involved
+## 🛠 Tech Involved
 
 - [Electron](https://electronjs.org/)
 - [React](https://reactjs.org/)
@@ -42,7 +42,7 @@ If it's your first time to open Raise, you might see a screen saying `Windows pr
 - [PM2](https://pm2.keymetrics.io/)
 - [Webpack](https://webpack.js.org/)
 
-## How to Develop
+## 🧑🏻‍💻 How to Develop
 
 Raise is developed on Node.js v16. Other Node.js versions have not been tested.
 
@@ -56,7 +56,7 @@ yarn start
 
 ```
 
-## Build and Deploy
+## 📢 Build and Deploy
 
 To build and deploy, run the following:
 
