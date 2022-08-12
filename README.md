@@ -16,7 +16,7 @@ Currently Raise can run on macOS and Windows machines.
 
 ### macOS
 
-If you use an Intel machine, please download the `.dmg` file with its filename containing no architecture. Otherwise use `arm64.dmg` if your hardware is armed with Apple Silicon (M1/M2).
+If you use an Intel machine, please download the `.zip` file with its filename containing no architecture. Otherwise use `arm64.zip` if your hardware is armed with Apple Silicon (M1/M2).
 
 ### Windows
 
