@@ -1,0 +1,21 @@
+.update {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 99999;
+  width: 100vw;
+  background-color: var(--semi-color-bg-0);
+}
+
+.update-banner {
+  padding: 20px;
+}
+
+.update-btns {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-confirm {
+  margin-left: 10px;
+}

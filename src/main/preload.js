@@ -1,4 +1,5 @@
 import {contextBridge, ipcRenderer, shell} from 'electron'
+import {autoUpdater} from 'electron-updater'
 
 import {IPC_FUNCTION} from '@shared'
 import {store} from './config'
@@ -11,6 +12,11 @@ contextBridge.exposeInMainWorld('electron', {
   },
 
   open: url => shell.openExternal(url),
+
+  // Restarts the app to apply update
+  quitAndInstall: () => {
+    autoUpdater.quitAndInstall()
+  },
 
   /**
    * Wraps commonly used ipcRenderer methods with the followings.

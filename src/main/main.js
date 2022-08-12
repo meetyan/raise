@@ -18,6 +18,7 @@ import updateManager from './update-manager'
 
 app.setName(pkg.productName)
 
+export let mb = null
 let isFirstLoad = true
 
 /**
@@ -31,7 +32,7 @@ if (isMac) {
 app.whenReady().then(() => {
   ipcMain.on(IPC_FUNCTION.SHOW_DOCK_ICON, handleShowDockIcon)
 
-  const mb = menubar({
+  mb = menubar({
     icon: ICON.MENU,
     index: isDev ? INDEX_URL.DEV : INDEX_URL.PROD,
     browserWindow: {...browserWindowConfig, resizable: false},
@@ -47,7 +48,7 @@ app.whenReady().then(() => {
     showDockIconAtLogin()
 
     if (isDev) {
-      // createWindow() // enable this if you need an extra window open
+      createWindow() // enable this if you need an extra window open
     }
 
     /**

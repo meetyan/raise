@@ -3,7 +3,7 @@ import {Divider, Layout, Toast, Typography} from '@douyinfe/semi-ui'
 
 import {MODE, TRENDING_TYPE, Z_INDEX} from '@/config'
 import {AppProvider} from '@/app-context'
-import {UpperContainer} from '@/components'
+import {UpdateNotification, UpperContainer} from '@/components'
 import Index from '@/pages/index/index'
 import {getContextFromStorage} from '@/utils'
 import pkg from '@pkg'
@@ -46,6 +46,8 @@ const App = () => {
             </Text>
           </div>
         </Footer>
+
+        <UpdateNotification />
       </Layout>
     </AppProvider>
   )

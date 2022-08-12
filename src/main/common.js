@@ -6,6 +6,7 @@ import log from 'electron-log'
 import {IPC_FUNCTION, STORAGE_KEY} from '@shared'
 import pkg from '@pkg'
 import {INDEX_URL, isMac, ICON, MENUBAR, store} from './config'
+import {mb} from './main'
 
 // See https://github.com/electron/electron/issues/19775.
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'
@@ -28,7 +29,7 @@ export const createWindow = () => {
   return mainWindow
 }
 
-export const createMenu = mb => {
+export const createMenu = () => {
   const template = [
     ...(isMac
       ? [

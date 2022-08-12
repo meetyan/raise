@@ -1,33 +1,16 @@
-import {dialog} from 'electron'
 import {autoUpdater} from 'electron-updater'
 import log from 'electron-log'
 
-import {STORAGE_KEY} from '@shared'
-import pkg from '@pkg'
+import {IPC_FUNCTION, STORAGE_KEY} from '@shared'
 import {store, INTERVAL} from './config'
+import {mb} from './main'
 
 autoUpdater.logger = log
 autoUpdater.logger.transports.file.level = 'info'
 
-let updateInterval = null
-
 const onUpdateDownloaded = () => {
   autoUpdater.on('update-downloaded', () => {
-    dialog
-      .showMessageBox({
-        type: 'info',
-        buttons: ['Restart', 'Later'],
-        title: 'Update Available',
-        message: `A new version of ${pkg.productName} is available!`,
-        detail:
-          'This version includes bug fixes and feature updates. Would you like to restart to update now?',
-      })
-      .then(res => {
-        if (res.response !== 0) return
-
-        autoUpdater.quitAndInstall()
-        clearInterval(updateInterval)
-      })
+    mb.window.send(IPC_FUNCTION.SHOW_UPDATE_NOTIFICATION)
   })
 }
 
@@ -52,7 +35,7 @@ const init = () => {
   /**
    * Sets interval for periodical checks
    */
-  updateInterval = setInterval(checkForUpdates, INTERVAL.UPDATE)
+  setInterval(checkForUpdates, INTERVAL.UPDATE)
 
   /**
    * Updater events
