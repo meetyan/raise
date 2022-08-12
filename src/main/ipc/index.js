@@ -1,4 +1,5 @@
 import {app} from 'electron'
+import {autoUpdater} from 'electron-updater'
 
 import {isMac} from '../config'
 
@@ -11,4 +12,8 @@ export const handleShowDockIcon = (_, visible) => {
   }
 
   app.dock.hide()
+}
+
+export const handleQuitAndInstall = () => {
+  autoUpdater.quitAndInstall()
 }

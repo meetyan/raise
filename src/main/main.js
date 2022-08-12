@@ -1,11 +1,10 @@
 import {app, ipcMain} from 'electron'
-import isDev from 'electron-is-dev'
 import {menubar} from 'menubar'
 
 import {IPC_FUNCTION} from '@shared'
 import pkg from '@pkg'
-import {INDEX_URL, isMac, ICON} from './config'
-import {handleShowDockIcon} from './ipc'
+import {INDEX_URL, isMac, ICON, isDev} from './config'
+import {handleQuitAndInstall, handleShowDockIcon} from './ipc'
 import {
   browserWindowConfig,
   createMenu,
@@ -31,6 +30,7 @@ if (isMac) {
 
 app.whenReady().then(() => {
   ipcMain.on(IPC_FUNCTION.SHOW_DOCK_ICON, handleShowDockIcon)
+  ipcMain.on(IPC_FUNCTION.QUIT_AND_INSTALL, handleQuitAndInstall)
 
   mb = menubar({
     icon: ICON.MENU,

@@ -4,6 +4,7 @@ export const IPC_FUNCTION = {
   SHOW_DOCK_ICON: 'show-dock-icon',
   RELOAD_AFTER_INACTIVITY: 'reload-after-inactivity',
   SHOW_UPDATE_NOTIFICATION: 'show-update-notification',
+  QUIT_AND_INSTALL: 'quit-and-install',
 }
 
 export const STORAGE_KEY = {

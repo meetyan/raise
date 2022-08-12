@@ -1,7 +1,7 @@
 {
   "name": "raise",
   "productName": "Raise",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple (and unofficial) GitHub Trending client that lives in your menubar",
   "main": "dist/main.js",
   "repository": "https://github.com/meetyan/raise.git",
@@ -26,7 +26,6 @@
     "ahooks": "^3.7.0",
     "axios": "^0.27.2",
     "electron-is": "^3.0.0",
-    "electron-is-dev": "^2.0.0",
     "electron-log": "^4.4.8",
     "electron-store": "^8.1.0",
     "electron-updater": "^5.2.1",
@@ -90,7 +89,7 @@
       "mergeASARs": false,
       "target": [
         {
-          "target": "dmg",
+          "target": "zip",
           "arch": [
             "x64",
             "arm64"

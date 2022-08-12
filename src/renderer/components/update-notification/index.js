@@ -5,11 +5,11 @@ import {IPC_FUNCTION} from '@shared'
 
 import styles from './styles.scss'
 
-const {receive, quitAndInstall} = window.electron
-const {SHOW_UPDATE_NOTIFICATION} = IPC_FUNCTION
+const {send, receive} = window.electron
+const {QUIT_AND_INSTALL, SHOW_UPDATE_NOTIFICATION} = IPC_FUNCTION
 
 const UpdateNotification = () => {
-  const [visible, setVisible] = useState(true)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     receive(SHOW_UPDATE_NOTIFICATION, () => setVisible(true))
@@ -36,7 +36,7 @@ const UpdateNotification = () => {
             className={styles.btnConfirm}
             theme="solid"
             type="primary"
-            onClick={quitAndInstall}
+            onClick={() => send(QUIT_AND_INSTALL)}
           >
             Restart Now
           </Button>
