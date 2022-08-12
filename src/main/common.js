@@ -1,11 +1,10 @@
 import {app, BrowserWindow, Menu, shell, Tray} from 'electron'
 import path from 'path'
-import isDev from 'electron-is-dev'
 import log from 'electron-log'
 
 import {IPC_FUNCTION, STORAGE_KEY} from '@shared'
 import pkg from '@pkg'
-import {INDEX_URL, isMac, ICON, MENUBAR, store} from './config'
+import {INDEX_URL, isMac, ICON, MENUBAR, store, isDev} from './config'
 import {mb} from './main'
 
 // See https://github.com/electron/electron/issues/19775.
