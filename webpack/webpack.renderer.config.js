@@ -36,6 +36,7 @@ module.exports = (env, argv) => {
       cacheWithContext: false,
       alias: {
         '@': path.join(__dirname, '../src'),
+        '@static': path.join(__dirname, '../static'),
         '@shared': path.join(__dirname, '../shared'),
         '@pkg': path.join(__dirname, '../package.json'),
       },

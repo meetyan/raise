@@ -15,7 +15,7 @@ import {MODE, TRENDING_TYPE} from '@/config'
 import {useMode, useOutsideClick, useTrendingType} from '@/hooks'
 import {IPC_FUNCTION} from '@shared'
 import pkg from '@pkg'
-import Logo from '../../../static/logo-without-padding.png'
+import Logo from '@static/logo-without-padding.png'
 
 import styles from './styles.scss'
 import {isMac} from '@/utils'

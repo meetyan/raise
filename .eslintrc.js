@@ -15,6 +15,7 @@ module.exports = {
       alias: {
         map: [
           ['@', './src'],
+          ['@static', './static'],
           ['@shared', './shared'],
           ['@pkg', './package.json'],
         ],

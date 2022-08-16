@@ -3,7 +3,7 @@ import {Divider, Modal, Typography} from '@douyinfe/semi-ui'
 
 import {VERSION, Z_INDEX} from '@/config'
 import pkg from '@pkg'
-import Logo from '../../../static/logo-without-padding.png'
+import Logo from '@static/logo-without-padding.png'
 
 import styles from './styles.scss'
 
