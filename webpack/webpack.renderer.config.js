@@ -127,7 +127,9 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        WEBPACK_DEV: DEV,
+        'process.env': {
+          WEBPACK_DEV: DEV,
+        },
       }),
       new HtmlWebpackPlugin({
         template: path.join(__dirname, '../src/index.ejs'),
