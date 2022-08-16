@@ -14,8 +14,8 @@ module.exports = {
     'import/resolver': {
       alias: {
         map: [
-          ['@', './src/renderer'],
-          ['@shared', './src/shared'],
+          ['@', './src'],
+          ['@shared', './shared'],
           ['@pkg', './package.json'],
         ],
         extensions: ['.js', '.jsx'],

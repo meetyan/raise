@@ -2,8 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/renderer/*"],
-      "@shared": ["./src/shared"],
+      "@/*": ["./src/*"],
+      "@shared": ["./shared"],
       "@pkg": ["./package.json"],
     }
   },

@@ -24,9 +24,9 @@ module.exports = (env, argv) => {
           type: 'filesystem',
           buildDependencies: {config: [__filename]},
         },
-    entry: ['./src/renderer/index.js'],
+    entry: ['./src/index.js'],
     output: {
-      path: path.resolve('./dist'),
+      path: path.join(__dirname, '../dist'),
       filename: `[name]${PROD ? '.[contenthash:8]' : ''}.js`,
       chunkFilename: `[name]${PROD ? '.[contenthash:8]' : ''}.js`,
       publicPath: PROD ? './' : '',
@@ -35,13 +35,13 @@ module.exports = (env, argv) => {
       symlinks: false,
       cacheWithContext: false,
       alias: {
-        '@': path.resolve('./src/renderer'),
-        '@shared': path.resolve('./src/shared'),
-        '@pkg': path.resolve('./package.json'),
+        '@': path.join(__dirname, '../src'),
+        '@shared': path.join(__dirname, '../shared'),
+        '@pkg': path.join(__dirname, '../package.json'),
       },
     },
     devServer: {
-      static: path.resolve('./dist'),
+      static: path.join(__dirname, '../dist'),
       port: 3000,
     },
     optimization: PROD
@@ -60,7 +60,7 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: /\.(js|jsx)$/,
-          include: [path.resolve('./src/renderer')],
+          include: [path.join(__dirname, '../src')],
           use: [
             {
               loader: 'babel-loader',
@@ -129,7 +129,7 @@ module.exports = (env, argv) => {
         WEBPACK_DEV: DEV,
       }),
       new HtmlWebpackPlugin({
-        template: path.join(__dirname, '../src/renderer/index.ejs'),
+        template: path.join(__dirname, '../src/index.ejs'),
         filename: 'index.html',
         chunks: ['main'],
         analyticsId: DEV

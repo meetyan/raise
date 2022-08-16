@@ -4,8 +4,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 module.exports = {
   target: 'electron-main',
   entry: {
-    main: path.join(__dirname, '../src/main/main.js'),
-    preload: path.join(__dirname, '../src/main/preload.js'),
+    main: path.join(__dirname, '../electron/main.js'),
+    preload: path.join(__dirname, '../electron/preload.js'),
   },
   output: {
     filename: '[name].js',
@@ -28,8 +28,8 @@ module.exports = {
     symlinks: false,
     cacheWithContext: false,
     alias: {
-      '@shared': path.resolve('./src/shared'),
-      '@pkg': path.resolve('./package.json'),
+      '@shared': path.join(__dirname, '../shared'),
+      '@pkg': path.join(__dirname, '../package.json'),
     },
   },
   node: {
