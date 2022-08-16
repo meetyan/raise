@@ -30,7 +30,6 @@ module.exports = (env, argv) => {
       filename: `[name]${PROD ? '.[contenthash:8]' : ''}.js`,
       chunkFilename: `[name]${PROD ? '.[contenthash:8]' : ''}.js`,
       publicPath: PROD ? './' : '',
-      clean: true,
     },
     resolve: {
       symlinks: false,

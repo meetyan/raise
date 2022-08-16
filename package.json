@@ -12,7 +12,7 @@
     "start": "concurrently -k \"yarn start:main\" \"yarn start:renderer\"",
     "start:main": "webpack --mode=development --config webpack/webpack.main.config.js && wait-on tcp:3000 && electron .",
     "start:renderer": "webpack server --mode=development --config webpack/webpack.renderer.config.js --hot",
-    "build": "rimraf ./dist && yarn build:renderer && yarn build:main",
+    "build": "rimraf ./dist && yarn build:main && yarn build:renderer",
     "build:main": "webpack --mode=production --config webpack/webpack.main.config.js --progress",
     "build:renderer": "webpack --mode=production --config webpack/webpack.renderer.config.js --progress",
     "lint": "eslint 'src/**/*.{js,jsx}' --cache --fix",
