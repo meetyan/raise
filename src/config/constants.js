@@ -49,4 +49,6 @@ export const isElectron = checkIsElectron()
 
 export const isMac = window.navigator?.userAgentData?.platform.toUpperCase().includes('MAC')
 
-export const isChrome = process.env.isChrome
+export const isChrome = !!process.env.isChrome
+
+export const isDev = !!process.env.WEBPACK_DEV

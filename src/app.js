@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Divider, Layout, Toast, Typography} from '@douyinfe/semi-ui'
 
-import {isChrome, MODE, TRENDING_TYPE, Z_INDEX} from '@/config'
+import {isChrome, isDev, MODE, TRENDING_TYPE, Z_INDEX} from '@/config'
 import {AppProvider} from '@/app-context'
 import {UpdateNotification, UpperContainer} from '@/components'
 import Index from '@/pages/index/index'
@@ -21,7 +21,7 @@ Toast.config({zIndex: Z_INDEX.TOAST})
 
 const {REPOSITORIES} = TRENDING_TYPE
 const {getContextFromStorage} = polyfill
-const layoutStyle = {maxWidth: isChrome ? 400 : 'none'}
+const layoutStyle = {maxWidth: isChrome && !isDev ? 400 : 'none'}
 
 const App = () => {
   const [context] = useState({
