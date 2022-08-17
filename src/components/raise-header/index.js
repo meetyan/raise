@@ -11,14 +11,14 @@ import {
 import {useScroll} from 'ahooks'
 
 import {Filter, SettingsModal, AboutModal} from '@/components'
-import {MODE, TRENDING_TYPE} from '@/config'
+import {MODE, TRENDING_TYPE, isMac} from '@/config'
 import {useMode, useOutsideClick, useTrendingType} from '@/hooks'
 import {IPC_FUNCTION} from '@shared'
 import pkg from '@pkg'
-import Logo from '@static/logo-without-padding.png'
+import {polyfill} from '@/utils'
 
+import Logo from '@static/logo-without-padding.png'
 import styles from './styles.scss'
-import {isMac} from '@/utils'
 
 const {Header} = Layout
 const {Text} = Typography
@@ -75,7 +75,7 @@ const RaiseHeader = ({refresh, getList, resetList}) => {
   }, [trendingType])
 
   useEffect(() => {
-    const {receive} = window.electron
+    const {receive} = polyfill
     receive(SHOW_ABOUT_MODAL, () => setAboutModalVisible(true))
     receive(SHOW_SETTINGS_MODAL, () => setSettingsModalVisible(true))
   }, [])

@@ -1,4 +1,5 @@
 import pkg from '@pkg'
+import {isElectron as checkIsElectron} from '@/lib'
 
 export const VERSION = pkg.version
 
@@ -43,3 +44,7 @@ export const URL = {
 }
 
 export const ALLOWED_TIME_OF_INACTIVITY = 1000 * 60 * 60 * 3 // 3 hours
+
+export const isElectron = checkIsElectron()
+
+export const isMac = window.navigator?.userAgentData?.platform.toUpperCase().includes('MAC')

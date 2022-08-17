@@ -2,10 +2,11 @@ import React, {useEffect, useState} from 'react'
 import {Banner, Button} from '@douyinfe/semi-ui'
 
 import {IPC_FUNCTION} from '@shared'
+import {polyfill} from '@/utils'
 
 import styles from './styles.scss'
 
-const {send, receive} = window.electron
+const {send, receive} = polyfill
 const {QUIT_AND_INSTALL, SHOW_UPDATE_NOTIFICATION} = IPC_FUNCTION
 
 const UpdateNotification = () => {

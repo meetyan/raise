@@ -4,11 +4,12 @@ import {Divider, Modal, Typography} from '@douyinfe/semi-ui'
 import {VERSION, Z_INDEX} from '@/config'
 import pkg from '@pkg'
 import Logo from '@static/logo-without-padding.png'
+import {polyfill} from '@/utils'
 
 import styles from './styles.scss'
 
 const {Text, Title} = Typography
-const {open} = window.electron
+const {open} = polyfill
 
 const AboutModal = ({visible, setVisible}) => {
   return (

@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import {RaiseHeader, RepositoryContent, DeveloperContent} from '@/components'
 import {fetchRepositories, fetchDevelopers, lastTimestamp} from '@/io'
-import {convert} from '@/utils'
+import {convert, polyfill} from '@/utils'
 import {ALLOWED_TIME_OF_INACTIVITY, TRENDING_TYPE} from '@/config'
 import {useBackTop, useMode, useTrendingType} from '@/hooks'
 import {IPC_FUNCTION} from '@shared'
@@ -82,7 +82,7 @@ const Index = () => {
   }, [])
 
   useEffect(() => {
-    const {receive} = window.electron
+    const {receive} = polyfill
 
     const removeReloadListener = receive(RELOAD_AFTER_INACTIVITY, () => {
       const now = new Date().getTime()

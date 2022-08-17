@@ -5,7 +5,7 @@ import {MODE, TRENDING_TYPE, Z_INDEX} from '@/config'
 import {AppProvider} from '@/app-context'
 import {UpdateNotification, UpperContainer} from '@/components'
 import Index from '@/pages/index/index'
-import {getContextFromStorage} from '@/utils'
+import {polyfill} from '@/utils'
 import pkg from '@pkg'
 import {STORAGE_KEY} from '@shared'
 
@@ -18,6 +18,7 @@ const {Text} = Typography
 const {Footer} = Layout
 
 const {REPOSITORIES} = TRENDING_TYPE
+const {getContextFromStorage} = polyfill
 
 Toast.config({zIndex: Z_INDEX.TOAST})
 

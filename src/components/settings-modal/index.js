@@ -3,14 +3,14 @@ import {Button, Divider, Modal, Space, Switch, Typography} from '@douyinfe/semi-
 import {IconExternalOpen} from '@douyinfe/semi-icons'
 
 import {useAutoUpdate, useBackTop, useDockIcon, useMode} from '@/hooks'
-import {MODE, URL, VERSION, Z_INDEX} from '@/config'
-import {isMac} from '@/utils'
+import {MODE, URL, VERSION, Z_INDEX, isMac} from '@/config'
+import {polyfill} from '@/utils'
 import pkg from '@pkg'
 
 import styles from './styles.scss'
 
 const {Text} = Typography
-const {open} = window.electron
+const {open} = polyfill
 
 const SettingsModal = ({visible, setVisible}) => {
   const [mode, setMode] = useMode()

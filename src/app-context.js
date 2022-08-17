@@ -1,5 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react'
-import {setStorage} from './utils'
+import {polyfill} from './utils'
+
+const {setStorage} = polyfill
 
 export const AppContext = React.createContext({})
 

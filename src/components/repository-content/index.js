@@ -3,15 +3,14 @@ import {Typography, Layout, Card, Space, Tooltip} from '@douyinfe/semi-ui'
 import {IconBranch, IconSourceControl, IconStar} from '@douyinfe/semi-icons'
 
 import {URL} from '@/config'
-import {numberWithCommas} from '@/utils'
+import {numberWithCommas, polyfill} from '@/utils'
 import {SkeletonPlaceholder} from '@/components'
 
 import styles from './styles.scss'
 
 const {Content} = Layout
 const {Text} = Typography
-
-const {open} = window.electron
+const {open} = polyfill
 
 const RepositoryContent = ({list, loading}) => {
   return (

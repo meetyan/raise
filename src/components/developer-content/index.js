@@ -3,13 +3,13 @@ import {Typography, Layout, Card, Space} from '@douyinfe/semi-ui'
 import {IconBranch, IconCrown} from '@douyinfe/semi-icons'
 
 import {SkeletonPlaceholder} from '@/components'
+import {polyfill} from '@/utils'
 
 import styles from './styles.scss'
 
 const {Content} = Layout
 const {Text, Title} = Typography
-
-const {open} = window.electron
+const {open} = polyfill
 
 const AuthorHeader = ({item}) => (
   <div className={styles.header}>
