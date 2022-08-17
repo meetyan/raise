@@ -9,8 +9,8 @@ const pkg = require('./package.json')
 
 module.exports = () => {
   const manifest = {
-    name: 'Raise',
-    description: 'A simple (and unofficial) GitHub Trending client that lives in your menubar.',
+    name: pkg.name,
+    description: pkg.description,
     version: pkg.version,
     manifest_version: 3,
     permissions: ['storage', 'activeTab', 'scripting'],
