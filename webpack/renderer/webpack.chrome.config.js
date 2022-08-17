@@ -9,6 +9,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const base = require('./webpack.base.config')
+const generateChromeManifest = require('../../chrome-manifest')
+
+generateChromeManifest()
 
 module.exports = (_, argv) => {
   console.log('webpack config argv =>', argv)
