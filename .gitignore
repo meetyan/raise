@@ -1,6 +1,7 @@
 node_modules
 dist
 out
+src/manifest.json
 
 .DS_Store
 .eslintcache
