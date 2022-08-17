@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Divider, Layout, Toast, Typography} from '@douyinfe/semi-ui'
 
-import {MODE, TRENDING_TYPE, Z_INDEX} from '@/config'
+import {isChrome, MODE, TRENDING_TYPE, Z_INDEX} from '@/config'
 import {AppProvider} from '@/app-context'
 import {UpdateNotification, UpperContainer} from '@/components'
 import Index from '@/pages/index/index'
@@ -17,10 +17,11 @@ import styles from '@/app.scss'
 const {Text} = Typography
 const {Footer} = Layout
 
+Toast.config({zIndex: Z_INDEX.TOAST})
+
 const {REPOSITORIES} = TRENDING_TYPE
 const {getContextFromStorage} = polyfill
-
-Toast.config({zIndex: Z_INDEX.TOAST})
+const layoutStyle = {maxWidth: isChrome ? 400 : 'none'}
 
 const App = () => {
   const [context] = useState({
@@ -34,7 +35,7 @@ const App = () => {
 
   return (
     <AppProvider value={context}>
-      <Layout className={`components-layout-demo ${styles.layout}`}>
+      <Layout className={styles.layout} style={layoutStyle}>
         <UpperContainer>
           <Index />
         </UpperContainer>

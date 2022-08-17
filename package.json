@@ -10,11 +10,13 @@
   "license": "MIT",
   "scripts": {
     "start": "concurrently -k \"yarn start:main\" \"yarn start:renderer\"",
-    "start:main": "webpack --mode=development --config webpack/webpack.main.config.js && wait-on tcp:3000 && electron .",
-    "start:renderer": "webpack server --mode=development --config webpack/webpack.renderer.config.js --hot",
+    "start:main": "webpack --mode=development --config webpack/main/webpack.main.config.js && wait-on tcp:3000 && electron .",
+    "start:renderer": "webpack server --mode=development --config webpack/renderer/webpack.renderer.config.js --hot",
+    "start:chrome": "webpack server --mode=development --config webpack/renderer/webpack.chrome.config.js --hot",
     "build": "rimraf ./dist && yarn build:main && yarn build:renderer",
-    "build:main": "webpack --mode=production --config webpack/webpack.main.config.js --progress",
-    "build:renderer": "webpack --mode=production --config webpack/webpack.renderer.config.js --progress",
+    "build:main": "webpack --mode=production --config webpack/main/webpack.main.config.js --progress",
+    "build:renderer": "webpack --mode=production --config webpack/renderer/webpack.renderer.config.js --progress",
+    "build:chrome": "rimraf ./dist && webpack --mode=production --config webpack/renderer/webpack.chrome.config.js --progress",
     "lint": "eslint 'src/**/*.{js,jsx}' --cache --fix",
     "package": "rimraf ./out && electron-builder build --mac --win --publish never",
     "release": "rimraf ./out && electron-builder build --mac --win --publish always"
@@ -70,13 +72,12 @@
     "react-dev-utils": "12.0.0",
     "rimraf": "^3.0.2",
     "sass-loader": "^12.6.0",
-    "speed-measure-webpack-plugin": "1.5.0",
     "style-loader": "^3.3.1",
     "wait-on": "^6.0.1",
     "webpack": "^5.69.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4",
-    "webpack-manifest-plugin": "4.0.2"
+    "webpack-merge": "^5.8.0"
   },
   "build": {
     "productName": "Raise",

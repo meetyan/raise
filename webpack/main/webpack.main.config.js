@@ -1,15 +1,19 @@
+/**
+ * The webpack config which Electron main uses
+ */
+
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   target: 'electron-main',
   entry: {
-    main: path.join(__dirname, '../electron/main.js'),
-    preload: path.join(__dirname, '../electron/preload.js'),
+    main: path.resolve('./electron/main.js'),
+    preload: path.resolve('./electron/preload.js'),
   },
   output: {
     filename: '[name].js',
-    path: path.join(__dirname, '../dist'),
+    path: path.resolve('./dist'),
   },
   module: {
     rules: [
@@ -28,8 +32,8 @@ module.exports = {
     symlinks: false,
     cacheWithContext: false,
     alias: {
-      '@shared': path.join(__dirname, '../shared'),
-      '@pkg': path.join(__dirname, '../package.json'),
+      '@shared': path.resolve('./shared'),
+      '@pkg': path.resolve('./package.json'),
     },
   },
   node: {

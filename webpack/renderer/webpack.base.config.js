@@ -1,21 +1,69 @@
+/**
+ * The Webpack config which is shared by Electron's renderer and web
+ */
+
 const path = require('path')
-const webpack = require('webpack')
-
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const {WebpackManifestPlugin} = require('webpack-manifest-plugin')
-const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
-
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 
-module.exports = (env, argv) => {
-  console.log('webpack config argv =>', argv)
+const terserPluginConfig = {
+  extractComments: false,
+  terserOptions: {
+    format: {
+      comments: false,
+      ascii_only: true,
+    },
+    compress: {
+      drop_console: true,
+    },
+  },
+}
+
+const splitChunksConfig = {
+  chunks: 'all',
+  cacheGroups: {
+    default: {
+      chunks: 'async',
+      priority: 10,
+      minChunks: 2,
+      reuseExistingChunk: true,
+    },
+    defaultVendors: false,
+    commons: {
+      chunks: 'all',
+      test: /[\\/]node_modules[\\/]/,
+      priority: 20,
+      minChunks: 2,
+      maxSize: 512 * 1024, // 512kb
+      name: 'commons',
+      filename: '[name].[chunkhash:8].js',
+      reuseExistingChunk: true,
+    },
+    core: {
+      chunks: 'all',
+      test: /node_modules[\\/](?:core-js|regenerator-runtime|@babel|(?:style|css)-loader)/,
+      priority: 30,
+      name: 'core',
+      filename: '[name].[chunkhash:8].js',
+      reuseExistingChunk: true,
+    },
+    react: {
+      chunks: 'all',
+      test: /node_modules[\\/](?:react|react-dom|react-router-dom)/,
+      priority: 100,
+      name: 'react',
+      filename: '[name].[chunkhash:8].js',
+      reuseExistingChunk: true,
+    },
+  },
+}
+
+module.exports = argv => {
   const DEV = argv.mode === 'development'
   const PROD = !DEV
 
-  const config = {
+  return {
     devtool: DEV ? 'eval-cheap-module-source-map' : false,
     bail: PROD,
     cache: DEV
@@ -26,7 +74,7 @@ module.exports = (env, argv) => {
         },
     entry: ['./src/index.js'],
     output: {
-      path: path.join(__dirname, '../dist'),
+      path: path.resolve('./dist'),
       filename: `[name]${PROD ? '.[contenthash:8]' : ''}.js`,
       chunkFilename: `[name]${PROD ? '.[contenthash:8]' : ''}.js`,
       publicPath: PROD ? './' : '',
@@ -35,14 +83,14 @@ module.exports = (env, argv) => {
       symlinks: false,
       cacheWithContext: false,
       alias: {
-        '@': path.join(__dirname, '../src'),
-        '@static': path.join(__dirname, '../static'),
-        '@shared': path.join(__dirname, '../shared'),
-        '@pkg': path.join(__dirname, '../package.json'),
+        '@': path.resolve('./src'),
+        '@static': path.resolve('./static'),
+        '@shared': path.resolve('./shared'),
+        '@pkg': path.resolve('./package.json'),
       },
     },
     devServer: {
-      static: path.join(__dirname, '../dist'),
+      static: path.resolve('./dist'),
       port: 3000,
     },
     optimization: PROD
@@ -61,7 +109,7 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: /\.(js|jsx)$/,
-          include: [path.join(__dirname, '../src')],
+          include: [path.resolve('./src')],
           use: [
             {
               loader: 'babel-loader',
@@ -126,88 +174,12 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
-      new webpack.DefinePlugin({
-        'process.env': {
-          WEBPACK_DEV: DEV,
-        },
-      }),
-      new HtmlWebpackPlugin({
-        template: path.join(__dirname, '../src/index.ejs'),
-        filename: 'index.html',
-        chunks: ['main'],
-        analyticsId: DEV
-          ? 'de05c6be-10c6-4ef8-ad28-ae9a122e4d78' // dev
-          : '065c72b6-f23a-4104-9327-60b0beef40ac', // prod
-      }),
       PROD &&
         new MiniCssExtractPlugin({
           filename: 'assets/styles/[name].[contenthash:8].css',
           chunkFilename: 'assets/styles/[name].[contenthash:8].css',
           ignoreOrder: true,
         }),
-      PROD && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/^runtime.+\.js$/]),
-      PROD && new WebpackManifestPlugin(),
     ].filter(Boolean),
   }
-
-  return handleConfig(config, argv)
-}
-
-function handleConfig(config, argv) {
-  if (!argv.speed) return config
-
-  const smp = new SpeedMeasurePlugin()
-  return smp.wrap(config)
-}
-
-const terserPluginConfig = {
-  extractComments: false,
-  terserOptions: {
-    format: {
-      comments: false,
-      ascii_only: true,
-    },
-    compress: {
-      drop_console: true,
-    },
-  },
-}
-
-const splitChunksConfig = {
-  chunks: 'all',
-  cacheGroups: {
-    default: {
-      chunks: 'async',
-      priority: 10,
-      minChunks: 2,
-      reuseExistingChunk: true,
-    },
-    defaultVendors: false,
-    commons: {
-      chunks: 'all',
-      test: /[\\/]node_modules[\\/]/,
-      priority: 20,
-      minChunks: 2,
-      maxSize: 512 * 1024, // 512kb
-      name: 'commons',
-      filename: '[name].[chunkhash:8].js',
-      reuseExistingChunk: true,
-    },
-    core: {
-      chunks: 'all',
-      test: /node_modules[\\/](?:core-js|regenerator-runtime|@babel|(?:style|css)-loader)/,
-      priority: 30,
-      name: 'core',
-      filename: '[name].[chunkhash:8].js',
-      reuseExistingChunk: true,
-    },
-    react: {
-      chunks: 'all',
-      test: /node_modules[\\/](?:react|react-dom|react-router-dom)/,
-      priority: 100,
-      name: 'react',
-      filename: '[name].[chunkhash:8].js',
-      reuseExistingChunk: true,
-    },
-  },
 }
