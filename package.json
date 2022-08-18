@@ -1,8 +1,10 @@
 {
   "name": "raise",
   "productName": "Raise",
+  "chromeProductName": "Raise - GitHub Trending",
   "version": "1.1.0",
   "description": "A simple (and unofficial) GitHub Trending client that lives in your menubar",
+  "chromeDescription": "GitHub Trending at a glance",
   "main": "dist/main.js",
   "repository": "https://github.com/meetyan/raise.git",
   "homepage": "./",

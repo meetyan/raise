@@ -9,11 +9,11 @@ const pkg = require('./package.json')
 
 module.exports = () => {
   const manifest = {
-    name: pkg.productName,
-    description: pkg.description,
+    name: pkg.chromeProductName,
+    description: pkg.chromeDescription,
     version: pkg.version,
     manifest_version: 3,
-    permissions: ['storage', 'activeTab', 'scripting'],
+    permissions: [],
     action: {
       default_popup: 'index.html',
       default_icon: {
