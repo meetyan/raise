@@ -38,6 +38,7 @@ If it's your first time to open Raise, you might see a screen saying `Windows pr
 - [React](https://reactjs.org/)
 - [Semi Design](https://semi.design/)
 - [GitHub Trending API](https://github.com/huchenme/github-trending-api)
+- [Umami](https://github.com/gmasclet/umami)
 - [PM2](https://pm2.keymetrics.io/)
 - [Webpack](https://webpack.js.org/)
 

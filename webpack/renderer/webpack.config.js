@@ -27,6 +27,10 @@ module.exports = (_, argv) => {
         template: path.resolve('./src/index.ejs'),
         filename: 'index.html',
         chunks: ['main'],
+        isElectron: true,
+        analyticsId: DEV
+          ? 'de05c6be-10c6-4ef8-ad28-ae9a122e4d78' // dev
+          : '065c72b6-f23a-4104-9327-60b0beef40ac', // prod
       }),
       PROD && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/^runtime.+\.js$/]),
     ].filter(Boolean),

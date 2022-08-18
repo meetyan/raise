@@ -11,6 +11,16 @@
 			content="width=device-width, initial-scale=1.0"
 		>
 		<title>Raise - GitHub Trending</title>
+
+		<!-- Only the Electron app will track -->
+    <% if (htmlWebpackPlugin.options.isElectron) { %>
+			<script
+			async
+			defer
+			data-website-id="<%= htmlWebpackPlugin.options.analyticsId %>"
+			src="https://analytics.curve.to/umami.js"
+		></script>
+    <% } %>
 	</head>
 
 	<body>
