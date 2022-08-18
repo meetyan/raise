@@ -20,7 +20,7 @@ const AboutModal = ({visible, setVisible}) => {
       onCancel={() => setVisible(false)}
       closeOnEsc={true}
       width={350}
-      height={400}
+      height="fit-content"
       centered
       footer={null}
       zIndex={Z_INDEX.MODAL}
