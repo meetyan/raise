@@ -35,9 +35,6 @@ module.exports = (_, argv) => {
         template: path.resolve('./src/index.ejs'),
         filename: 'index.html',
         chunks: ['main'],
-        analyticsId: DEV
-          ? 'de05c6be-10c6-4ef8-ad28-ae9a122e4d78' // dev
-          : 'a8af4888-2337-4ddb-af83-ae84546316dc', // prod
       }),
       new CopyWebpackPlugin({
         patterns: [

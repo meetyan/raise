@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Divider, Layout, Toast, Typography} from '@douyinfe/semi-ui'
 
-import {isChrome, isDev, MODE, TRENDING_TYPE, Z_INDEX} from '@/config'
+import {isChrome, MODE, TRENDING_TYPE, Z_INDEX} from '@/config'
 import {AppProvider} from '@/app-context'
 import {UpdateNotification, UpperContainer} from '@/components'
 import Index from '@/pages/index/index'
