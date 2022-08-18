@@ -3,22 +3,26 @@
  */
 
 const path = require('path')
+const webpack = require('webpack')
 const {merge} = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin')
 
-const base = require('./webpack.base.config')
+const base = require('../webpack.base.config')
 
-module.exports = (env, argv) => {
+module.exports = (_, argv) => {
   console.log('webpack config argv =>', argv)
 
   const DEV = argv.mode === 'development'
   const PROD = !DEV
 
-  const baseConfig = base(env, argv)
-
-  return merge(baseConfig, {
+  return merge(base(argv), {
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env': {
+          WEBPACK_DEV: DEV,
+        },
+      }),
       new HtmlWebpackPlugin({
         template: path.resolve('./src/index.ejs'),
         filename: 'index.html',

@@ -8,7 +8,7 @@ const {merge} = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-const base = require('./webpack.base.config')
+const base = require('../webpack.base.config')
 const generateChromeManifest = require('../../chrome-manifest')
 
 generateChromeManifest()
