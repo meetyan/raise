@@ -9,7 +9,7 @@ const pkg = require('./package.json')
 
 module.exports = () => {
   const manifest = {
-    name: pkg.name,
+    name: pkg.productName,
     description: pkg.description,
     version: pkg.version,
     manifest_version: 3,
