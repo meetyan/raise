@@ -3,7 +3,7 @@ import {Button, Divider, Modal, Space, Switch, Typography} from '@douyinfe/semi-
 import {IconExternalOpen} from '@douyinfe/semi-icons'
 
 import {useAutoUpdate, useBackTop, useDockIcon, useMode} from '@/hooks'
-import {MODE, URL, VERSION, Z_INDEX, isMac} from '@/config'
+import {MODE, URL, VERSION, Z_INDEX, isMac, isElectron} from '@/config'
 import {polyfill} from '@/utils'
 import pkg from '@pkg'
 
@@ -26,7 +26,7 @@ const SettingsModal = ({visible, setVisible}) => {
       onCancel={() => setVisible(false)}
       closeOnEsc={true}
       width={350}
-      height={isMac ? 375 : 335}
+      height="fit-content"
       centered
       footer={null}
       zIndex={Z_INDEX.MODAL}
@@ -49,7 +49,7 @@ const SettingsModal = ({visible, setVisible}) => {
             <Switch checked={backTop} onChange={setBackTop} />
           </div>
 
-          {isMac ? (
+          {isMac && isElectron ? (
             <div className={styles.settingsItem}>
               <Text strong>Show app icon in dock</Text>
               <Switch checked={dockIcon} onChange={setDockIcon} />
@@ -58,10 +58,12 @@ const SettingsModal = ({visible, setVisible}) => {
 
           <Divider />
 
-          <div className={styles.settingsItem}>
-            <Text strong>Automatic updates</Text>
-            <Switch checked={autoUpdate} onChange={setAutoUpdate} />
-          </div>
+          {isElectron ? (
+            <div className={styles.settingsItem}>
+              <Text strong>Automatic updates</Text>
+              <Switch checked={autoUpdate} onChange={setAutoUpdate} />
+            </div>
+          ) : null}
 
           <div className={styles.settingsItem}>
             <Text strong>Changelog</Text>
@@ -71,7 +73,7 @@ const SettingsModal = ({visible, setVisible}) => {
           </div>
 
           <Divider />
-          <Text type="tertiary">
+          <Text type="tertiary" className={styles.version}>
             {pkg.productName}, version {VERSION}
           </Text>
         </Space>
