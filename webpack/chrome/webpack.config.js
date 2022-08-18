@@ -19,6 +19,11 @@ module.exports = (_, argv) => {
   const DEV = argv.mode === 'development'
 
   return merge(base(argv), {
+    /**
+     * The field `devtool` fixed unsafe-eval error in dev mode.
+     * See https://stackoverflow.com/questions/48047150/chrome-extension-compiled-by-webpack-throws-unsafe-eval-error
+     */
+    devtool: DEV ? 'cheap-module-source-map' : false,
     plugins: [
       new webpack.DefinePlugin({
         'process.env': {

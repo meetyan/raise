@@ -21,7 +21,7 @@ Toast.config({zIndex: Z_INDEX.TOAST})
 
 const {REPOSITORIES} = TRENDING_TYPE
 const {getContextFromStorage} = polyfill
-const layoutStyle = {maxWidth: isChrome && !isDev ? 400 : 'none'}
+const layoutStyle = {maxWidth: isChrome ? 400 : 'none'}
 
 const App = () => {
   const [context] = useState({
