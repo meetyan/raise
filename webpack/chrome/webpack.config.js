@@ -35,11 +35,13 @@ module.exports = (_, argv) => {
         template: path.resolve('./src/index.ejs'),
         filename: 'index.html',
         chunks: ['main'],
+        isChrome: true,
       }),
       new CopyWebpackPlugin({
         patterns: [
-          {from: './static/chrome', to: './chrome'},
-          {from: './src/manifest.json', to: './manifest.json'},
+          {from: './static/chrome', to: './static'},
+          {from: './src/chrome/manifest.json', to: './manifest.json'},
+          {from: './src/chrome', to: './chrome', globOptions: {ignore: ['**/*/manifest.json']}},
         ],
       }),
     ],

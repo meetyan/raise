@@ -19,7 +19,7 @@
     "build:main": "webpack --mode=production --config webpack/main/webpack.config.js --progress",
     "build:renderer": "webpack --mode=production --config webpack/renderer/webpack.config.js --progress",
     "build:chrome": "rimraf ./dist && webpack --mode=production --config webpack/chrome/webpack.config.js --progress",
-    "lint": "eslint 'src/**/*.{js,jsx}' --cache --fix",
+    "lint": "eslint 'src/**/*.{js,jsx}' 'electron/**/*.{js,jsx}' --cache --fix",
     "package": "rimraf ./out && electron-builder build --mac --win --publish never",
     "release": "rimraf ./out && electron-builder build --mac --win --publish always"
   },

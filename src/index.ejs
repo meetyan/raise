@@ -25,6 +25,11 @@
 
 	<body>
 		<div id="root"></div>
+
+		<!-- Load popup.js only when in Chrome -->
+    <% if (htmlWebpackPlugin.options.isChrome) { %>
+			<script src="./chrome/popup.js"></script>
+    <% } %>
 	</body>
 
 </html>
