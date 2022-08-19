@@ -36,6 +36,7 @@ module.exports = (_, argv) => {
         filename: 'index.html',
         chunks: ['main'],
         isChrome: true,
+        analyticsDomain: DEV ? 'raise-dev.curve.to' : 'raise-chrome.curve.to',
       }),
       new CopyWebpackPlugin({
         patterns: [

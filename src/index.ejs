@@ -11,24 +11,28 @@
 			content="width=device-width, initial-scale=1.0"
 		>
 		<title>Raise - GitHub Trending</title>
-
-		<!-- Only the Electron app will track -->
-    <% if (htmlWebpackPlugin.options.isElectron) { %>
-			<script
-			async
-			defer
-			data-website-id="<%= htmlWebpackPlugin.options.analyticsId %>"
-			src="https://analytics.curve.to/umami.js"
-		></script>
-    <% } %>
 	</head>
 
 	<body>
 		<div id="root"></div>
 
-		<!-- Load popup.js only when in Chrome -->
     <% if (htmlWebpackPlugin.options.isChrome) { %>
 			<script src="./chrome/popup.js"></script>
+			<script
+				defer
+				data-domain="<%= htmlWebpackPlugin.options.analyticsDomain %>"
+				data-api="http://analytics.curve.to/api/event"
+				src="./analytics/plausible.js">
+			</script>
+    <% } %>
+
+    <% if (htmlWebpackPlugin.options.isElectron) { %>
+			<script
+				defer 
+				data-domain="<%= htmlWebpackPlugin.options.analyticsDomain %>"
+				data-api="http://analytics.curve.to/api/event"
+				src="https://analytics.curve.to/js/script.local.js">
+			</script>
     <% } %>
 	</body>
 
