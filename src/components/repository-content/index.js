@@ -75,23 +75,25 @@ const RepositoryContent = ({list, loading}) => {
                 </Space>
               </div>
 
-              <div className={styles.bottom}>
-                <Space>
-                  <Text>Built by</Text>
-                  <div>
-                    {item.builtBy?.map(builtByAuthor => {
-                      return (
-                        <img
-                          className={styles.avatar}
-                          src={builtByAuthor.avatar}
-                          key={builtByAuthor.avatar}
-                          onClick={() => open(builtByAuthor.href)}
-                        />
-                      )
-                    })}
-                  </div>
-                </Space>
-              </div>
+              {item.builtBy?.length ? (
+                <div className={styles.bottom}>
+                  <Space>
+                    <Text>Built by</Text>
+                    <div>
+                      {item.builtBy?.map(builtByAuthor => {
+                        return (
+                          <img
+                            className={styles.avatar}
+                            src={builtByAuthor.avatar}
+                            key={builtByAuthor.avatar}
+                            onClick={() => open(builtByAuthor.href)}
+                          />
+                        )
+                      })}
+                    </div>
+                  </Space>
+                </div>
+              ) : null}
             </div>
           </Card>
         )
