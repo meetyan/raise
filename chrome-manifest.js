@@ -13,7 +13,10 @@ module.exports = () => {
     description: pkg.chromeDescription,
     version: pkg.version,
     manifest_version: 3,
-    permissions: [],
+    permissions: ['storage'],
+    background: {
+      service_worker: '/chrome/background.js',
+    },
     action: {
       default_popup: 'index.html',
       default_icon: {
