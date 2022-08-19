@@ -32,9 +32,7 @@ const Index = () => {
 
   const Content = isRepo ? RepositoryContent : DeveloperContent
 
-  const resetList = () => {
-    setList([])
-  }
+  const resetList = () => setList([])
 
   const getList = async params => {
     window.scrollTo({top: 0})
@@ -50,7 +48,12 @@ const Index = () => {
       const res = await fetch(convert(params))
       setList(res)
       setEmpty(!res.length)
+
+      if (position) {
+        window.scrollTo({top: position})
+      }
     } catch (error) {
+      // Makes sure when a request is canceled, loading is still true for the next getList call
       if (axios.isCancel(error)) return (isCancel = true)
 
       console.log('An error occurred when calling getList. Params: ', params, error)
@@ -58,7 +61,7 @@ const Index = () => {
         'Oops. It looks like an error occurs. The server might be down. Please try again.'
       )
     } finally {
-      setLoading(isCancel || false) // Makes sure that when a request is canceled, loading is true for next getList call
+      setLoading(isCancel)
     }
   }
 
@@ -72,7 +75,7 @@ const Index = () => {
 
   /**
    * Recover settings to last state according to context storage
-   * For example, when a user toggles settings in the settings modal,
+   * e.g., when a user toggles settings in the settings modal,
    * a few changes have been made.
    * After he closes the app and reopens it,
    * all settings/context will have to be recovered.
