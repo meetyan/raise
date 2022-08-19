@@ -8,11 +8,10 @@ import {
   IconSetting,
   IconSun,
 } from '@douyinfe/semi-icons'
-import {useScroll} from 'ahooks'
 
 import {Filter, SettingsModal, AboutModal} from '@/components'
 import {MODE, TRENDING_TYPE, isMac} from '@/config'
-import {useMode, useOutsideClick, useTrendingType} from '@/hooks'
+import {useMode, useOutsideClick, useScrollPosition, useTrendingType} from '@/hooks'
 import {IPC_FUNCTION} from '@shared'
 import pkg from '@pkg'
 import {polyfill} from '@/utils'
@@ -29,9 +28,9 @@ const {SHOW_ABOUT_MODAL, SHOW_SETTINGS_MODAL} = IPC_FUNCTION
 const RaiseHeader = ({refresh, getList, resetList}) => {
   const headerRef = useRef()
   const filterRef = useRef()
-  const scrollRef = useScroll()
   const [mode, setMode] = useMode()
   const [trendingType, setTrendingType] = useTrendingType()
+  const scrollPosition = useScrollPosition()
 
   const [headerHeight, setHeaderHeight] = useState(0)
   const [showFilter, setShowFilter] = useState(false)
@@ -86,7 +85,7 @@ const RaiseHeader = ({refresh, getList, resetList}) => {
         <Header
           className={styles.header}
           style={{
-            boxShadow: scrollRef?.top || showFilter ? '0 8px 24px -2px rgba(0, 0, 0, 0.2)' : 'none',
+            boxShadow: scrollPosition || showFilter ? '0 8px 24px -2px rgba(0, 0, 0, 0.2)' : 'none',
             ...(isMac ? {backgroundColor: 'initial'} : {}),
           }}
         >
@@ -142,7 +141,7 @@ const RaiseHeader = ({refresh, getList, resetList}) => {
             </div>
           </div>
 
-          <Divider style={{opacity: !scrollRef?.top || showFilter ? 1 : 0}} />
+          <Divider style={{opacity: !scrollPosition || showFilter ? 1 : 0}} />
 
           <Collapsible isOpen={showFilter} keepDOM>
             <Filter ref={filterRef} getList={getList} />
