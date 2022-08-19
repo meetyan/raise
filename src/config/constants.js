@@ -40,6 +40,7 @@ export const Z_INDEX = {
 export const URL = {
   GITHUB: 'https://github.com',
   CHANGELOG: 'https://github.com/meetyan/raise/releases',
+  ISSUE: 'https://github.com/meetyan/raise/issues',
   SERVER: 'https://trending.curve.to',
 }
 

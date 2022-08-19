@@ -72,6 +72,13 @@ const SettingsModal = ({visible, setVisible}) => {
             </Button>
           </div>
 
+          <div className={styles.settingsItem}>
+            <Text strong>Experiencing a bug?</Text>
+            <Button icon={<IconExternalOpen />} onClick={() => open(URL.ISSUE)}>
+              Submit an issue
+            </Button>
+          </div>
+
           <Divider />
           <Text type="tertiary" className={styles.version}>
             {pkg.productName}, version {VERSION}
