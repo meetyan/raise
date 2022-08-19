@@ -5,8 +5,9 @@
       "@/*": ["./src/*"],
       "@static/*": ["./static/*"],
       "@shared": ["./shared"],
-      "@pkg": ["./package.json"],
+      "@pkg": ["./package.json"]
     }
   },
+  "typeAcquisition": {"include": ["chrome"]},
   "exclude": ["node_modules", "dist"]
 }

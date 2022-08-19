@@ -31,7 +31,9 @@ module.exports = {
     'standard',
     'plugin:prettier/recommended',
   ],
-  globals: {},
+  globals: {
+    chrome: true,
+  },
   rules: {
     'react/react-in-jsx-scope': 'off',
     'prettier/prettier': [
