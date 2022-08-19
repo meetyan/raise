@@ -17,19 +17,19 @@ module.exports = () => {
     action: {
       default_popup: 'index.html',
       default_icon: {
-        16: '/chrome/16.png',
-        32: '/chrome/32.png',
-        48: '/chrome/48.png',
-        128: '/chrome/128.png',
+        16: '/static/16.png',
+        32: '/static/32.png',
+        48: '/static/48.png',
+        128: '/static/128.png',
       },
     },
     icons: {
-      16: '/chrome/16.png',
-      32: '/chrome/32.png',
-      48: '/chrome/48.png',
-      128: '/chrome/128.png',
+      16: '/static/16.png',
+      32: '/static/32.png',
+      48: '/static/48.png',
+      128: '/static/128.png',
     },
   }
 
-  fs.writeFileSync(path.resolve('./src/manifest.json'), JSON.stringify(manifest))
+  fs.writeFileSync(path.resolve('./src/chrome/manifest.json'), JSON.stringify(manifest))
 }
