@@ -48,10 +48,6 @@ const Index = () => {
       const res = await fetch(convert(params))
       setList(res)
       setEmpty(!res.length)
-
-      if (position) {
-        window.scrollTo({top: position})
-      }
     } catch (error) {
       // Makes sure when a request is canceled, loading is still true for the next getList call
       if (axios.isCancel(error)) return (isCancel = true)
