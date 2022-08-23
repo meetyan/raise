@@ -10,7 +10,13 @@ A simple (and unofficial) GitHub Trending client that lives in your menubar.
 
 ## 🖥 Installation
 
-Download from [GitHub Releases](https://github.com/meetyan/raise/releases) and install.
+### New!! Raise is now available as a Chrome Extension
+
+More in favor of a Chrome Extension variant? Check it out here:
+
+<a href="https://chrome.google.com/webstore/detail/raise-github-trending/gehkhkcbbfeooflhkboaggpgldmhfmag?hl=en&authuser=0" target="_blank"><img src="./static/available-in-chrome-web-store.png" width="200" /></a>
+
+Otherwise, download from [GitHub Releases](https://github.com/meetyan/raise/releases) and install.
 
 Currently Raise can run on macOS and Windows machines.
 
